@@ -1,0 +1,32 @@
+- model_class = FileObject
+table.table.table-striped
+  thead
+    tr
+      th
+      th= model_class.human_attribute_name(:filename)
+      th= model_class.human_attribute_name(:size)
+      th= model_class.human_attribute_name(:created_at)
+      th=t '.actions', :default => t("helpers.actions")
+  tbody
+    - collection.each do |file_object|
+      - unless file_object.new_record?
+        tr
+          td= filepicker_image_tag file_object.url, w: 96, h: 96 if file_object.mimetype.include? 'image'
+          td= link_to file_object.name, [file_object]
+          td= number_to_human_size file_object.size
+          td= file_object.created_at.in_time_zone.strftime("%I:%M%p on %b %e")
+          td
+            = filepicker_save_button "Download", file_object.url, '', class: :btn
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), [file_object], :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can?(:destroy, file_object)
+  - if @file_object
+	  tfoot
+	    tr
+        td
+        td
+  	      = simple_form_for [@file_object], wrapper: :minimal, :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} } do |f|
+            = f.error_notification
+            = render 'file_objects/fields', f: f, dragdrop: false
+            .hide= f.button :submit
+        td
+        td
+        td

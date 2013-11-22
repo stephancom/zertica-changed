@@ -1,0 +1,11 @@
+| Dear #{@order.user.first_name}:
+
+	Your order, "#{@order.title}" has been estimated by our staff at #{number_to_currency @order.price}.
+
+	Please log into Zertica Connect and pay for the order so we can begin production.
+
+	#{order_url @order}
+
+	Thank you,
+
+	Zertica

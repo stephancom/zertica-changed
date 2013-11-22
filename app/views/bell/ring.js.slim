@@ -1,0 +1,4 @@
+- publish_to '/bell/ring' do
+	| $.gritter.add({title:'Ding-Dong',text:'User #{current_user.name} needs attention',sticky: true});
+	| $('#admin_bell').trigger('play');
+| $.gritter.add({title:'Bell Rung',text:'admins have been notified'});

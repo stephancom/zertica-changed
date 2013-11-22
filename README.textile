@@ -1,0 +1,208 @@
+h1. Zertica Connect
+
+h2. Deployment
+
+local dev deployment:
+* clone the repo
+* bundle install
+* cp application.example.yml to application.yml, fill in correct data
+* cp database.example.yml to database.yml, change if needed (probably not needed if you have postgresql running)
+* you may need to "CREATE ROLE zertica_connect WITH SUPERUSER LOGIN;" in postgres unless you edit the database.yml
+* rake db:grate
+* rake db:migrate
+* rake db:seed
+* rails server
+
+To recreate the heroku server named @zertica_connect@, do this:
+
+bc. heroku apps:create zertica_connect
+heroku addons:add pgbackups:plus
+heroku addons:add newrelic:standard
+heroku addons:add mandrill:starter
+heroku addons:add filepicker:test
+heroku domains:add zertica.com
+heroku addons:add scheduler:standard
+git push heroku master
+heroku run rake db:migrate
+
+h4. Faye
+
+You also need to set up a second server for Faye.  Instructions may be found here
+
+http://joshcrews.com/blog/2013/06/07/running-private-pub-slash-faye-server-on-heroku/
+
+bc. git clone https://github.com/IamNaN/heroku_private_pub zertica_connect_faye
+cd zertica_connect_faye/
+bundle install
+heroku create zertica-connect-faye
+
+change settings in config/private_pub.yml in BOTH the faye and the connect app
+
+git commit -a -m 'update config'
+git push heroku master
+
+h4. Ink Filepicker
+
+also, create your desired bucket and configure your keys for Ink Filepicker through Heroku
+
+h4. Scheduler
+
+Also you need to schedule the user message notifications feature.  You can open the web tool for this with this comment
+
+bc. heroku addons:open scheduler
+
+the task you want to shedule is 
+
+bc. rake zertica:new_messages
+
+I recommend doing it hourly.
+
+https://devcenter.heroku.com/articles/scheduler
+
+h4. Paid accounts needed
+
+* Heroku _(TWO servers, but the free level seems to be working ok?)_
+* Amazon S3
+* Mandrill _(optional - free starter level allows 12,000 emails per month)_
+* Ink Filepicker _(optional - free starter level allows 5,000 files per month; currently in beta)_
+* Braintree
+
+for several of these, you need to set up environment variables on Heroku
+
+FILEPICKER_API_KEY
+FILEPICKER_API_SECRET
+
+MANDRILL_USERNAME
+MANDRILL_API_KEY
+
+BRAINTREE_MERCHANT_ID
+BRAINTREE_PUBLIC_KEY
+BRAINTREE_PRIVATE_KEY
+BRAINTREE_CLIENT_SIDE_ENCRYPTION_KEY
+
+FACEBOOK_APP_ID
+FACEBOOK_APP_SECRET
+
+For Braintree, when you're ready to take credit cards for real, you'll want to change :sandbox in braintree.rb to :production
+
+For braintree, you also need to configure a custom field of 'order_id' so we can identify which order a payment is associated with.  You do this in the Braintree control panel, 'settings' in the top bar, green button about halfway down
+
+Your S3 key has to be configured in your Ink Filepicker account
+
+if you use rake db:seed to set up the initial admin account, you'll need to set:
+
+ADMIN_NAME
+ADMIN_EMAIL
+ADMIN_PASSWORD
+
+h2. Development
+
+* Template Engine: Slim
+* Testing Framework: RSpec and Factory Girl
+* Front-end Framework: Bootstrap
+* Form Builder: SimpleForm
+* Authentication: Devise
+* Authorization: CanCan
+
+h4. Development faye server
+
+bc. rackup private_pub.ru -s thin -E production
+
+h4. Development Ink Filepicker setup
+
+On OSX, I do this...
+
+bc.. # in ~/.bash_login
+  [[ -s $HOME/.filepicker_keys ]] && source $HOME/.filepicker_keys
+
+  # in ~/.bashrc (might be redundant)
+  if [[ -f "$HOME/.filepicker_keys" ]]; then
+    source "$HOME/.filepicker_keys";
+  fi
+
+  # in ~/.filepicker_keys
+  export FILEPICKER_API_KEY='XYZXYZ'
+  export FILEPICKER_API_SECRET='XYZXYZ'
+
+h4. application.yml
+
+Actually, I don't do that for filepicker any more.  You CAN set all those things up with environment variables (see above for list), but it's easier to create an application.yml file.  copy application.yml.sample (in the repo) to application.yml and fill in the right values.
+
+AND DO NOT ADD APPLICATION.YML TO THE REPOSITORY!!!! EVER!!!!
+DO NOT EVER PUT KEYS IN THE REPOSITORY!!!! EVER!!!!
+
+h4. braintree
+
+In testing, you use special credit card numbers, amounts, and other codes to simulate successful/failing transactions.  Reference here: https://www.braintreepayments.com/docs/ruby/reference/sandbox
+
+h2. History
+
+This application was generated with the "rails_apps_composer":https://github.com/RailsApps/rails_apps_composer gem provided by the "RailsApps Project":http://railsapps.github.io/.
+
+h2. Diagnostics
+
+This application was built with recipes that are known to work together.
+
+This application was built with preferences that are NOT known to work together.
+
+If the application doesn't work as expected, please "report an issue":https://github.com/RailsApps/rails_apps_composer/issues and include these diagnostics:
+
+We'd also like to know if you've found combinations of recipes or preferences that do work together.
+
+Recipes:
+["apps4", "controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "saas", "setup", "testing", "views"]
+
+Preferences:
+{:git=>true, :apps4=>"none", :dev_webserver=>"webrick", :prod_webserver=>"same", :database=>"postgresql", :templates=>"slim", :unit_test=>"rspec", :integration=>"turnip", :continuous_testing=>"guard", :fixtures=>"factory_girl", :frontend=>"foundation", :email=>"mandrill", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :form_builder=>"simple_form", :starter_app=>"admin_app", :rvmrc=>true, :quiet_assets=>true, :local_env_file=>true, :better_errors=>true, :ban_spiders=>true, :github=>true}
+
+h2. Ruby on Rails
+
+This application requires:
+
+* Ruby version 2.0.0
+* Rails version 4.0.0
+
+Learn more about "Installing Rails":http://railsapps.github.io/installing-rails.html.
+
+h2. Database
+
+This application uses PostgreSQL with ActiveRecord.
+
+h2. Email
+
+The application is configured to send email using a Mandrill account.
+
+h2. Documentation and Support
+
+This is the only documentation.
+
+h4. Issues
+
+None known
+
+h2. Similar Projects
+
+None known
+
+h2. Contributing
+
+If you make improvements to this application, please share with others.
+
+* Fork the project on GitHub.
+* Make your feature addition or bug fix.
+* Commit with Git.
+* Send the author a pull request.
+
+If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
+
+h2. Credits
+
+by "stephan.com":http://stephan.com
+
+h3. a note from the developer
+
+really, this isn't my best work.  there's no meaningful tests to speak of, the security isn't very good, there's bunches of routes and methods that shouldn't be there, it's all rather thrown together in a hurry with a small budget.  If you're looking at this as an example of my work, well, there's a few gems in here I'm proud of, but on the whole, this isn't really up to my usual standards, it's just quick, cheap, with a flimsy spec and minimal budget, but it does what it's meant to do.  I'd love to really spend the time to bring this project up to my own standards.  But it ain't too bad for a quickie little job :) thanks for understanding - stephan.com
+
+h2. License
+
+(c) 2013 Zertica

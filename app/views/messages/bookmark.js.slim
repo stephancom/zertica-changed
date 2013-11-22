@@ -1,0 +1,2 @@
+- publish_to "/messages/new/#{@message.user_id}" do
+	| $('##{dom_id(@message)}').replaceWith("#{j render(@message)}")

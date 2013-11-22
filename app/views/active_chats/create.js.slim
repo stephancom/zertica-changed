@@ -1,0 +1,4 @@
+| $('#active-chats-tabs').append("#{j render('active_chat_tab', active_chat_tab: @active_chat)}");
+| $('#active-chats').append("#{j render(@active_chat)}");
+| $("##{dom_id(@active_chat, :tab)} a").tab('show');
+| $("##{dom_id(@active_chat.user, :chat_toggle)}").hide('fast');

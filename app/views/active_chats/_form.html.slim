@@ -1,0 +1,6 @@
+= simple_form_for @active_chat do |f|
+  = f.error_notification
+  = f.association :user
+  .row
+    .small-9.columns.small-offset-3
+      = f.button :submit, class: :right

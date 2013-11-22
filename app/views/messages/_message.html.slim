@@ -1,0 +1,16 @@
+- unless message.new_record?
+	.row-fluid *message_attrs(message)
+		.span1
+			a data={method: :patch, remote: true} href=bookmark_message_path(message) class=:bookmark
+				- if message.bookmark
+					i.icon-star.icon-2x
+				- else
+					i.icon-star-empty.icon-2x
+		.span11.message-text
+			- if message.admin_id
+				.bubble= message.body
+			- else
+				.bubble.bubble--alt= message.body
+			p.speaker
+				= message.speaker_name
+				span.timestamp= message.created_at.in_time_zone.strftime("%I:%M%p on %b %e")

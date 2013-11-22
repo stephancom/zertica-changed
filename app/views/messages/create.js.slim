@@ -1,0 +1,4 @@
+- panel_id = '#'+dom_id(@message.user, :message_panel)
+- publish_to "/messages/new/#{@message.user_id}" do
+	| $('#{panel_id} .messages').append("#{j render(@message)}").animate({ scrollTop: $('#{panel_id} .messages').prop("scrollHeight")}, 1000);
+| $('#{panel_id} textarea[name="message[body]"]').val('').focus();

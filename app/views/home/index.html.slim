@@ -1,0 +1,44 @@
+- if false
+	- @users.each do |user|
+	  p
+	    | User: #{link_to user.name, user}
+
+h3 Three Dimensions, One Service.
+
+p We are a professional CAD service and product development company. We offer 3D solid modeling and drafting for any parts, designs, products, or projects you may have. We can also convert drawings or sketches into CAD, SolidWorks models, and any standard format you wish. In addition, we offer the latest in 3D printing technology to make a prototype or manufacture your designs. Our rates are competitive, and we can work with anyone around the globe. We're based in beautiful, sunny California.
+
+a.btn href='#contact' data={toggle: 'modal'} Contact Us
+
+#contact.bootstrap-modal.modal.hide.fade
+  .modal-header
+    button.close data={dismiss: "modal"} aria-hidden=true &times;
+    h3 Get Started Now
+  .modal-body
+    .row-fluid
+      .span3
+        label.right.inline Email
+      .span9
+        input placeholder="myemail@mail.com" type="text"
+    .row-fluid
+      .span3
+        label.right.inline Project Title
+      .span9
+        input placeholder="Ex. New medical instrument" type="text"
+    .row-fluid
+      .span3
+        label.right.inline Details
+      .span9
+        textarea placeholder="Ex. Hello, I need CAD drawings for a new medical instrument. I will need a few prototypes made too."
+    .row-fluid
+      .span3
+        label.right.inline File
+      .span9
+        input type="file"
+    .row-fluid
+      .span9.offset3
+        label for="terms"
+          input#terms type="checkbox"
+            span.custom.checkbox
+            | I Agree to the Terms of Service
+  .modal-footer
+    button.btn Submit My Project

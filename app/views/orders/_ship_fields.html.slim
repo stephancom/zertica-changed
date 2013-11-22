@@ -1,0 +1,5 @@
+- if @order.cad_order?
+//	= f.association :shippable_files, collection: project.project_files, as: :check_boxes
+- else
+	= f.input :carrier, collection: Order::CARRIERS
+	= f.input :tracking_number

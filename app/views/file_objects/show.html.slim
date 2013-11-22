@@ -1,0 +1,16 @@
+
+
+h2 File: #{@file_object.name}
+
+h3 
+	| Size:
+	= number_to_human_size @file_object.size
+
+h3 
+	| Type:
+	= @file_object.mimetype
+
+p= filepicker_save_button "Download", @file_object.url, ''
+
+p= filepicker_image_tag @file_object.url if @file_object.mimetype.include? 'image'
+

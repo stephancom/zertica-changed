@@ -1,0 +1,2 @@
+module ActiveChatsHelper
+end

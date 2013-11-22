@@ -1,0 +1,8 @@
+h1 New message
+
+== render 'form'
+
+- if @user
+	= link_to 'Back', user_messages_path(@user)
+- else
+	= link_to 'Back', messages_path

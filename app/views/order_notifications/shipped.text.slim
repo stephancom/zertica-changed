@@ -1,0 +1,14 @@
+| Dear #{@order.user.first_name}:
+
+	Congratulations!
+
+- if @order.cad_order?
+	| Your order "#{@order.title}," resulted in files which have been uploaded to Zertica Connect, and are ready for you to download.
+
+		#(order_url @order)
+- else
+	| Your order "#{@order.title}," has been shipped via #{@order.carrier} with the tracking number #{@order.tracking_number}.
+
+| Thank you,
+
+	Zertica

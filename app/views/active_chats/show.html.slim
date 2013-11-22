@@ -1,0 +1,12 @@
+= render @active_chat
+
+p#notice = notice
+
+p
+  strong User:
+  = @active_chat.user.name
+p
+  strong Admin:
+  = @active_chat.admin.name
+
+= link_to 'Back', active_chats_path

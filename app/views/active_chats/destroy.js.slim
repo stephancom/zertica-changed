@@ -1,0 +1,4 @@
+| $("##{dom_id(@active_chat, :tab)}").remove();
+| $("##{dom_id(@active_chat)}").remove();
+| $('#active-chats-tabs a:first').tab('show');
+| $("##{dom_id(@active_chat.user, :chat_toggle)}").show('fast', function(){$("##{dom_id(@active_chat.user, :chat_toggle)}").css('display', 'block')});

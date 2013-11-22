@@ -1,0 +1,36 @@
+.navbar.blue.blue2
+ .navbar-fixed-top
+  .navbar-inner
+    .container
+      a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Zertica', root_path, :class => 'brand', :alt => 'Zertica'
+      .nav-collapse.collapse
+        ul.nav.pull-right
+          - if admin_signed_in?
+            li.admin
+              a Merchant:
+            li= link_to 'My Orders', orders_path if can? :index, Order
+            li= link_to 'Order Pool', orders_pool_path if can? :index, Order
+            li= link_to 'Users', users_path if can? :index, User
+            li= link_to 'Messages', active_chats_path if can? :index, ActiveChat
+            li= link_to "Account #{current_admin.name}", edit_admin_registration_path
+            li= link_to 'Logout', destroy_admin_session_path, :method=>'delete'
+            li
+              = subscribe_to '/bell/ring'
+              = audio_tag 'bell.mp3', id: :admin_bell
+          - elsif user_signed_in?
+            li= link_to 'My Orders', orders_path if can? :index, Order
+            li= link_to 'Messages', messages_path if can? :index, Message
+            li= link_to "Account #{current_user.name}", edit_user_registration_path
+            li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+            li= link_to bell_ring_path, data: {toggle: 'tooltip'}, title: "Ring bell", method: :put, remote: true do
+              i.icon-bell-alt.icon-2x
+          - else
+            li= link_to 'Login', new_user_session_path
+            li= link_to user_omniauth_authorize_path(:facebook), data: {toggle: 'tooltip'}, title: "Sign in with Facebook" do
+              i.icon-facebook-sign.icon-2x
+            li= link_to 'Sign up', new_user_registration_path
+            li= link_to 'Admin', new_admin_session_path

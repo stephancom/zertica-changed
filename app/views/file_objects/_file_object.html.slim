@@ -1,0 +1,8 @@
+- unless file_object.new_record?
+	.row-fluid
+		.span2= filepicker_save_button "Download", file_object.url, '', class: :small
+		.span7= link_to file_object.name, [file_object]
+		.span2= number_to_human_size file_object.size
+		.span1= link_to awesome('trash', "delete #{file_object.name}"), [file_object], :confirm => 'Are you sure?', :method => :delete, class: [:button, :small]
+	- if file_object.mimetype.include? 'image'
+		.row-fluid= filepicker_image_tag file_object.url, w: 64, h: 64

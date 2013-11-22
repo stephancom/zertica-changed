@@ -1,0 +1,31 @@
+Zertica Connect
+========================
+(c) 2013 Zertica
+by stephan.com
+
+This application was generated with the rails_apps_composer gem:
+https://github.com/RailsApps/rails_apps_composer
+provided by the RailsApps Project:
+http://railsapps.github.io/
+
+________________________
+
+Recipes:
+["apps4", "controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "saas", "setup", "testing", "views"]
+
+Preferences:
+{:git=>true, :apps4=>"none", :dev_webserver=>"webrick", :prod_webserver=>"same", :database=>"postgresql", :templates=>"slim", :unit_test=>"rspec", :integration=>"turnip", :continuous_testing=>"guard", :fixtures=>"factory_girl", :frontend=>"foundation", :email=>"mandrill", :authentication=>"devise", :devise_modules=>"default", :authorization=>"cancan", :form_builder=>"simple_form", :starter_app=>"admin_app", :rvmrc=>true, :quiet_assets=>true, :local_env_file=>true, :better_errors=>true, :ban_spiders=>true, :github=>true}
+
+________________________
+
+== Deployment
+
+To recreate the heroku server named zertica_connect, do this:
+
+heroku apps:create zertica_connect
+git push heroku master
+heroku run rake db:migrate
+
+
+== License
+
