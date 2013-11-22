@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20131121012736) do
     t.integer  "admin_id"
     t.integer  "order_id"
     t.decimal  "price"
-    t.boolean  "selected"
+    t.boolean  "selected",   default: false
   end
 
   create_table "file_objects", force: true do |t|
