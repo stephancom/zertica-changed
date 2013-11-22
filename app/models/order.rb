@@ -13,7 +13,13 @@ class Order < ActiveRecord::Base
 	def human_order_type
 		cad_order? ? 'CAD' : 'Print'
 	end
-
+	def average
+	    @subtotal = 0
+		self.bids.each do |bid|
+		  @subtotal = @subtotal + bid.price 
+		end
+		@average = @subtotal/self.bids.count unless self.bids.count == 0  
+	end
 	#belongs_to :project
 	#has_and_belongs_to_many :projects
 	#has_one :user, through: :project

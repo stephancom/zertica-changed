@@ -12,9 +12,10 @@
     = link_to 'Archive', archive_order_path(@order), :class => 'btn btn-primary sharp', :method => :patch if can? :archive, @order
        '
        '
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn sharp' if can? :edit, @order
+    p= link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn sharp' if can? :edit, @order
        '
        '
+.row_fluid 
     - if current_admin and @order.submitted?
       = link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn sharp'
 
@@ -29,13 +30,8 @@
 .row-fluid
   .span4
      h4 Price:
-     - if can? :estimate, @order
-       = simple_form_for @order, url: [:estimate, @order], :html => { :class => "form-horizontal" } do |f|
-
-         .form-inputs= f.input :price, label: 'Price: $'
-         = f.button :submit, 'Save Estimate', :class => 'btn-primary sharp'
-     - elsif @order.submitted?
-       h4 no estimate yet
+     - if @order.submitted?
+       p no estimate yet
      - else
        p= number_to_currency @order.price
   
@@ -43,7 +39,7 @@
 - if can? :pay, @order
 
   .span12
-      h4 Mark paid:
+      h4 Pay:
       - if current_admin
         = simple_form_for @order, url: [:pay, @order], :html => { :class => "form-horizontal" } do |f|
           p= f.text_area :confirmation, placeholder: 'Proof of payment: check number, cash, etc.'
@@ -82,11 +78,15 @@
 
 hr
 br
+
 .row-fluid
   .span12
     ul.nav.nav-tabs
-      li.active= link_to 'Bids', '#bids', :data => {:toggle => :tab}
-      li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+      - if current_user && @order.submitted?
+         li.active= link_to 'Bids', '#bids', :data => {:toggle => :tab}
+         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+      - else
+         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
       - if @order and can?(:update, @order)
         = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
           = f.error_notification
@@ -98,10 +98,14 @@ br
       - if @order.shipped? and @order.cad_order?
         li= link_to 'Shipped Files', '#shipped', :data => {:toggle => :tab}
     .tab-content
-      .tab-pane.active#bids
-         = render 'bids/table', collection: @order.bids
-      .tab-pane#files
-         = render 'file_objects/table', collection: @order.file_objects
+      - if current_user && @order.submitted?
+        .tab-pane.active#bids
+           = render 'bids/table', collection: @order.bids
+        .tab-pane#files
+           = render 'file_objects/table', collection: @order.file_objects
+      - else
+        .tab-pane.active#files
+           = render 'file_objects/table', collection: @order.file_objects
       - if @order.shipped? and @order.cad_order?
         .tab-pane#shipped
           = render 'file_objects/table', collection: @order.shippable_files

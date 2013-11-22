@@ -3,7 +3,7 @@ table.table.table-striped
   thead
     tr
       th= model_class.human_attribute_name(:merchant)
-      th= model_class.human_attribute_name(:order)
+      th= model_class.human_attribute_name(:message)
       th= model_class.human_attribute_name(:price)
       th=t '.actions', :default => t("helpers.actions")
   tbody
@@ -11,6 +11,6 @@ table.table.table-striped
       - unless bid.new_record?
         tr
           td= bid.admin.email
-          td= bid.order.id
+          td 'message'
           td= number_to_currency bid.price
-          td= link_to 'Select', :class => 'btn btn-success'
+          td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success'

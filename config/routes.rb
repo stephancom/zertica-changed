@@ -7,7 +7,6 @@ ZerticaConnect::Application.routes.draw do
 		resources :active_chats, except: [:edit, :update, :new]
 		match "/orders/pool" => "orders#pool", via: :get
 
-
 		resources :messages, only: [] do
 			patch 'bookmark', on: :member
 		end
@@ -40,10 +39,15 @@ ZerticaConnect::Application.routes.draw do
 		resources :messages, except: [:edit, :update, :destroy] do
 			patch 'bookmark', on: :member
 		end
-
+		resources :bids, except: [:create, :destroy] do 
+			member do
+				post 'select'	
+			end
+		end
 		resources :orders do
 			resources :file_objects, except: [:edit, :update]
 			patch 'pay', on: :member # probably not needed, part of payment system
+	
 		end
 
 		root to: 'orders#index', as: :user_root

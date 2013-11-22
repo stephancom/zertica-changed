@@ -20,8 +20,10 @@ class Ability
                 # clients can do this stuff
                 can [:show, :update], User, id: user.id  # user can always see their own account
                 can :manage, [Message], user_id: user.id
+                can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
                 can [:index, :show, :new, :create, :update], Order
+                can :estimate, Order
                 can :pay, Order, state: 'estimated'
                 # TODO
                 # cannot [:edit, :update, :destroy], Order, state: (Order.available_states - ['submitted'])

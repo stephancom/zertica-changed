@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  load_and_authorize_resource
+  load_and_authorize_resource :order
+
   #before_filter :load_project, except: :confirm_payment
   #load_and_authorize_resource :order, through: :project, shallow: true, except: :confirm_payment
   #before_filter :load_project_from_order, except: :confirm_payment
@@ -129,7 +130,7 @@ class OrdersController < ApplicationController
           :size, :mimetype], shippable_files_attributes: [:order_id, :url, :filename,
            :size, :mimetype])
       else
-        params[:order].permit(:title, :description, :file_objects, 
+        params[:order].permit(:title, :admin_id, :price, :description, :file_objects, 
           file_object_ids: [], file_objects_attributes: [:order_id, :url, 
             :filename, :size, :mimetype])
       end

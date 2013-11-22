@@ -5,6 +5,8 @@ table.table.table-striped
       th= model_class.human_attribute_name(:title)
       th= model_class.human_attribute_name(:order_type)
       th= model_class.human_attribute_name(:state)
+      th= model_class.human_attribute_name(:bids)
+      th= model_class.human_attribute_name(:average)
       th= model_class.human_attribute_name(:price)
       th= model_class.human_attribute_name(:tracking_number)
       th=t '.actions', :default => t("helpers.actions")
@@ -15,6 +17,8 @@ table.table.table-striped
         td = link_to_if can?(:show, order), order.title, order
         td = order.human_order_type
         td = order.state.titleize
+        td = order.bids.count
+        td = number_to_currency(order.average) || '--'
         td = number_to_currency(order.price) || '--'
         td = order.cad_order? ? 'n/a' : (order.tracking_number || '--')
         td 

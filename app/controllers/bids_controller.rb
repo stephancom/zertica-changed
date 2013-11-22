@@ -1,5 +1,5 @@
 class BidsController < ApplicationController
-  before_filter :load_order, :except => :destroy
+  before_filter :load_order, except: :destroy
   load_and_authorize_resource :bid
   load_and_authorize_resource :order
 
@@ -9,6 +9,17 @@ class BidsController < ApplicationController
 
   def index
     @bids = @order.bids
+  end
+
+  def select
+    @bid = @order.bids.find(params[:id])
+    @order.price = @bid.price
+    @order.admin_id = @bid.admin_id
+    @order.state = 'estimated'
+    @bid.selected = true
+    if @bid.save && @order.save
+      redirect_to @order
+    end
   end
 
   def new
@@ -42,10 +53,7 @@ class BidsController < ApplicationController
   #   params.require(:bid).permit!
   # end
 
-  def mark_selected
-    @bid = Bid.find(params[:id])
-    @bid.selected = true
-  end
+
 
   # def update
   #   @bid = Bid.find(params[:id])
@@ -62,7 +70,7 @@ class BidsController < ApplicationController
 
   def destroy
     @bid = @order.bids.find(params[:bid_id])
-    @task.destroy
+    @bid.destroy
     redirect_to @order, :notice => 'Bid deleted'
   end
 
