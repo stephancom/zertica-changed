@@ -17,9 +17,9 @@ To recreate the heroku server named @zertica_connect@, do this:
 
 bc. heroku apps:create zertica_connect
 heroku addons:add pgbackups:plus
-heroku addons:add newrelic:standard
+heroku addons:add newrelic
 heroku addons:add mandrill:starter
-heroku addons:add filepicker:test
+heroku addons:add filepicker
 heroku domains:add zertica.com
 heroku addons:add scheduler:standard
 git push heroku master
