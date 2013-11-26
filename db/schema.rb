@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131121012736) do
+ActiveRecord::Schema.define(version: 20131126040213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,9 @@ ActiveRecord::Schema.define(version: 20131121012736) do
     t.integer  "admin_id"
     t.integer  "order_id"
     t.decimal  "price"
-    t.boolean  "selected"
+    t.boolean  "selected",     default: false
+    t.text     "message"
+    t.string   "pay_schedule"
   end
 
   create_table "file_objects", force: true do |t|
@@ -85,10 +87,10 @@ ActiveRecord::Schema.define(version: 20131121012736) do
 
   create_table "orders", force: true do |t|
     t.string   "order_type"
-    t.string   "state",                                   default: "submitted", null: false
-    t.string   "title",                                                         null: false
+    t.string   "state",                                    default: "submitted", null: false
+    t.string   "title",                                                          null: false
     t.text     "description"
-    t.decimal  "price",           precision: 8, scale: 2
+    t.decimal  "price",            precision: 8, scale: 2
     t.string   "carrier"
     t.string   "tracking_number"
     t.string   "confirmation"
@@ -96,6 +98,13 @@ ActiveRecord::Schema.define(version: 20131121012736) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "admin_id"
+    t.datetime "deadline"
+    t.string   "color"
+    t.string   "material"
+    t.string   "budget"
+    t.integer  "quantity"
+    t.string   "software_program"
+    t.string   "file_format"
   end
 
   create_table "orders_file_objects", id: false, force: true do |t|
@@ -106,6 +115,11 @@ ActiveRecord::Schema.define(version: 20131121012736) do
   add_index "orders_file_objects", ["file_object_id"], name: "index_orders_file_objects_on_file_object_id", using: :btree
   add_index "orders_file_objects", ["order_id", "file_object_id"], name: "index_orders_file_objects_on_order_id_and_file_object_id", using: :btree
   add_index "orders_file_objects", ["order_id"], name: "index_orders_file_objects_on_order_id", using: :btree
+
+  create_table "orders_files", id: false, force: true do |t|
+    t.integer "order_id"
+    t.integer "file_object_id"
+  end
 
   create_table "orders_shippable_files", id: false, force: true do |t|
     t.integer "order_id"

@@ -1,6 +1,8 @@
 class ActiveChatsController < ApplicationController
-  before_filter :authenticate_admin!
-  load_and_authorize_resource
+  #before_filter :authenticate_admin!
+  load_and_authorize_resource 
+
+
 
   def create
     @active_chat = current_admin.active_chats.new(params[:active_chat])    

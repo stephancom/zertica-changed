@@ -3,8 +3,12 @@ class BidsController < ApplicationController
   load_and_authorize_resource :bid
   load_and_authorize_resource :order
 
+  def load_order
+    @order = Order.find(params[:order_id])
+  end
+
   def bid_params 
-    params[:bid].permit(:admin_id, :order_id, :price, :selected)
+    params[:bid].permit(:admin_id, :pay_schedule, :message, :order_id, :price, :selected)
   end
 
   def index
@@ -74,9 +78,7 @@ class BidsController < ApplicationController
     redirect_to @order, :notice => 'Bid deleted'
   end
 
-  def load_order
-    @order = Order.find(params[:order_id])
-  end
+
 
   # # GET /bids
   # # GET /bids.xml

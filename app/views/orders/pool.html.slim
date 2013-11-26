@@ -1,7 +1,6 @@
 - model_class = Order
 .row-fluid
-		h1 Order Pool:
-		= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right sharp'
+		h1 Order Pool: #{@order_pool.count} available
 hr
 br
-= render 'table', collection: @order_pool
+= render 'ptable', collection: @order_pool
