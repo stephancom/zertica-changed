@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
 	def current_ability
-	 @current_ability ||= Ability.new(current_account)	
+	  @current_ability ||= Ability.new(current_account)	
 	end
 
 	# Prevent CSRF attacks by raising an exception.

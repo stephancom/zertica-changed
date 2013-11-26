@@ -6,4 +6,5 @@ class Admin < ActiveRecord::Base
   has_many :orders
   has_many :active_chats, dependent: :destroy
   has_many :bids
+  has_one :storefront
 end

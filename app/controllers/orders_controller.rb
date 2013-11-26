@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  load_and_authorize_resource
+  load_and_authorize_resource :order
+
   #before_filter :load_project, except: :confirm_payment
   #load_and_authorize_resource :order, through: :project, shallow: true, except: :confirm_payment
   #before_filter :load_project_from_order, except: :confirm_payment
@@ -56,6 +57,24 @@ class OrdersController < ApplicationController
     respond_with @order
   end
 
+  def ship
+    @order.shippable_files.build
+    unless @order.update(params[:order]) and @order.ship!
+      flash[:error] = 'Shipment failed'
+    end
+    respond_with @order
+  end
+
+  def complete
+    @order.complete!
+    respond_with @order
+  end
+
+  def archive
+    @order.archive!
+    respond_with @orders    
+  end
+
   def confirm_payment
     @result = Braintree::TransparentRedirect.confirm(request.query_string)
     @order = Order.find(@result.transaction.custom_fields[:order_id]) if @result 
@@ -67,10 +86,6 @@ class OrdersController < ApplicationController
     redirect_to [@order]
   end
 
-  def complete
-    @order.complete!
-    respond_with @order
-  end
 
 #   def ship
 #     @order.shippable_files.build(project: @project)
@@ -124,12 +139,12 @@ class OrdersController < ApplicationController
       params[:order].permit()
     else
       if current_admin
-        params[:order].permit(:title, :description, :price, :file_objects,
+        params[:order].permit(:title, :description,:price, :file_objects,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype], shippable_files_attributes: [:order_id, :url, :filename,
            :size, :mimetype])
       else
-        params[:order].permit(:title, :description, :file_objects, 
+        params[:order].permit(:title, :admin_id, :price, :description, :file_objects, 
           file_object_ids: [], file_objects_attributes: [:order_id, :url, 
             :filename, :size, :mimetype])
       end

@@ -28,7 +28,6 @@ gem 'stateflow'
 gem 'gritter'
 gem 'slim-rails'
 gem "font-awesome-rails"
-
 # persistent connection
 gem 'private_pub'
 gem 'thin'

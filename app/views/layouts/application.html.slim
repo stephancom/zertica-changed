@@ -25,8 +25,7 @@ html lang="en"
 
   body class=("#{controller_name} #{action_name}") 
     = render 'layouts/navigation'
-    br
-    br
+    = image_tag 'colbg.jpg', :type => 'image/jpg', :style => 'padding-top:29px;'
     .container-fluid
       .row-fluid
         - if content_for?(:sidebar)
@@ -37,10 +36,10 @@ html lang="en"
             br
             br
             br
-            .well.sidebar-nav
+            .sidebar-nav
               =yield :sidebar
         - else
-          .span8.offset2
+          .span10.offset1
             = bootstrap_flash
             = yield
     

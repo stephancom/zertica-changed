@@ -2,8 +2,12 @@ class Order < ActiveRecord::Base
 	ORDER_TYPES = %w(CadOrder PrintOrder)
 	belongs_to :user
 	belongs_to :admin
-	has_many :file_objects
+    has_many :file_objects
 	has_many :bids
+	has_and_belongs_to_many :shippable_files, class_name: 'FileObject', join_table: 'orders_shippable_files'
+	accepts_nested_attributes_for :file_objects, reject_if: proc { |attributes| attributes[:url].blank? }
+	accepts_nested_attributes_for :shippable_files, reject_if: proc { |attributes| attributes[:url].blank? }
+
 	def cad_order?
 		order_type == 'CadOrder'
 	end
@@ -13,7 +17,13 @@ class Order < ActiveRecord::Base
 	def human_order_type
 		cad_order? ? 'CAD' : 'Print'
 	end
-
+	def average
+	    @subtotal = 0
+		self.bids.each do |bid|
+		  @subtotal = @subtotal + bid.price 
+		end
+		@average = @subtotal/self.bids.count unless self.bids.count == 0  
+	end
 	#belongs_to :project
 	#has_and_belongs_to_many :projects
 	#has_one :user, through: :project
@@ -21,14 +31,10 @@ class Order < ActiveRecord::Base
 	default_scope {where(['state <> ?', 'archived'])}
 	scope :pool, -> { where(state: 'submitted') }
 	# TODO
-	# assure project_files belong to project
-	#has_and_belongs_to_many :project_files
-	#accepts_nested_attributes_for :project_files, reject_if: proc { |attributes| attributes[:url].blank? }
-
-	#has_and_belongs_to_many :shippable_files, class_name: 'ProjectFile', join_table: 'orders_shippable_files'
-	#accepts_nested_attributes_for :shippable_files, reject_if: proc { |attributes| attributes[:url].blank? }
+	
 
 	validates :title, presence: true
+	validates :description, presence: true
 	validates :order_type, presence: true, inclusion: { in: ORDER_TYPES }
 	#validates :project, presence: true
 	validates :price, numericality: { greater_than: 0 }, allow_nil: true
@@ -39,7 +45,6 @@ class Order < ActiveRecord::Base
 	# validate tracking number correct format for carrier if print order?
 
 	#delegate :title, to: :project, prefix: true
-	delegate :name, to: :user, prefix: true
 
 	include Stateflow
 
@@ -62,7 +67,7 @@ class Order < ActiveRecord::Base
 
 		# making an estimate takes us to submitted state
 		event :estimate do
-			transitions from: :submitted, to: :estimated, if: :has_price?
+			transitions to: :estimated, if: :has_price?
 		end
 
 		# send the estimate to the client on entry

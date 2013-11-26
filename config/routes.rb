@@ -1,12 +1,15 @@
 ZerticaConnect::Application.routes.draw do	
 
+
 	devise_for :admins, :controllers => {:registrations => "admin_registrations"}
 	devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 
 	authenticated :admin do
+		resources :admin, only: [:show] do 
+			resources :storefronts
+		end
 		resources :active_chats, except: [:edit, :update, :new]
 		match "/orders/pool" => "orders#pool", via: :get
-
 
 		resources :messages, only: [] do
 			patch 'bookmark', on: :member
@@ -18,9 +21,11 @@ ZerticaConnect::Application.routes.draw do
 			patch :notify, on: :member
 		end
 		
+	
+
 
 		resources :orders do
-			resources :file_objects, except: [:edit, :update]
+			resources :file_objects
 			resources :bids
 			member do
 				patch 'estimate'
@@ -36,14 +41,20 @@ ZerticaConnect::Application.routes.draw do
 
 	authenticated :user do
 		put "bell/ring"
-
+		resources :storefronts, except: [:create, :edit, :update, :destroy, :new, :index]
+		resources :active_chats, except: [:edit, :update, :new]
 		resources :messages, except: [:edit, :update, :destroy] do
 			patch 'bookmark', on: :member
 		end
-
+		resources :bids, except: [:create, :destroy] do 
+			member do
+				post 'select'	
+			end
+		end
 		resources :orders do
 			resources :file_objects, except: [:edit, :update]
 			patch 'pay', on: :member # probably not needed, part of payment system
+	
 		end
 
 		root to: 'orders#index', as: :user_root

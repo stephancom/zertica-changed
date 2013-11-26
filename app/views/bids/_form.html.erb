@@ -1,0 +1,21 @@
+
+  <%= simple_form_for [@order, @bid], :html => { :class => "form-vertical offset1" }  do |f| %>
+ 
+  <div class="field">
+    <%= f.label :price %>
+    <p>$ <%= f.text_field :price, :class => 'span2', :placeholder => '100' %></p>
+  </div>
+  <div class="field">
+    <%= f.label :rate_type %>
+    <%= f.select :pay_schedule, options_for_select(['fixed', 'hourly'])  %>
+  </div>
+  <div class="text">
+    <%= f.label :message %>
+    <%= f.text_area :message, :rows => "6", placeholder: 'Shoot over an introduction to the customer.', :class => 'span10 offset1' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Submit Bid', :class => 'btn btn-primary sharp offset8' %>
+  </div>
+  <% end %>
+  
