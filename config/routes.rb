@@ -35,6 +35,7 @@ ZerticaConnect::Application.routes.draw do
 				patch 'archive'
 			end
 		end
+		resources :file_objects
 
 		root to: 'orders#index', as: :admin_root
 	end
@@ -56,6 +57,7 @@ ZerticaConnect::Application.routes.draw do
 			patch 'pay', on: :member # probably not needed, part of payment system
 	
 		end
+		resources :file_objects
 
 		root to: 'orders#index', as: :user_root
 	end
