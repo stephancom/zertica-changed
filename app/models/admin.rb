@@ -7,4 +7,8 @@ class Admin < ActiveRecord::Base
   has_many :active_chats, dependent: :destroy
   has_many :bids
   has_one :storefront
+
+	def message_channel
+		"/admin_messages/new/#{id}"
+	end
 end

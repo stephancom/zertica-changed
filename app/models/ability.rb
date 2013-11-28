@@ -7,11 +7,12 @@ class Ability
         unless user.new_record?
             if user.kind_of? Admin
                 # admins can do this stuff
-                can :manage, [User,Message, Order, Bid]
+                can :manage, [User, Order, Bid]
                 can :show, Admin
                 can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order, state: 'submitted'
-                can :manage, ActiveChat, admin_id: user.id
+                can :manage, [Message, ActiveChat], admin_id: user.id
+                can :manage, Message, admin_id: user.id
                 can :pay, Order, state: 'estimated'
                 can :complete, Order, state: 'production'
                 can :ship, Order, state: 'completed'
@@ -20,8 +21,7 @@ class Ability
             else
                 # clients can do this stuff
                 can [:show, :update], User, id: user.id  # user can always see their own account
-                can :manage, [Message], user_id: user.id
-                can :manage, ActiveChat, user_id: user.id
+                can :manage, [Message, ActiveChat], user_id: user.id
                 can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
                 can [:index, :destroy, :archive, :new, :create, :show, :edit, :update], Order
