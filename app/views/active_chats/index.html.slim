@@ -1,10 +1,3 @@
-///// gotta generate @chat_partners so the right people are available to chat
-- @chat_partners = []
-- if current_admin
-  - current_admin.orders.each do |ord|
-  	- @chat_partners = @chat_partners << ord.user unless @chat_partners.any? {|partner| partner == ord.user}
-- elsif current_user
-  - @chat_partners = Admin.all
 h1 Messages
 
 - content_for :sidebar
