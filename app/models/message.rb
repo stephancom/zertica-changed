@@ -12,15 +12,7 @@ class Message < ActiveRecord::Base
   delegate :name, to: :admin, prefix: true, allow_nil: true
   delegate :name, to: :user, prefix: true
 
-  after_create :notify_admins, if: Proc.new { |message| message.admin.nil? and message.user.notify_on_next_message }
-
   def speaker_name
   	admin_id ? (admin_name || 'zertica staff') : (user_name || 'deleted user')
-  end
-
-  def notify_admins
-    MessageNotifications.message_from_user(self).deliver
-    user.notify_on_next_message = false
-    user.save
   end
 end

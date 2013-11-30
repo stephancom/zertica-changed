@@ -6,6 +6,3 @@
   = f.text_area :body, placeholder: 'Start typing here, press enter to send', :class => 'span12'
   .row-fluid
       = f.button :submit, class: 'btn pull-right', id: :message_send, data: {disable_with: 'Posting...'}
-  .row-fluid
-    .span9.offset3
-      = render 'users/notify_next', user: user if current_admin

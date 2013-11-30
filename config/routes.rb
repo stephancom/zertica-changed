@@ -18,7 +18,6 @@ ZerticaConnect::Application.routes.draw do
 			resources :messages, except: [:edit, :update, :destroy] do
 				patch 'bookmark', on: :member
 			end
-			patch :notify, on: :member
 		end
 		
 	
