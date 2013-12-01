@@ -6,14 +6,12 @@ describe "messages/index" do
       stub_model(Message,
         :body => "MyText",
         :project => nil,
-        :user => nil,
-        :bookmark => false
+        :user => nil
       ),
       stub_model(Message,
         :body => "MyText",
         :project => nil,
-        :user => nil,
-        :bookmark => false
+        :user => nil
       )
     ])
   end

@@ -5,6 +5,5 @@ FactoryGirl.define do
     body "MyText"
     user
     admin nil
-    bookmark false
   end
 end
