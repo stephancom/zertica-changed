@@ -8,7 +8,11 @@ class Admin < ActiveRecord::Base
   has_many :bids
   has_one :storefront
 
-	def message_channel
-		"/admin_messages/new/#{id}"
+	def chat_channel
+		"/admin_chat/#{id}"
 	end
+
+  def chat_partners
+    (orders.map(&:user) + bids.map(&:user)).uniq
+  end
 end

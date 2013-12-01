@@ -1,16 +1,12 @@
 h1 Messages
+= subscribe_to @chatter.chat_channel
 
 - content_for :sidebar
 	ul.side-nav
 		h4 Available Users 
-
-	    = render partial: 'chat_user', collection: @chat_partners
+	    = render partial: 'chat_partner', collection: @chat_partners
 
 ul.nav.nav-tabs#active-chats-tabs
 	= render partial: 'active_chat_tab', collection: @active_chats
 
 .tab-content#active-chats= render @active_chats
-
-
-
-end

@@ -12,7 +12,6 @@ class Ability
                 can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order, state: 'submitted'
                 can :manage, [Message, ActiveChat], admin_id: user.id
-                can :manage, Message, admin_id: user.id
                 can :pay, Order, state: 'estimated'
                 can :complete, Order, state: 'production'
                 can :ship, Order, state: 'completed'

@@ -8,20 +8,11 @@ ZerticaConnect::Application.routes.draw do
 		resources :admin, only: [:show] do 
 			resources :storefronts
 		end
-		resources :active_chats, except: [:edit, :update, :new]
+		resources :active_chats, except: [:edit, :update, :new] do
+			resources :messages, only: :create
+		end
 		match "/orders/pool" => "orders#pool", via: :get
-
-		resources :messages, only: [] do
-			patch 'bookmark', on: :member
-		end
-		resources :users do
-			resources :messages, except: [:edit, :update, :destroy] do
-				patch 'bookmark', on: :member
-			end
-		end
-		
-	
-
+		resources :users
 
 		resources :orders do
 			resources :file_objects
@@ -42,9 +33,8 @@ ZerticaConnect::Application.routes.draw do
 	authenticated :user do
 		put "bell/ring"
 		resources :storefronts, except: [:create, :edit, :update, :destroy, :new, :index]
-		resources :active_chats, except: [:edit, :update, :new]
-		resources :messages, except: [:edit, :update, :destroy] do
-			patch 'bookmark', on: :member
+		resources :active_chats, except: [:edit, :update, :new] do
+			resources :messages, only: :create
 		end
 		resources :bids, except: [:create, :destroy] do 
 			member do

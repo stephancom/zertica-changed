@@ -6,5 +6,5 @@ class Bid < ActiveRecord::Base
 	validates :price, presence: true
 	validates :message, presence: true
 	validates :pay_schedule, presence: true
-
+	delegate :user, to: :order
 end
