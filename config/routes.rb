@@ -31,7 +31,6 @@ ZerticaConnect::Application.routes.draw do
 	end
 
 	authenticated :user do
-		put "bell/ring"
 		resources :storefronts, except: [:create, :edit, :update, :destroy, :new, :index]
 		resources :active_chats, except: [:edit, :update, :new] do
 			resources :messages, only: :create
