@@ -28,7 +28,6 @@ class Ability
                 can :pay, Order, state: 'estimated'
                 # TODO
                 # cannot [:edit, :update, :destroy], Order, state: (Order.available_states - ['submitted'])
-                can :ring, :bell
             end
         end
 
