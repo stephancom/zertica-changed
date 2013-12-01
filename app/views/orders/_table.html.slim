@@ -19,7 +19,10 @@ table.table.table-striped
         td = order.state.titleize
         td = order.bids.count
         td = number_to_currency(order.average) || '--'
-        td = number_to_currency(order.price) || '--'
+        - if current_user
+          td = number_to_currency(order.price) || '--'
+        - else
+          td #{number_to_currency(order.price * (order.price / (order.price * 1.15))) || '--'}
         td = order.cad_order? ? 'n/a' : (order.tracking_number || '--')
         td 
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(order), :class => 'btn sharp' if can? :edit, order && current_user

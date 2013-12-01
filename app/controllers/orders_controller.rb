@@ -119,7 +119,8 @@ class OrdersController < ApplicationController
          :file_objects ,file_object_ids: [], file_objects_attributes: [:order_id,
           :url, :filename, :size, :mimetype])
       else
-        params[:order].permit(:order_type, :title, :description, :file_objects,
+        params[:order].permit(:order_type, :title, :deadline, :color, :material,
+         :budget, :description, :file_objects, :quantity, :software_program, :file_format,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype])
       end

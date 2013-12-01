@@ -13,8 +13,20 @@
      - if @order.submitted?
         p no bid selected yet
      - else
-        = number_to_currency @order.price
+      - if current_user
+        = number_to_currency @order.price 
+      - else 
+        = number_to_currency(@order.price * (@order.price / (@order.price * 1.15)))
   hr
+  .row-fluid
+      .span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 
+      .span2 Color: #{(@order.color if @order.color?) || '--'}
+      .span2 Material: #{(@order.material if @order.material?)  || '--'}
+      .span2 Budget: #{(number_to_currency(@order.budget) if @order.budget?) || '--'}
+  .row-fluid
+      .span2 Quantity: #{(@order.quantity if @order.quantity?) || '--'}
+      .span2 Software: #{(@order.software_program if @order.software_program?) || '--'}
+      .span2 File Format: #{(@order.file_format if @order.file_format?) || '--'}
   .row-fluid
       h4 Description:
       .span9= simple_format @order.description
