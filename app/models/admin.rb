@@ -4,6 +4,8 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders
+  has_many :messages, dependent: :destroy
+  has_many :sent_messages, as: :speaker
   has_many :active_chats, dependent: :destroy
   has_many :bids
   has_one :storefront

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130045108) do
+ActiveRecord::Schema.define(version: 20131201075340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,15 +74,18 @@ ActiveRecord::Schema.define(version: 20131130045108) do
   end
 
   create_table "messages", force: true do |t|
-    t.text     "body",                       null: false
-    t.integer  "user_id",                    null: false
-    t.boolean  "bookmark",   default: false, null: false
+    t.text     "body",                         null: false
+    t.integer  "user_id",                      null: false
+    t.boolean  "bookmark",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "admin_id"
+    t.integer  "speaker_id"
+    t.string   "speaker_type"
   end
 
   add_index "messages", ["admin_id"], name: "index_messages_on_admin_id", using: :btree
+  add_index "messages", ["speaker_id", "speaker_type"], name: "index_messages_on_speaker_id_and_speaker_type", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "orders", force: true do |t|
