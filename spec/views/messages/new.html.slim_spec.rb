@@ -5,8 +5,7 @@ describe "messages/new" do
     assign(:message, stub_model(Message,
       :body => "MyText",
       :project => nil,
-      :user => nil,
-      :bookmark => false
+      :user => nil
     ).as_new_record)
   end
 
@@ -18,7 +17,6 @@ describe "messages/new" do
       assert_select "textarea#message_body[name=?]", "message[body]"
       assert_select "input#message_project[name=?]", "message[project]"
       assert_select "input#message_user[name=?]", "message[user]"
-      assert_select "input#message_bookmark[name=?]", "message[bookmark]"
     end
   end
 end

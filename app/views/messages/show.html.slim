@@ -9,9 +9,6 @@ p
 p
   strong admin:
   = @message.admin_name if @message.admin
-p
-  strong Bookmark:
-  = @message.bookmark
 
 - if @user
 	= link_to 'Back', user_messages_path(@user)

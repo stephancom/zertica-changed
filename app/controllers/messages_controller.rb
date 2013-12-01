@@ -8,6 +8,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params[:message].permit(:body, :bookmark)
+    params[:message].permit(:body)
   end
 end
