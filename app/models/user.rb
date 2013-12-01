@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
 	#has_many :projects, dependent: :destroy
 	has_many :messages, dependent: :destroy
+	has_many :sent_messages, as: :speaker
 	has_many :active_chats, dependent: :destroy
 	has_many :orders
 	has_many :bids, through: :orders
