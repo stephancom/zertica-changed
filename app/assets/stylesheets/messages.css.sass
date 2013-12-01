@@ -76,6 +76,10 @@ textarea[name="message[body]"]
 	background-image: -webkit-linear-gradient(bottom, rgb(172, 228, 75) 25%, rgb(122, 205, 71) 100%)
 	background-image: -ms-linear-gradient(bottom, rgb(172, 228, 75) 25%, rgb(122, 205, 71) 100%)
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.25, rgb(172, 228, 75)), color-stop(1, rgb(122, 205, 71)))
+	&, & + .speaker
+		float: right
+	& + .speaker .timestamp
+		float: left
 	&:before
 		border-bottom-color: rgba(0, 0, 0, 0.5)
 		border-radius: 20px / 10px
