@@ -12,7 +12,7 @@ class StorefrontsController < ApplicationController
   end
 
   def new
-    @storefront = @admin.storefront.new(params[:storefront])
+    @storefront = @admin.build_storefront(params[:storefront])
   end
 
   def show
@@ -25,7 +25,7 @@ class StorefrontsController < ApplicationController
   end
 
   def create
-    @storefront = @admin.storefront.new(params[:storefront])
+    @storefront = @admin.create_storefront(params[:storefront])
     if @storefront.save
       flash[:notice] = 'Your storefront has been created.'
       redirect_to root_path
