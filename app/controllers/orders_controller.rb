@@ -50,12 +50,12 @@ class OrdersController < ApplicationController
     respond_with @order
   end
 
-  def pay
-    unless @order.update(params[:order]) and @order.pay!
-      flash[:error] = 'Payment failed'
-    end
-    respond_with @order
-  end
+  # def pay
+  #   unless @order.update(params[:order]) and @order.pay!
+  #     flash[:error] = 'Payment failed'
+  #   end
+  #   respond_with @order
+  # end
 
   def ship
     @order.shippable_files.build
@@ -75,16 +75,16 @@ class OrdersController < ApplicationController
     respond_with @orders    
   end
 
-  def confirm_payment
-    @result = Braintree::TransparentRedirect.confirm(request.query_string)
-    @order = Order.find(@result.transaction.custom_fields[:order_id]) if @result 
-    if @result && @result.success?
-      @order.update(confirmation: @result.transaction.id) and @order.pay!
-    else
-      flash[:error] = 'Payment failed'
-    end
-    redirect_to [@order]
-  end
+  # def confirm_payment
+  #   @result = Braintree::TransparentRedirect.confirm(request.query_string)
+  #   @order = Order.find(@result.transaction.custom_fields[:order_id]) if @result 
+  #   if @result && @result.success?
+  #     @order.update(confirmation: @result.transaction.id) and @order.pay!
+  #   else
+  #     flash[:error] = 'Payment failed'
+  #   end
+  #   redirect_to [@order]
+  # end
 
 
 #   def ship
