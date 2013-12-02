@@ -38,14 +38,8 @@
         p $ #{f.text_field :price}
         = f.button :submit, 'Submit Price', :class => 'btn-primary sharp'
   .row-fluid
-    - if @order.estimated?
-        h4 Complete Payment:
-        - if current_admin
-          = simple_form_for @order, url: [:pay, @order], :html => { :class => "form-horizontal" } do |f|
-            p= f.text_area :confirmation, rows: 4, placeholder: 'Proof of payment: check number, cash, etc.', :class => 'span8'
-            = f.button :submit, 'Mark Paid', :class => 'btn btn-success offset6 sharp'
-        - else
-          = render 'credit_card_form'
+    - if @order.estimated? && current_user
+        = render 'credit_card_form'
 
   - if @order.payment_processed?
     .row-fluid

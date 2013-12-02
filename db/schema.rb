@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126040213) do
+ActiveRecord::Schema.define(version: 20131202070518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20131126040213) do
     t.integer  "quantity"
     t.string   "software_program"
     t.string   "file_format"
+    t.decimal  "subtotal",         precision: 8, scale: 2
   end
 
   create_table "orders_file_objects", id: false, force: true do |t|
