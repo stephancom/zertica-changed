@@ -1,0 +1,13 @@
+ <%= simple_form_for [@admin, @storefront], :html => { :class => "form-vertical offset1" }  do |f| %>
+
+  <br>
+  <br>
+  <div class="field">
+    <%= f.label :vendor_name %>
+    <%= f.text_field :vendor_name, :class => 'span10' %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary sharp offset8' %>
+  </div>
+  <% end %>
+  
