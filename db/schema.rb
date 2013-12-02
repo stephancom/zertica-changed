@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202070518) do
+ActiveRecord::Schema.define(version: 20131202080647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,10 @@ ActiveRecord::Schema.define(version: 20131202070518) do
     t.integer  "admin_id"
     t.integer  "order_id"
     t.decimal  "price"
-    t.boolean  "selected",     default: false
+    t.boolean  "selected",                             default: false
     t.text     "message"
     t.string   "pay_schedule"
+    t.decimal  "subtotal",     precision: 8, scale: 2
   end
 
   create_table "file_objects", force: true do |t|

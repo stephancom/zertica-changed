@@ -16,7 +16,7 @@ table.table.table-striped
           - if current_user
             td #{number_to_currency(bid.price)}  #{bid.pay_schedule.capitalize}
           - else
-            td #{number_to_currency(bid.price * (bid.price / (bid.price * 1.15)))}  #{bid.pay_schedule.capitalize}
+            td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
           - if current_user
             td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success'
           - else

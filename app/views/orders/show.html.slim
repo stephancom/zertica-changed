@@ -16,7 +16,7 @@
       - if current_user
         = number_to_currency @order.price 
       - else 
-        = number_to_currency(@order.price * (@order.price / (@order.price * 1.15)))
+        = number_to_currency @order.subtotal 
   hr
   .row-fluid
       .span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 
@@ -35,7 +35,7 @@
     - if current_admin && @order.estimated?
       h4 Adjust Price:
       = simple_form_for @order, :html => { :class => "form-horizontal" } do |f|
-        p $ #{f.text_field :price}
+        p $ #{f.text_field :subtotal}
         = f.button :submit, 'Submit Price', :class => 'btn-primary sharp'
   .row-fluid
     - if @order.estimated? && current_user

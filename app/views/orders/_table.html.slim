@@ -22,7 +22,7 @@ table.table.table-striped
         - if current_user
           td = number_to_currency(order.price) || '--'
         - else
-          td #{number_to_currency(order.price * (order.price / (order.price * 1.15))) || '--'}
+          td = number_to_currency(order.subtotal) || '--'
         td = order.cad_order? ? 'n/a' : (order.tracking_number || '--')
         td 
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(order), :class => 'btn sharp' if can? :edit, order && current_user
