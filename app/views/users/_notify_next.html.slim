@@ -1,5 +1,0 @@
-span id=dom_id(user, :notify_on_next_message)
-	- if user.notify_on_next_message
-		| You will be notified the next time this user sends a message
-	- else
-		= link_to "Notify me next time user messages", notify_user_path(user), remote: true, class: :btn, method: :patch

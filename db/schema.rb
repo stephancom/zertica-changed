@@ -75,15 +75,17 @@ ActiveRecord::Schema.define(version: 20131202221216) do
   end
 
   create_table "messages", force: true do |t|
-    t.text     "body",                       null: false
-    t.integer  "user_id",                    null: false
-    t.boolean  "bookmark",   default: false, null: false
+    t.text     "body",         null: false
+    t.integer  "user_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "admin_id"
+    t.integer  "speaker_id"
+    t.string   "speaker_type"
   end
 
   add_index "messages", ["admin_id"], name: "index_messages_on_admin_id", using: :btree
+  add_index "messages", ["speaker_id", "speaker_type"], name: "index_messages_on_speaker_id_and_speaker_type", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "orders", force: true do |t|
@@ -161,7 +163,6 @@ ActiveRecord::Schema.define(version: 20131202221216) do
     t.string   "uid"
     t.integer  "last_notified_message_id"
     t.datetime "last_saw_messages_at"
-    t.boolean  "notify_on_next_message",   default: true,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

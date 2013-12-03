@@ -1,5 +1,5 @@
 Airbrake.configure do |config|
-  config.api_key = '620320dc2e6ef4915b86ab6defcdfbad'
+  config.api_key = '711f663f4ad595db6362136033a46909'
   config.host    = 'errors.stephan.com'
   config.port    = 80
   config.secure  = config.port == 443

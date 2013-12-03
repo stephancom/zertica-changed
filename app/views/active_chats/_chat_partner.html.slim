@@ -1,0 +1,11 @@
+- if chat_partner
+	- if current_admin
+	   - tab_open = current_admin.active_chats.where(user: chat_partner).exists?
+	- elsif current_user
+	   - tab_open = current_user.active_chats.where(admin: chat_partner).exists?
+
+	li id=dom_id(chat_partner, :chat_toggle) style="display: #{tab_open ? 'none' : 'block'}" 
+		- if current_admin
+			= link_to chat_partner.name, active_chats_path(active_chat: {user_id: chat_partner.id}), method: :post, remote: true
+		- else
+			= link_to chat_partner.name, active_chats_path(active_chat: {admin_id: chat_partner.id}), method: :post, remote: true

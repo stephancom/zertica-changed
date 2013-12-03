@@ -1,4 +1,6 @@
-| $("##{dom_id(@active_chat, :tab)}").remove();
-| $("##{dom_id(@active_chat)}").remove();
-| $('#active-chats-tabs a:first').tab('show');
-| $("##{dom_id(@active_chat.user, :chat_toggle)}").show('fast', function(){$("##{dom_id(@active_chat.user, :chat_toggle)}").css('display', 'block')});
+- publish_to @active_chat.message_channel do
+	| $("##{dom_id(@active_chat, :tab)}").remove();
+	| $("##{dom_id(@active_chat)}").remove();
+	| $('#active-chats-tabs a:first').tab('show');
+	| $("##{dom_id(@chat_partner, :chat_toggle)}").show('fast', function(){$("##{dom_id(@chat_partner, :chat_toggle)}").css('display', 'block')});
+	| $("##{dom_id(@chatter, :chat_toggle)}").show('fast', function(){$("##{dom_id(@chatter, :chat_toggle)}").css('display', 'block')});

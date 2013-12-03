@@ -10,21 +10,11 @@ ZerticaConnect::Application.routes.draw do
 		resources :admin, only: [:show] do 
 			resources :storefronts
 		end
-		resources :active_chats, except: [:edit, :update, :new]
+		resources :active_chats, except: [:edit, :update, :new] do
+			resources :messages, only: :create
+		end
 		match "/orders/pool" => "orders#pool", via: :get
-
-		resources :messages, only: [] do
-			patch 'bookmark', on: :member
-		end
-		resources :users do
-			resources :messages, except: [:edit, :update, :destroy] do
-				patch 'bookmark', on: :member
-			end
-			patch :notify, on: :member
-		end
-		
-	
-
+		resources :users
 
 		resources :orders do
 			resources :file_objects
@@ -37,16 +27,15 @@ ZerticaConnect::Application.routes.draw do
 				patch 'archive'
 			end
 		end
+		resources :file_objects
 
 		root to: 'orders#index', as: :admin_root
 	end
 
 	authenticated :user do
-		put "bell/ring"
 		resources :storefronts, except: [:create, :edit, :update, :destroy, :new, :index]
-		resources :active_chats, except: [:edit, :update, :new]
-		resources :messages, except: [:edit, :update, :destroy] do
-			patch 'bookmark', on: :member
+		resources :active_chats, except: [:edit, :update, :new] do
+			resources :messages, only: :create
 		end
 		resources :bids, except: [:create, :destroy] do 
 			member do
@@ -58,6 +47,7 @@ ZerticaConnect::Application.routes.draw do
 			patch 'pay', on: :member # probably not needed, part of payment system
 	
 		end
+		resources :file_objects
 
 		root to: 'orders#index', as: :user_root
 	end

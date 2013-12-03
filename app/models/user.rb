@@ -5,12 +5,18 @@ class User < ActiveRecord::Base
 
 	#has_many :projects, dependent: :destroy
 	has_many :messages, dependent: :destroy
+	has_many :sent_messages, as: :speaker
 	has_many :active_chats, dependent: :destroy
 	has_many :orders
+	has_many :bids, through: :orders
 	belongs_to :last_notified_message, class_name: 'Message'
 
-	def message_channel
-		"/messages/new/#{id}"
+	def chat_channel
+		"/user_chat/#{id}"
+	end
+
+	def chat_partners
+		(orders.map(&:admin) + bids.map(&:admin)).uniq
 	end
 
 	def received_messages

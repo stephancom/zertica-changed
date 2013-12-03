@@ -1,11 +1,4 @@
-- user = @user unless local_assigns.has_key? :user
-- message = @message unless local_assigns.has_key? :message
-- form_path = current_admin ? [user, message] : message
-
-= minimal_form_for form_path, :remote => true do |f|
+= minimal_form_for active_chat.messages.build, :url => active_chat_messages_path(active_chat), :remote => true do |f|
   = f.text_area :body, placeholder: 'Start typing here, press enter to send', :class => 'span12'
   .row-fluid
       = f.button :submit, class: 'btn pull-right', id: :message_send, data: {disable_with: 'Posting...'}
-  .row-fluid
-    .span9.offset3
-      = render 'users/notify_next', user: user if current_admin

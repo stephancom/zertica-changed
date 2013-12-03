@@ -1,8 +1,0 @@
-- if current_admin
-   - tab_open = current_admin.active_chats.where(user: chat_user).exists?
-- elsif current_user
-   - tab_open = current_user.active_chats.where(user: chat_user).exists?
-
-li id=dom_id(chat_user, :chat_toggle) style="display: #{tab_open ? 'none' : 'block'}" 
-	= subscribe_to chat_user.message_channel
-	= link_to chat_user.name, active_chats_path(active_chat: {user_id: chat_user.id}), method: :post, remote: true

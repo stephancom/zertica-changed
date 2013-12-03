@@ -1,4 +1,13 @@
-| $('#active-chats-tabs').append("#{j render('active_chat_tab', active_chat_tab: @active_chat)}");
-| $('#active-chats').append("#{j render(@active_chat)}");
-| $("##{dom_id(@active_chat, :tab)} a").tab('show');
-| $("##{dom_id(@active_chat.user, :chat_toggle)}").hide('fast');
+-# we do this with a publish instead of directly because you might have more than one window open
+- publish_to @chatter.chat_channel do
+	| $('#active-chats-tabs').append("#{j render('active_chat_tab', active_chat_tab: @active_chat)}");
+	| $('#active-chats').append("#{j render(@active_chat)}");
+	| $("##{dom_id(@active_chat, :tab)} a").tab('show');
+	| $("##{dom_id(@chat_partner, :chat_toggle)}").hide('fast');
+	| window.setupMessagePanel(0, '##{dom_id(@active_chat, :message_panel)}');
+- publish_to @chat_partner.chat_channel do
+	| $('#active-chats-tabs').append("#{j render('active_chat_tab', active_chat_tab: @active_chat)}");
+	| $('#active-chats').append("#{j render(@active_chat)}");
+	| $("##{dom_id(@active_chat, :tab)} a").tab('show');
+	| $("##{dom_id(@chatter, :chat_toggle)}").hide('fast');
+	| window.setupMessagePanel(0, '##{dom_id(@active_chat, :message_panel)}');

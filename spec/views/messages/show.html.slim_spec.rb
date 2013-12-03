@@ -5,8 +5,7 @@ describe "messages/show" do
     @message = assign(:message, stub_model(Message,
       :body => "MyText",
       :project => nil,
-      :user => nil,
-      :bookmark => false
+      :user => nil
     ))
   end
 
