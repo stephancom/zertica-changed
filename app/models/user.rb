@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	has_many :orders
 	has_many :bids, through: :orders
 	belongs_to :last_notified_message, class_name: 'Message'
-
+	
 	def chat_channel
 		"/user_chat/#{id}"
 	end
