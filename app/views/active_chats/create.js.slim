@@ -6,6 +6,7 @@
 	| $("##{dom_id(@chat_partner, :chat_toggle)}").hide('fast');
 	| window.setupMessagePanel(0, '##{dom_id(@active_chat, :message_panel)}');
 - publish_to @chat_partner.chat_channel do
+	| $('.#{chatters_class(@active_chat)}').remove();
 	| $('#active-chats-tabs').append("#{j render('active_chat_tab', active_chat_tab: @active_chat)}");
 	| $('#active-chats').append("#{j render(@active_chat)}");
 	| $("##{dom_id(@active_chat, :tab)} a").tab('show');
