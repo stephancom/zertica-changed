@@ -1,22 +1,44 @@
 
-<button class="btn btn-success sharp" id="customButton">Pay Now</button>
-<script>
-  var handler = StripeCheckout.configure({
-    key: 'pk_pgxBsgRyZGWObb0c3MjFdF8Fcw4FZ',
-    image: '',
-    token: function(token, args) {
-      // Use the token to create the charge with a server-side script.
-    }
-  });
+<!-- Button to trigger modal -->
+<div class="centertext">
+<a href="#myModal" role="button" class="btn btn-success btn-large sharp" data-toggle="modal">Pay with Card</a>
+</div>
+<!-- Modal -->
 
-  document.getElementById('customButton').addEventListener('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      name: 'Demo Site',
-      description: 'One Print',
-      amount: 2000,
-      shippingAddress: true
-    });
-    e.preventDefault();
-  });
-</script>
+<div id="myModal" class="modal hide fade centertext" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Checkout :)</h3>
+  </div>
+  <div class="modal-body">
+    <img src="http://www.credit-card-logos.com/images/multiple_credit-card-logos-1/credit_card_logos_10.gif">
+    <br>
+    <br>
+    <form action="" method="POST" id="payment-form">
+      <span class="payment-errors"></span>
+
+      <div class="form-row">
+        <label>
+          <span>Card Number</span>
+          <p><input type="text" size="20" data-stripe="number"/></p>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>CVC</span>
+          <p><input type="text" size="4" data-stripe="cvc"/></p>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Expiration (MM/YYYY)</span>
+          <p><input type="text" size="2" data-stripe="exp-month"/></p>
+        </label>
+      </div>
+
+      <button class="btn btn-success btn-large sharp" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
