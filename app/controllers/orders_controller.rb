@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    respond_with(@order)
+    redirect_to root_path
   end
 
   def estimate
