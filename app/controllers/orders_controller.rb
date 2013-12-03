@@ -35,7 +35,9 @@ class OrdersController < ApplicationController
 
   def update
     @order.update(order_params)
-    @order.price = @order.subtotal * 1.15
+    if @order.subtotal
+      @order.price = @order.subtotal * 1.15
+    end
     if @order.save
       respond_with @order
     end
