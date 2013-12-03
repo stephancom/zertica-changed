@@ -2,11 +2,14 @@ class Order < ActiveRecord::Base
 	ORDER_TYPES = %w(CadOrder PrintOrder)
 	belongs_to :user
 	belongs_to :admin
-    has_many :file_objects
-	has_many :bids
+    has_many :file_objects, dependent: :destroy
+	has_many :bids, dependent: :destroy
 	has_and_belongs_to_many :shippable_files, class_name: 'FileObject', join_table: 'orders_shippable_files'
 	accepts_nested_attributes_for :file_objects, reject_if: proc { |attributes| attributes[:url].blank? }
 	accepts_nested_attributes_for :shippable_files, reject_if: proc { |attributes| attributes[:url].blank? }
+
+	delegate :name, to: :user, prefix: :true
+	delegate :name, to: :admin, prefix: :true
 
 	def cad_order?
 		order_type == 'CadOrder'
@@ -39,6 +42,7 @@ class Order < ActiveRecord::Base
 	#validates :project, presence: true
 	validates :price, numericality: { greater_than: 0 }, allow_nil: true
 	#validates :project_files, presence: true
+	validates :user_id, presence: true
 
 	# TODO
 	# validate payment confirmation correct if paid by user?
