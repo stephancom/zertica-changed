@@ -35,7 +35,10 @@ class OrdersController < ApplicationController
 
   def update
     @order.update(order_params)
-    respond_with @order
+    @order.price = @order.subtotal * 1.15
+    if @order.save
+      respond_with @order
+    end
   end
 
   def destroy
@@ -50,12 +53,12 @@ class OrdersController < ApplicationController
     respond_with @order
   end
 
-  def pay
-    unless @order.update(params[:order]) and @order.pay!
-      flash[:error] = 'Payment failed'
-    end
-    respond_with @order
-  end
+  # def pay
+  #   unless @order.update(params[:order]) and @order.pay!
+  #     flash[:error] = 'Payment failed'
+  #   end
+  #   respond_with @order
+  # end
 
   def ship
     @order.shippable_files.build
@@ -75,16 +78,16 @@ class OrdersController < ApplicationController
     respond_with @orders    
   end
 
-  def confirm_payment
-    @result = Braintree::TransparentRedirect.confirm(request.query_string)
-    @order = Order.find(@result.transaction.custom_fields[:order_id]) if @result 
-    if @result && @result.success?
-      @order.update(confirmation: @result.transaction.id) and @order.pay!
-    else
-      flash[:error] = 'Payment failed'
-    end
-    redirect_to [@order]
-  end
+  # def confirm_payment
+  #   @result = Braintree::TransparentRedirect.confirm(request.query_string)
+  #   @order = Order.find(@result.transaction.custom_fields[:order_id]) if @result 
+  #   if @result && @result.success?
+  #     @order.update(confirmation: @result.transaction.id) and @order.pay!
+  #   else
+  #     flash[:error] = 'Payment failed'
+  #   end
+  #   redirect_to [@order]
+  # end
 
 
 #   def ship
@@ -115,11 +118,11 @@ class OrdersController < ApplicationController
     case action_name
     when 'create'
       if current_admin
-        params[:order].permit(:order_type, :title, :description, :price,
+        params[:order].permit(:order_type, :subtotal, :title, :description, :price,
          :file_objects ,file_object_ids: [], file_objects_attributes: [:order_id,
           :url, :filename, :size, :mimetype])
       else
-        params[:order].permit(:order_type, :title, :deadline, :color, :material,
+        params[:order].permit(:order_type,:subtotal,  :title, :deadline, :color, :material,
          :budget, :description, :file_objects, :quantity, :software_program, :file_format,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype])
@@ -140,7 +143,7 @@ class OrdersController < ApplicationController
       params[:order].permit()
     else
       if current_admin
-        params[:order].permit(:title, :description,:price, :file_objects,
+        params[:order].permit(:title, :subtotal, :description,:price, :file_objects,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype], shippable_files_attributes: [:order_id, :url, :filename,
            :size, :mimetype])

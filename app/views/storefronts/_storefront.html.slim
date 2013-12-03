@@ -1,0 +1,2 @@
+- unless storefront.new_record?
+	li= link_to_if can?(:show, storefront), storefront.vendor_name, storefront

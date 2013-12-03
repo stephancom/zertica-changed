@@ -8,7 +8,7 @@ class BidsController < ApplicationController
   end
 
   def bid_params 
-    params[:bid].permit(:admin_id, :pay_schedule, :message, :order_id, :price, :selected)
+    params[:bid].permit(:admin_id, :pay_schedule, :subtotal, :message, :order_id, :price, :selected)
   end
 
   def index
@@ -17,6 +17,7 @@ class BidsController < ApplicationController
 
   def select
     @bid = @order.bids.find(params[:id])
+    @order.subtotal = @bid.subtotal
     @order.price = @bid.price
     @order.admin_id = @bid.admin_id
     @order.state = 'estimated'
@@ -41,7 +42,7 @@ class BidsController < ApplicationController
 
   def create
     @bid = @order.bids.new(params[:bid])
-    @bid.price = @bid.price * 1.15
+    @bid.price = @bid.subtotal * 1.15
     if current_admin
       @bid.admin_id = current_admin.id
     end
