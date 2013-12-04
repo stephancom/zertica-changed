@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+  	load_and_authorize_resource :order
 	before_filter :load_order
 
 	def load_order
