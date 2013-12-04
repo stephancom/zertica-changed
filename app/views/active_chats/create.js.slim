@@ -1,5 +1,6 @@
 -# we do this with a publish instead of directly because you might have more than one window open
 - publish_to @chatter.chat_channel do
+	| $('.#{chatters_class(@active_chat)}').remove();
 	| $('#active-chats-tabs').append("#{j render('active_chat_tab', active_chat_tab: @active_chat)}");
 	| $('#active-chats').append("#{j render(@active_chat)}");
 	| $("##{dom_id(@active_chat, :tab)} a").tab('show');
