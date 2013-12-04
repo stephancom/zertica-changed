@@ -3,12 +3,12 @@
 #cardModal.modal.hide.fade.centertext aria-hidden="true" aria-labelledby="cardModalLabel" role="dialog" tabindex="-1"
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"
-    h3#cardModalLabel Checkout
+    h3#cardModalLabel Checkout: #{number_to_currency @order.price}
   .modal-body
     img src="http://www.credit-card-logos.com/images/multiple_credit-card-logos-1/credit_card_logos_10.gif"
     br
     br
-    form#payment-form action="" method="POST"
+    = form_tag pay_order_path(@order), id: 'payment-form'
       span.payment-errors
       .form-row
         label

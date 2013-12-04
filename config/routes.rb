@@ -4,7 +4,7 @@ ZerticaConnect::Application.routes.draw do
 	devise_for :admins, :controllers => {:registrations => "admin_registrations"}
 	devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 	
-	resources :charges
+	# resources :charges
 
 	authenticated :admin do
 		resources :admin, only: [:show] do 
@@ -21,7 +21,6 @@ ZerticaConnect::Application.routes.draw do
 			resources :bids
 			member do
 				patch 'estimate'
-				patch 'pay' 
 				put 'complete'
 				patch 'ship'
 				patch 'archive'
@@ -44,15 +43,12 @@ ZerticaConnect::Application.routes.draw do
 		end
 		resources :orders do
 			resources :file_objects, except: [:edit, :update]
-			patch 'pay', on: :member # probably not needed, part of payment system
-	
+			post 'pay', on: :member
 		end
 		resources :file_objects
 
 		root to: 'orders#index', as: :user_root
 	end
-
-	match 'order_confirm_payment' => 'orders#confirm_payment', :as => :order_confirm_payment, :via => :get
 
 	root to: 'home#index', as: :root
 end

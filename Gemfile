@@ -37,8 +37,6 @@ gem 'filepicker-rails'
 gem 'airbrake'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-#gem 'braintree'
-
 # facebook login
 gem 'omniauth'
 gem 'omniauth-facebook'

@@ -8,8 +8,8 @@ class Order < ActiveRecord::Base
 	accepts_nested_attributes_for :file_objects, reject_if: proc { |attributes| attributes[:url].blank? }
 	accepts_nested_attributes_for :shippable_files, reject_if: proc { |attributes| attributes[:url].blank? }
 
-	delegate :name, to: :user, prefix: :true
-	delegate :name, to: :admin, prefix: :true
+	delegate :name, to: :user, prefix: true
+	delegate :name, to: :admin, prefix: true
 
 	def cad_order?
 		order_type == 'CadOrder'
