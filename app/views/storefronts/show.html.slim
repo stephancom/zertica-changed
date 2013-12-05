@@ -1,4 +1,13 @@
 .span10.offset1
   .row-fluid
-     h3= @storefront.vendor_name
-    
+     h3 Name:
+     p= @storefront.vendor_name
+  .row-fluid
+     h3 Printing Capabilities:
+     p= @storefront.printing_capabilities
+  .row-fluid
+     h3 Cad Capabilities:
+     p= @storefront.cad_capabilities
+  .row-fluid
+     h3 Additional Info:
+     p= @storefront.description

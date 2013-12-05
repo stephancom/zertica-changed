@@ -33,7 +33,10 @@ ZerticaConnect::Application.routes.draw do
 	end
 
 	authenticated :user do
-		resources :storefronts, except: [:create, :edit, :update, :destroy, :new, :index]
+		resources :admin, only: [:show] do 
+			resources :storefronts, only: [:show] do 
+			end
+		end
 		resources :active_chats, except: [:edit, :update, :new] do
 			resources :messages, only: :create
 		end

@@ -12,7 +12,7 @@
           - if admin_signed_in?
             li.admin
               a Merchant:
-            li= link_to 'Create Storefront', new_admin_storefront_path(:admin_id => current_admin.id)  
+            li= link_to 'My Storefront', admin_storefront_path(current_admin.id, current_admin.storefront.id)
             li= link_to 'My Orders', orders_path if can? :index, Order
             li= link_to 'Order Pool', orders_pool_path if can? :index, Order
             li= link_to 'Users', users_path if can? :index, User

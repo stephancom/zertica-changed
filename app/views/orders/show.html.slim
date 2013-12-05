@@ -6,8 +6,11 @@
         = link_to 'Archive', archive_order_path(@order), :class => 'btn sharp pull-right', :method => :patch if @order.completed?
         = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn pull-right sharp' if can? :edit, @order
      - if current_admin && @order.submitted?
-        = link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn btn-primary pull-right sharp'
-     .span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
+        = link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn btn-primary pull-right sharp' 
+     .span1 Vendor:
+     - if @order.has_price?
+        p= link_to @order.admin.name, admin_storefront_path(@order.admin.id, @order.admin.storefront.id)    
+     .span3= @order.created_at.strftime("Submitted: %m/%d/%Y")
      .span2 Status: #{@order.state.capitalize}
      .span1 Price:
      - if @order.submitted?
@@ -16,7 +19,9 @@
       - if current_user
         = number_to_currency @order.price 
       - else 
-        = number_to_currency @order.subtotal 
+        = number_to_currency @order.subtotal   
+
+     
   hr
   .row-fluid
       .span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 

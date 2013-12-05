@@ -23,6 +23,7 @@ class Ability
                 can [:show, :update], User, id: user.id  # user can always see their own account
                 can :manage, [Message, ActiveChat], user_id: user.id
                 can :show, Storefront
+                can :show, Admin
                 can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
                 can [:index, :destroy, :archive, :new, :create, :show, :edit, :update], Order
