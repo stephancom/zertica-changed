@@ -10,7 +10,7 @@ table
     tr
       td = link_to 'Show', bid
       td = link_to 'Edit', edit_bid_path(bid)
-      td = link_to 'Destroy', bid, :confirm => 'Are you sure?', :method => :delete
+      td = link_to 'Destroy', bid, :data => {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
