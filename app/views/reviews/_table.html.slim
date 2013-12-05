@@ -1,0 +1,23 @@
+- model_class = Bid
+table.table.table-striped
+  thead
+    tr
+      th= model_class.human_attribute_name(:merchant)
+      th.span9= model_class.human_attribute_name(:message)
+      th= model_class.human_attribute_name(:price)
+      th=t '.actions', :default => t("helpers.actions")
+
+  tbody
+    - collection.each do |bid|
+      - unless bid.new_record?
+        tr
+          td= link_to bid.admin.name, admin_storefront_path(bid.admin.id, bid.admin.storefront.id)
+          td= bid.message
+          - if current_user
+            td #{number_to_currency(bid.price)}  #{bid.pay_schedule.capitalize}
+          - else
+            td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
+          - if current_user
+            td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success'
+          - else
+            td= link_to 'Retract', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success'

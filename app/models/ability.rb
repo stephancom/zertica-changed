@@ -9,6 +9,7 @@ class Ability
                 # admins can do this stuff
                 can :manage, [User, Order, Bid]
                 can :show, Admin
+                can :show, Review
                 can [:new, :create, :show, :edit, :update, :destroy], Storefront
                 can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order, state: 'submitted'
@@ -22,7 +23,8 @@ class Ability
                 # clients can do this stuff
                 can [:show, :update], User, id: user.id  # user can always see their own account
                 can :manage, [Message, ActiveChat], user_id: user.id
-                can :show, Storefront
+                can [:show, :edit, :update], Storefront
+                can :manage, Review
                 can :show, Admin
                 can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
