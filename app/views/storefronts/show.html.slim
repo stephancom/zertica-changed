@@ -2,14 +2,18 @@
   .row-fluid
    - if current_admin
      =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right'
-   h3 Name:
+   br
+   h4 Vendor Name: 
    p= @storefront.vendor_name
   .row-fluid
-     h3 Printing Capabilities:
+     h4 Printing Capabilities:
      p= @storefront.printing_capabilities
   .row-fluid
-     h3 Cad Capabilities:
+     h4 Cad Capabilities:
      p= @storefront.cad_capabilities
   .row-fluid
-     h3 Additional Info:
+     h4 Additional Info:
      p= @storefront.description
+  .row-fluid
+    h3.centertext Vendor Reviews
+  hr
