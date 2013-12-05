@@ -1,7 +1,9 @@
 .span10.offset1
   .row-fluid
-     h3 Name:
-     p= @storefront.vendor_name
+   - if current_admin
+     =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right'
+   h3 Name:
+   p= @storefront.vendor_name
   .row-fluid
      h3 Printing Capabilities:
      p= @storefront.printing_capabilities

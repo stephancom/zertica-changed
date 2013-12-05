@@ -15,7 +15,13 @@ class StorefrontsController < ApplicationController
   def new
     @storefront = @admin.build_storefront(params[:storefront])
   end
-
+  def update
+    @storefront = Storefront.find(params[:id])
+    @storefront.update(params[:storefront])
+    if @storefront.save
+      redirect_to admin_storefront_path
+    end
+  end
   def show
     @storefront = Storefront.find(params[:id])
 
