@@ -1,6 +1,6 @@
-.page-header
-  h1.centertext Edit Account
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f|
+.page-header.centertext
+  h1.centered Edit Account
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal centerbox' }) do |f|
   = f.error_notification
   = display_base_errors resource
   .form-inputs
@@ -17,7 +17,8 @@
     = f.button :submit, 'Update', :class => 'btn btn-primary offset5'
     '
     = link_to 'Back', :back, :class => :btn
+.centertext
+  - unless current_admin
+    h3 Cancel my account
+    p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
 
-- unless current_admin
-  h3 Cancel my account
-  p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
