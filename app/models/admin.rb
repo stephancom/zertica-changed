@@ -17,4 +17,8 @@ class Admin < ActiveRecord::Base
   def chat_partners
     (orders.map(&:user) + bids.map(&:user)).uniq
   end
+
+  def payable?
+    false
+  end
 end

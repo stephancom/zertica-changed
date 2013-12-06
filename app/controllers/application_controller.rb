@@ -21,7 +21,14 @@ class ApplicationController < ActionController::Base
 	  params[resource] &&= send(method) if respond_to?(method, true)
 	end
 
+	before_filter :advise_admin
+
 private
+
+	# notify admins to enter their banking info
+	def advise_admin
+		flash.now[:info] = "Enter your banking information to bid on orders and get paid!" if current_admin and not current_admin.payable?
+	end
 
 	def current_account
 		current_admin || current_user

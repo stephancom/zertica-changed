@@ -5,8 +5,12 @@
 			= link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(@order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn sharp pull-right btn-danger' if can? :destroy, @order
 			= link_to 'Archive', archive_order_path(@order), :class => 'btn sharp pull-right', :method => :patch if @order.completed?
 			= link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn pull-right sharp' if can? :edit, @order
-		- if current_admin && @order.submitted?
+		-# if current_admin && @order.submitted?
+		- if can?(:create, Bid)
 			= link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn btn-primary pull-right sharp'
+		- elsif current_admin
+			.well
+				h4 Enter your banking information to be able to bid on orders
 		.span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
 		.span2 Status: #{@order.state.capitalize}
 		.span1 Price:
