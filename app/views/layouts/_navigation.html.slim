@@ -10,8 +10,6 @@
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?
-            li.admin
-              a Merchant:
             li= link_to 'Create Storefront', new_admin_storefront_path(:admin_id => current_admin.id)  
             li= link_to 'My Orders', orders_path if can? :index, Order
             li= link_to 'Order Pool', orders_pool_path if can? :index, Order
