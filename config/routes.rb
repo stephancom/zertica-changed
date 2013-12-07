@@ -7,6 +7,7 @@ ZerticaConnect::Application.routes.draw do
 	# resources :charges
 
 	authenticated :admin do
+		resource :bank_account, only: [:edit, :update]
 		resources :admin, only: [:show] do 
 			resources :storefronts
 		end
