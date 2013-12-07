@@ -66,6 +66,7 @@ h4. Paid accounts needed
 * Mandrill _(optional - free starter level allows 12,000 emails per month)_
 * Ink Filepicker _(optional - free starter level allows 5,000 files per month; currently in beta)_
 * Stripe
+* Balanced Payments
 
 for several of these, you need to set up environment variables on Heroku
 
@@ -79,6 +80,10 @@ FACEBOOK_APP_ID
 FACEBOOK_APP_SECRET
 
 STRIPE_KEY
+
+BALANCED_SECRET
+BALANCED_MARKETPLACE_URI
+BALANCED_CSRF
 
 if you use rake db:seed to set up the initial admin account, you'll need to set:
 
@@ -122,9 +127,9 @@ Actually, I don't do that for filepicker any more.  You CAN set all those things
 AND DO NOT ADD APPLICATION.YML TO THE REPOSITORY!!!! EVER!!!!
 DO NOT EVER PUT KEYS IN THE REPOSITORY!!!! EVER!!!!
 
-h4. Stripe
+h4. Balanced Payments
 
-In testing, you use special credit card numbers, amounts, and other codes to simulate successful/failing transactions.  Reference here: https://stripe.com/docs/testing
+In testing, you use special credit card numbers, bank account numbers, etc to simulate successful/failing transactions.  Reference here: https://docs.balancedpayments.com/current/overview?language=bash#test-credit-card-numbers
 
 h2. History
 
