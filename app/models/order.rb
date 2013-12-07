@@ -32,7 +32,7 @@ class Order < ActiveRecord::Base
 	#has_one :user, through: :project
 
 	default_scope {where(['state <> ?', 'archived'])}
-	scope :pool, -> { where(state: 'submitted') }
+	scope :pool, -> { where(admin_id: nil) }
 	# TODO
 	
 
