@@ -18,15 +18,17 @@ class OrdersController < ApplicationController
   def pool
     if current_admin
       @order_pool = Order.pool
+      respond_with @order_pool
     end
-    respond_with @order_pool
+  end
+
+  def new
+    @order = Order.new(order_params)
   end
 
   def create
     @order = Order.new(order_params)
-    if current_admin 
-      @order.admin_id = current_admin.id
-    elsif current_user
+    if current_user
       @order.user_id = current_user.id
     end
     @order.save
@@ -118,13 +120,24 @@ class OrdersController < ApplicationController
 
   def order_params
     case action_name
+    when 'new'  
+      if current_admin
+        params[:order].permit(:order_type, :subtotal, :title, :description, :price,
+         :file_objects ,file_object_ids: [], file_objects_attributes: [:order_id,
+          :url, :filename, :size, :mimetype])
+      else
+        params[:order].permit(:order_type, :subtotal, :admin_id,  :title, :deadline, :color, :material,
+         :budget, :description, :file_objects, :quantity, :software_program, :file_format,
+         file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
+          :size, :mimetype])
+      end
     when 'create'
       if current_admin
         params[:order].permit(:order_type, :subtotal, :title, :description, :price,
          :file_objects ,file_object_ids: [], file_objects_attributes: [:order_id,
           :url, :filename, :size, :mimetype])
       else
-        params[:order].permit(:order_type,:subtotal,  :title, :deadline, :color, :material,
+        params[:order].permit(:order_type, :subtotal, :admin_id,  :title, :deadline, :color, :material,
          :budget, :description, :file_objects, :quantity, :software_program, :file_format,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype])

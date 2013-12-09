@@ -2,6 +2,8 @@
   .row-fluid
    - if current_admin
      =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right'
+   - else
+      =link_to 'Place Order', new_order_path(:admin_id => @storefront.admin.id),  :class => 'btn btn-sharp btn-primary pull-right'
    br
    h4 Vendor Name: 
    p= @storefront.vendor_name

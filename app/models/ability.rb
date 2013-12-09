@@ -28,7 +28,7 @@ class Ability
                 can :show, Admin
                 can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
-                can [:index, :destroy, :archive, :new, :create, :show, :edit, :update], Order
+                can :manage, Order
                 can :estimate, Order
                 can :pay, Order, state: 'estimated'
                 # TODO
