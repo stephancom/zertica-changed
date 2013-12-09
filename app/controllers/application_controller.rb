@@ -27,7 +27,7 @@ private
 
 	# notify admins to enter their banking info
 	def advise_admin
-		flash.now[:info] = render_to_string(partial: 'bank_accounts/advise_flash') if current_admin and not current_admin.payable?
+		flash.now[:warning] = render_to_string(partial: 'bank_accounts/advise_flash') if current_admin and not current_admin.payable?
 	end
 
 	def current_account

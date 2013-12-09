@@ -12,7 +12,7 @@ class BankAccountsController < ApplicationController
   private
 
   def bank_account_params
-    params[:bank_account].permit(:bank_account_uri)
+    params[:bank_account].permit(:name, :bank_account_uri)
   end
 
 end

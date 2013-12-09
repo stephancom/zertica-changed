@@ -19,6 +19,6 @@ class Admin < ActiveRecord::Base
   end
 
   def payable?
-    false
+    not bank_account_uri.blank?
   end
 end

@@ -1,4 +1,4 @@
-= simple_form_for @admin, as: :bank_account, as: :bank_account, url: bank_account_path do	|f|
+= simple_form_for @admin, as: :bank_account, url: bank_account_path do	|f|
 	= f.error_notification
 	= render 'fields', f: f
 	= f.button :submit, 'Update Banking Information'
