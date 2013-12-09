@@ -13,11 +13,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = @storefront.reviews.new(params[:storefront])
+    @review = @storefront.reviews.new(params[:review])
   end
 
   def create
-    @review = @storefront.reviews.create(params[:storefront])
+    @review = @storefront.reviews.create(params[:review])
     if @review.save
       flash[:notice] = 'Your review has been added.'
       redirect_to admin_storefront_path
