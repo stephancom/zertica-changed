@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
-	new zBalancedBankAccount "form.edit_bank_account"
+	new zBalancedBankAccount "form[data-balanced='bank_account']"

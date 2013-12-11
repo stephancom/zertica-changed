@@ -18,6 +18,10 @@
     '
     = link_to 'Back', :back, :class => :btn
 
+- if current_admin
+  h3 Banking information
+  = render 'bank_accounts/form'
+
 - unless current_admin
   h3 Cancel my account
   p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.

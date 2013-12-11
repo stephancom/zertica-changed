@@ -1,7 +1,5 @@
 | Zertica Staff:
 
-	Our client, #{@order.user_name} has paid #{number_to_currency @order.price} for their order "#{@order.title}."
-
-	Get to work bitch!
+	Your client, #{@order.user_name} has paid you #{number_to_currency @order.subtotal} for their order "#{@order.title}."
 
 	#{order_url @order}

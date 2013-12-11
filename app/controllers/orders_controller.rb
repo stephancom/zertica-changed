@@ -52,29 +52,9 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    # Set your secret key: remember to change this to your live secret key in production
-    # See your keys here https://manage.stripe.com/account
-    Stripe.api_key = ENV['STRIPE_KEY'] || "wbkATEjTIb9vuZIEa9MHJWdZNVWGQB7U"
-
-    # we build a hash for the parameters outside of the begin-rescue-end block
-    # in case one of the other things going on here throws an error
-    charge_details = {
-      amount: (@order.price * 100).to_i,
-      currency: :usd,
-      card: params[:stripeToken],
-      description: "Charge for Order: #{@order.title}. At an amount of #{number_to_currency @order.price}"
-    }
-
-    # Create the charge on Stripe's servers - this will charge the user's card
-    begin
-      charge = Stripe::Charge.create(charge_details)
-      @order.confirmation = charge[:id]
-      @order.pay!
-      flash[:success] = "Thanks, you paid #{number_to_currency(charge[:amount]/100)}"
-    rescue Stripe::CardError => e
-      # The card has been declined
-      flash[:error] = e.message
-    end
+    @order.process_payment!(params[:card_uri])
+    @order.pay!
+    flash[:success] = "Thanks, you paid #{number_to_currency(@order.price)}"
     respond_with @order
   end
 

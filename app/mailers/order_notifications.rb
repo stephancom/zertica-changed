@@ -18,7 +18,7 @@ class OrderNotifications < ActionMailer::Base
   def paid(order)
     @order = order
 
-    mail to: Admin.pluck(:email)
+    mail to: order.admin.email
   end
 
   def complete(order)

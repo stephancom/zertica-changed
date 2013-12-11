@@ -5,25 +5,16 @@
     button.close aria-hidden="true" data-dismiss="modal" type="button"
     h3#cardModalLabel Checkout: #{number_to_currency @order.price}
   .modal-body
-    img src="http://www.credit-card-logos.com/images/multiple_credit-card-logos-1/credit_card_logos_10.gif"
-    br
-    br
-    = form_tag pay_order_path(@order), id: 'payment-form'
-      span.payment-errors
-      .form-row
-        label
-          span Card Number
-          p= text_field_tag 'number', '4242424242424242', data: {stripe: :number}, size: 20
-      .form-row
-        label
-          span CVC
-          p= text_field_tag 'cvc', '123', data: {stripe: :cvc}, size: 4
-      .form-row
-        label
-          span Expiration Month
-          p= text_field_tag 'exp-month', '02', data: {stripe: 'exp-month'}, size: 2
-      .form-row
-        label
-          span Expiration Year
-          p= text_field_tag 'exp-year', '16', data: {stripe: 'exp-year'}, size: 2
-      .form-row= button_tag 'Submit', class: [:btn, 'btn-success', 'btn-large', :sharp]
+    p= image_tag 'credit_card_logos_10.gif'
+    = simple_form_for @order, as: :pay_order, url: pay_order_path(@order), method: :post, html: {class: 'form-horizontal', data: {balanced: :payment}} do |f|
+      .progress.loading.hide
+        .bar style="width: 60%;"
+          p
+      = f.input :user_name
+      = f.input :user_email
+      = f.input :card_number, as: :fake, input_html: {value: '4242424242424242'}
+      = f.input :cvc, as: :fake, input_html: {value: '123'}
+      = f.input :expiration_month, as: :fake, input_html: {value: '02', size: 2}
+      = f.input :expiration_year, as: :fake, input_html: {value: '2016', size: 4}
+      = f.input :card_uri, as: :fake
+      = f.button :submit, 'Pay', class: [:btn, 'btn-success', 'btn-large', :sharp]

@@ -11,7 +11,7 @@ table.table.table-striped
     - collection.each do |bid|
       - unless bid.new_record?
         tr
-          td= link_to bid.admin.name, 'http://www.yahoo.com'
+          td= bid.admin_name
           td= bid.message
           - if current_user
             td #{number_to_currency(bid.price)}  #{bid.pay_schedule.capitalize}

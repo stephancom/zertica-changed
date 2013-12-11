@@ -1,4 +1,6 @@
 class Admin < ActiveRecord::Base
+  include BalancedCustomer
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,5 +22,11 @@ class Admin < ActiveRecord::Base
 
   def payable?
     not bank_account_uri.blank?
+  end
+
+  def add_bank_account!(uri)
+    self.bank_account_uri = uri
+    balanced_customer.add_bank_account(uri)
+    save!
   end
 end
