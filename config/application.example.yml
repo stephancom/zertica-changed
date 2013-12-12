@@ -17,8 +17,6 @@ ADMIN_PASSWORD: ChangeThisPassword
 FILEPICKER_API_KEY: your filepicker key
 FILEPICKER_API_SECRET: your filepicker api key
 
-STRIPE_KEY: your stripe key
-
 BALANCED_SECRET: 'XXXXXXXXXX'
 BALANCED_MARKETPLACE_URI: '/v1/marketplaces/TEST-XXXXXXXXXXX'
 BALANCED_CSRF: '54cb4ff6c29811e2b033026ba7cd33d0'

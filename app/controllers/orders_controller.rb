@@ -94,7 +94,7 @@ private
     when 'estimate'
       params[:order].permit(:price)
     when 'pay'
-      params.require(:stripeToken)
+      params.require(:card_uri)
     when 'complete'
       params[:order].permit()
     when 'ship'

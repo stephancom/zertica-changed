@@ -65,7 +65,6 @@ h4. Paid accounts needed
 * Amazon S3
 * Mandrill _(optional - free starter level allows 12,000 emails per month)_
 * Ink Filepicker _(optional - free starter level allows 5,000 files per month; currently in beta)_
-* Stripe
 * Balanced Payments
 
 for several of these, you need to set up environment variables on Heroku
@@ -78,8 +77,6 @@ MANDRILL_API_KEY
 
 FACEBOOK_APP_ID
 FACEBOOK_APP_SECRET
-
-STRIPE_KEY
 
 BALANCED_SECRET
 BALANCED_MARKETPLACE_URI
