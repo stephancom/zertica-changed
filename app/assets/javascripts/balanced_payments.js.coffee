@@ -2,18 +2,18 @@
 #  __ ___ / _|/ _|___ ___ ___ __ _ _(_)_ __| |_ 
 # / _/ _ \  _|  _/ -_) -_|_-</ _| '_| | '_ \  _|
 # \__\___/_| |_| \___\___/__/\__|_| |_| .__/\__|
-#     _          _                    |_|        
-#    | |__  __ _| |__ _ _ _  __ ___ __| |     by   
-#    | '_ \/ _` | / _` | ' \/ _/ -_) _` | stephan.com         
-#    |_.__/\__,_|_\__,_|_||_\__\___\__,_|  (c) 2013           
+#      | |__  __ _| |__ _ _ _  __ ___ |_| | 
+#      | '_ \/ _` | / _` | ' \/ _/ -_) _` |  (c) 2013 
+#      |_.__/\__,_|_\__,_|_||_\__\___\__,_| stephan.com         
 
-# a coffeescript library for balanced payments
+#  a coffeescript library for balanced payments
 
-class @zBalanced
+class @Balanced
 
   constructor: (form, @options) ->
     # balanced.init @options.marketplaceUri
-    balanced.init '/v1/marketplaces/TEST-MP5X26XD6x8T3RUJxZ5HryvC'
+    # balanced.init '/v1/marketplaces/TEST-MP5X26XD6x8T3RUJxZ5HryvC'
+    balanced.init balancedMarketplaceUri
 
     @form = $(form)
     @form.on 'submit', @submitForm
@@ -70,7 +70,7 @@ class @zBalanced
     inputs = @sensitiveFields.map (field) -> "input[name$='#{field}']"
     @form.find(inputs.join(',')).each -> $(@).replaceWith($(@).val())
 
-class @zBalancedPurchase extends @zBalanced
+class @BalancedPurchase extends @Balanced
   sensitiveFields: ["card_number", "cvc", "expiration_month", "expiration_year"]
 
   submitForm: (e) =>
@@ -139,7 +139,7 @@ class @zBalancedPurchase extends @zBalanced
         @showError "Balanced did something bad, please retry the request"
 
 
-class @zBalancedBankAccount extends @zBalanced
+class @BalancedBankAccount extends @Balanced
   sensitiveFields: ['bank_code', 'account_number']
 
   submitForm: (e) =>

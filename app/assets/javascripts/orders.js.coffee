@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
-  new zBalancedPurchase "form[data-balanced='payment']"
+  new BalancedPurchase "form[data-balanced='payment']"
