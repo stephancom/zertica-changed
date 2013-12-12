@@ -80,7 +80,6 @@ FACEBOOK_APP_SECRET
 
 BALANCED_SECRET
 BALANCED_MARKETPLACE_URI
-BALANCED_CSRF
 
 if you use rake db:seed to set up the initial admin account, you'll need to set:
 
