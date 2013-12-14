@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205074946) do
+ActiveRecord::Schema.define(version: 20131210081026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20131205074946) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "customer_uri"
+    t.string   "bank_account_uri"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -109,6 +111,8 @@ ActiveRecord::Schema.define(version: 20131205074946) do
     t.string   "software_program"
     t.string   "file_format"
     t.decimal  "subtotal",         precision: 8, scale: 2
+    t.string   "debit_uri"
+    t.string   "credit_uri"
   end
 
   create_table "orders_file_objects", id: false, force: true do |t|
@@ -176,6 +180,8 @@ ActiveRecord::Schema.define(version: 20131205074946) do
     t.string   "uid"
     t.integer  "last_notified_message_id"
     t.datetime "last_saw_messages_at"
+    t.string   "customer_uri"
+    t.string   "card_uri"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

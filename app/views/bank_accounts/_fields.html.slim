@@ -1,0 +1,7 @@
+.progress.loading.hide
+	.bar style="width: 60%;"
+		p
+= f.input :name, hint: 'Your name must match the name on the account'
+= f.input :bank_code, as: :fake, input_html: {value: '321174851'}
+= f.input :account_number, as: :fake, input_html: {value: '9900000001'}
+= f.input :bank_account_uri

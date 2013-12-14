@@ -1,4 +1,5 @@
 - panel_id = '#'+dom_id(@active_chat, :message_panel)
 - publish_to @active_chat.message_channel do
+	| $('##{dom_id @message}').remove();
 	| $('#{panel_id} .messages').append("#{j render(@message)}").animate({ scrollTop: $('#{panel_id} .messages').prop("scrollHeight")}, 1000);
 | $('#{panel_id} textarea[name="message[body]"]').val('').focus();

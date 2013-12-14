@@ -1,0 +1,20 @@
+.centertext= link_to 'Pay with card', '#cardModal', data: {toggle: :modal}, role: :button, class: [:btn, 'btn-success', 'btn-large', :sharp]
+
+#cardModal.modal.hide.fade.centertext aria-hidden="true" aria-labelledby="cardModalLabel" role="dialog" tabindex="-1"
+  .modal-header
+    button.close aria-hidden="true" data-dismiss="modal" type="button"
+    h3#cardModalLabel Checkout: #{number_to_currency @order.price}
+  .modal-body
+    p= image_tag 'credit_card_logos_10.gif'
+    = simple_form_for @order, as: :pay_order, url: pay_order_path(@order), method: :post, html: {class: 'form-horizontal', data: {balanced: :payment}} do |f|
+      .progress.loading.hide
+        .bar style="width: 60%;"
+          p
+      = f.input :user_name
+      = f.input :user_email
+      = f.input :card_number, as: :fake, input_html: {value: '4242424242424242'}
+      = f.input :cvc, as: :fake, input_html: {value: '123'}
+      = f.input :expiration_month, as: :fake, input_html: {value: '02', size: 2}
+      = f.input :expiration_year, as: :fake, input_html: {value: '2016', size: 4}
+      = f.input :card_uri, as: :fake
+      = f.button :submit, 'Pay', class: [:btn, 'btn-success', 'btn-large', :sharp]

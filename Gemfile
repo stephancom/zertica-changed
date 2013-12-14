@@ -35,9 +35,9 @@ gem 'thin'
 gem 'filepicker-rails'
 
 gem 'airbrake'
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-#gem 'braintree'
+# http://jsfiddle.net/mjallday/BtXfr/
+gem 'balanced'
 
 # facebook login
 gem 'omniauth'
