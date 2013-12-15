@@ -13,7 +13,7 @@
 					= link_to 'Enter Info', edit_bank_account_path, class: [:btn, 'pull-right', 'btn-warning']
 					| Enter your banking information to be able to bid on orders
 		.span1 Vendor:
-		- if @order.has_price?
+		- if @order.admin
 			p= link_to @order.admin_name, admin_storefront_path(@order.admin_id, @order.storefront)    
 		.span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
 		.span2 Status: #{@order.state.capitalize}

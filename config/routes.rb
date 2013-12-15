@@ -36,8 +36,8 @@ ZerticaConnect::Application.routes.draw do
 	end
 
 	authenticated :user do
-		resources :admin, only: [:show] do 
-			resources :storefronts, only: [:show, :edit] do 
+		resources :admin do 
+			resources :storefronts do
 				resources :reviews
 			end
 		end

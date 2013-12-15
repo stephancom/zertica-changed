@@ -19,11 +19,11 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
+    @order = Order.new(params[:order])
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(params[:order])
     if current_user
       @order.user_id = current_user.id
     end
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.update(order_params)
+    @order.update(params[:order])
     if @order.subtotal
       @order.price = @order.subtotal * 1.15
     end
