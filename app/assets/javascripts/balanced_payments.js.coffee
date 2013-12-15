@@ -22,7 +22,7 @@ class @Balanced
     # hmm, needed?  maybe
     $('[data-dismiss="alert"]').on "click", (e) ->
       $(this).closest(".alert").fadeOut "fast"
-      @resetForm()
+      resetForm()
       e.preventDefault()
 
   #  todo - what if we have a 409?
