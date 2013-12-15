@@ -7,4 +7,6 @@ class Bid < ActiveRecord::Base
 	validates :message, presence: true
 	validates :pay_schedule, presence: true
 	delegate :user, to: :order
+	delegate :name, to: :admin, prefix: true
+	delegate :storefront, to: :admin, allow_nil: true
 end

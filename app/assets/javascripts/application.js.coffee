@@ -17,4 +17,5 @@
 #= require private_pub
 #= require gritter
 #= require turbolinks
+#= require balanced_payments
 #= require_tree .

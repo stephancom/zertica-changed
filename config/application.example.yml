@@ -17,10 +17,8 @@ ADMIN_PASSWORD: ChangeThisPassword
 FILEPICKER_API_KEY: your filepicker key
 FILEPICKER_API_SECRET: your filepicker api key
 
-BRAINTREE_MERCHANT_ID: your_merchant_id
-BRAINTREE_PUBLIC_KEY: braintree_public_key
-BRAINTREE_PRIVATE_KEY: braintree_private_key
-BRAINTREE_CLIENT_SIDE_ENCRYPTION_KEY: braintree_client_side_encryption_key
+BALANCED_SECRET: 'XXXXXXXXXX'
+BALANCED_MARKETPLACE_URI: '/v1/marketplaces/TEST-XXXXXXXXXXX'
 
 FACEBOOK_APP_ID: facebook_app_id
 FACEBOOK_APP_SECRET: facebook_app_secret

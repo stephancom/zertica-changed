@@ -7,7 +7,8 @@ class Ability
         unless user.new_record?
             if user.kind_of? Admin
                 # admins can do this stuff
-                can :manage, [User, Order, Bid]
+                can :manage, [User, Order]
+                can [:new,:create], Bid if user.payable?
                 can :show, Admin
                 can :show, Review
                 can [:new, :create, :show, :edit, :update, :destroy], Storefront

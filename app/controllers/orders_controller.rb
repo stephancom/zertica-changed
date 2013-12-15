@@ -1,10 +1,6 @@
 class OrdersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  load_and_authorize_resource :order
-
-  #before_filter :load_project, except: :confirm_payment
-  #load_and_authorize_resource :order, through: :project, shallow: true, except: :confirm_payment
-  #before_filter :load_project_from_order, except: :confirm_payment
+  load_and_authorize_resource :order, except: :confirm_payment
 
   def index
     if current_admin
@@ -57,12 +53,12 @@ class OrdersController < ApplicationController
     respond_with @order
   end
 
-  # def pay
-  #   unless @order.update(params[:order]) and @order.pay!
-  #     flash[:error] = 'Payment failed'
-  #   end
-  #   respond_with @order
-  # end
+  def pay
+    @order.process_payment!(params[:card_uri])
+    @order.pay!
+    flash[:success] = "Thanks, you paid #{number_to_currency(@order.price)}"
+    respond_with @order
+  end
 
   def ship
     @order.shippable_files.build
@@ -82,41 +78,7 @@ class OrdersController < ApplicationController
     respond_with @orders    
   end
 
-  # def confirm_payment
-  #   @result = Braintree::TransparentRedirect.confirm(request.query_string)
-  #   @order = Order.find(@result.transaction.custom_fields[:order_id]) if @result 
-  #   if @result && @result.success?
-  #     @order.update(confirmation: @result.transaction.id) and @order.pay!
-  #   else
-  #     flash[:error] = 'Payment failed'
-  #   end
-  #   redirect_to [@order]
-  # end
-
-
-#   def ship
-#     @order.shippable_files.build(project: @project)
-#     unless @order.update(params[:order]) and @order.ship!
-#       flash[:error] = 'Shipment failed'
-#     end
-#     respond_with @project, @order
-#   end
-
-#   def archive
-#     @order.archive!
-#     respond_with @project    
-#   end
-
-# private
-#   # this one gets done first, for when you've got a nested path
-#   def load_project
-#     @project ||= Project.find(params[:project_id]) if params.has_key? :project_id
-#   end
-#   # and this one gets done after, in case you're in a shallow path.
-#   # there's probably a better, less redundant way to do this
-#   def load_project_from_order
-#     @project ||= @order.project if @order
-#   end
+private
 
   def order_params
     case action_name
@@ -145,9 +107,7 @@ class OrdersController < ApplicationController
     when 'estimate'
       params[:order].permit(:price)
     when 'pay'
-      params[:order].permit(:confirmation)
-    when 'confirm_payment'
-      params.require(:bt_message) # special case - braintree response
+      params.require(:card_uri)
     when 'complete'
       params[:order].permit()
     when 'ship'

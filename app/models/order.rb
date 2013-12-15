@@ -1,3 +1,7 @@
+# an order should... probably not belong to a user and an admin (seller)
+# an order should have_one :selected_bid and get the admin through that
+# I do not approve. s.c
+
 class Order < ActiveRecord::Base
 	ORDER_TYPES = %w(CadOrder PrintOrder)
 	belongs_to :user
@@ -8,8 +12,11 @@ class Order < ActiveRecord::Base
 	accepts_nested_attributes_for :file_objects, reject_if: proc { |attributes| attributes[:url].blank? }
 	accepts_nested_attributes_for :shippable_files, reject_if: proc { |attributes| attributes[:url].blank? }
 
-	delegate :name, to: :user, prefix: :true
-	delegate :name, to: :admin, prefix: :true
+	delegate :name, to: :user, prefix: true
+	delegate :name, to: :admin, prefix: true, allow_nil: true
+	delegate :email, to: :user, prefix: true
+	delegate :email, to: :admin, prefix: true, allow_nil: true
+	delegate :storefront, to: :admin, allow_nil: true
 
 
 	def cad_order?
@@ -78,6 +85,7 @@ class Order < ActiveRecord::Base
 		# send the estimate to the client on entry
 		state :estimated do
 			enter :notify_estimate
+			exit :notify_paid
 		end
 
 		# if the client doesn't like the estimate, we go back to submitted
@@ -92,7 +100,7 @@ class Order < ActiveRecord::Base
 
 		# since the client has paid, tell everyone to start the job and send a thank you
 		state :production do
-			enter :notify_paid
+			enter :credit_seller
 		end
 
 		# the job is done! 
@@ -204,5 +212,60 @@ class Order < ActiveRecord::Base
 		else
 			'#'
 		end
+	end
+
+	#                                _   
+	#  _ __  __ _ _  _ _ __  ___ _ _| |_ 
+	# | '_ \/ _` | || | '  \/ -_) ' \  _|
+	# | .__/\__,_|\_, |_|_|_\___|_||_\__|
+	# |_|         |__/                   
+
+	ZERTICA_MARKUP = 0.15
+
+	def self.marketplace
+		@marketplace ||= Balanced::Marketplace.my_marketplace
+	end
+
+	def description
+		"Zertica #{id} #{admin_name}"
+	end
+
+	def process_payment!(card_uri)
+		logger.debug "debiting"
+		customer 	=  user.balanced_customer
+		seller 		= admin.balanced_customer
+
+		customer.add_card(card_uri) unless card_uri.nil? # or source_uri below?
+		debit = customer.debit(
+			# source_uri: card_uri,
+			amount: (self.price*100).to_i,
+			appears_on_statement_as: 'Zertica',
+			description: self.description,
+			on_behalf_of: seller			# on_behalf_of_uri ?
+			)
+
+		return unless debit.status == 'succeeded' # TODO fail better
+
+		self.confirmation = debit.transaction_number
+		self.debit_uri = debit.uri
+		self.save
+	end
+
+	def credit_seller
+		logger.debug "crediting"
+		return if credit_uri # don't do it twice!
+
+		seller 		= admin.balanced_customer
+
+		credit = seller.credit(
+			amount: (self.subtotal*100).to_i,
+			appears_on_statement_as: 'Zertica',
+			description: self.description
+		)
+
+		# return unless status == 'paid'
+
+		self.credit_uri = credit.uri
+		self.save		
 	end
 end
