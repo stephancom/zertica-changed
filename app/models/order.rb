@@ -187,7 +187,7 @@ class Order < ActiveRecord::Base
 						usps: /\b(91\d\d ?\d\d\d\d ?\d\d\d\d ?\d\d\d\d ?\d\d\d\d ?\d\d|91\d\d ?\d\d\d\d ?\d\d\d\d ?\d\d\d\d ?\d\d\d\d)\b/i,
 						ups: /\b(1Z ?[0-9A-Z]{3} ?[0-9A-Z]{3} ?[0-9A-Z]{2} ?[0-9A-Z]{4} ?[0-9A-Z]{3} ?[0-9A-Z]|[\dT]\d\d\d ?\d\d\d\d ?\d\d\d)\b/i,
 						other: /.*/}
-	CARRIERS = CARRIER_REGEXPS.keys					
+	CARRIERS = CARRIER_REGEXPS.keys.map(&:to_s)
 
 	validates :carrier, inclusion: {in: CARRIERS }, allow_nil: true
 

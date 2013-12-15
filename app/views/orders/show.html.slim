@@ -54,11 +54,12 @@
 			.span4
 				h4 Paid!
 				p Confirmation: #{@order.confirmation}
-	- elsif current_admin && @order.production?    
-	  .row-fluid
+
+	- if can? :complete, @order
+		.row-fluid
 	      = link_to 'Mark complete', [:complete, @order], method: :put, :class => 'btn btn-primary sharp' if can? :complete, @order
 	.row-fluid
-	- if current_admin && @order.completed?
+	- if can? :ship, @order
 	    h4 ship:
 	    = simple_form_for @order, url: [:ship, @order], :html => { :class => "form-horizontal" } do |f|
 	      .form-inputs
