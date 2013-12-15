@@ -3,10 +3,9 @@
    - if current_admin
      =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right'
    - else
-      =link_to 'Place Order', new_order_path(:admin_id => @storefront.admin.id), :class => 'btn btn-sharp btn-primary pull-right'
+      =link_to 'Place Order', new_order_path, :class => 'btn btn-sharp btn-primary pull-right'
    br
-   h4 Vendor Name: 
-   p= @storefront.vendor_name
+   h2.centertext= @storefront.vendor_name
   .row-fluid
      h4 Printing Capabilities:
      p= @storefront.printing_capabilities
@@ -17,8 +16,31 @@
      h4 Additional Info:
      p= @storefront.description
   .row-fluid
-    =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
-    h3.centertext Vendor Reviews
-    hr
+    ul.thumbnails
+      li.span2 
+        a.thumbnail href='http://placekitten.com/g/800/800'
+          =image_tag('http://placekitten.com/g/800/800')
+      li.span2 
+        a.thumbnail 
+          =image_tag('http://placekitten.com/g/800/800')
+      li.span2 
+        a.thumbnail 
+          =image_tag('http://placekitten.com/g/200/200')
+      li.span2 
+        a.thumbnail 
+          =image_tag('http://placekitten.com/g/200/200')
+      li.span2 
+        a.thumbnail 
+          =image_tag('http://placekitten.com/g/200/200')
+      li.span2 
+        a.thumbnail 
+          =image_tag('http://placekitten.com/g/200/200')
+  .row-fluid
+    h3.centertext Reviews
+    - if current_user
+      =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
+    br
+    br
+  .row-fluid
     = render 'reviews/table', collection: @storefront.reviews
 

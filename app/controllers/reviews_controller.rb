@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     @review = @storefront.reviews.create(params[:review])
     if @review.save
       flash[:notice] = 'Your review has been added.'
-      redirect_to admin_storefront_path
+      redirect_to root_path
     else
       redirect_to root_path, :alert => 'Unable to add review'
     end

@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
 	delegate :name, to: :user, prefix: :true
 	delegate :name, to: :admin, prefix: :true
 
+
 	def cad_order?
 		order_type == 'CadOrder'
 	end
