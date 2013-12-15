@@ -14,7 +14,7 @@
 					| Enter your banking information to be able to bid on orders
 		.span1 Vendor:
 		- if @order.has_price?
-			p= link_to @order.admin.name, admin_storefront_path(@order.admin.id, @order.admin.storefront.id)    
+			p= link_to @order.admin_name, admin_storefront_path(@order.admin_id, @order.storefront)    
 		.span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
 		.span2 Status: #{@order.state.capitalize}
 		.span1 Price:

@@ -16,6 +16,7 @@ class Order < ActiveRecord::Base
 	delegate :name, to: :admin, prefix: true, allow_nil: true
 	delegate :email, to: :user, prefix: true
 	delegate :email, to: :admin, prefix: true, allow_nil: true
+	delegate :storefront, to: :admin, allow_nil: true
 
 	def cad_order?
 		order_type == 'CadOrder'
