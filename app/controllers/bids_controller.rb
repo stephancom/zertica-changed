@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_filter :load_order, except: :destroy
-  load_and_authorize_resource :bid
+  load_and_authorize_resource :bid, through: :order
   load_and_authorize_resource :order
 
   def load_order
