@@ -61,7 +61,6 @@ class OrdersController < ApplicationController
   end
 
   def ship
-    @order.shippable_files.build
     unless @order.update(params[:order]) and @order.ship!
       flash[:error] = 'Shipment failed'
     end
