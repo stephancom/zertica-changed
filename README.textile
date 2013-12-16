@@ -13,9 +13,9 @@ local dev deployment:
 * rake db:seed
 * rails server
 
-To recreate the heroku server named @zertica_connect@, do this:
+To recreate the heroku server named @zertica-connect@, do this:
 
-bc. heroku apps:create zertica_connect
+bc. heroku apps:create zertica-connect
 heroku addons:add pgbackups:plus
 heroku addons:add newrelic
 heroku addons:add mandrill:starter
@@ -86,6 +86,14 @@ if you use rake db:seed to set up the initial admin account, you'll need to set:
 ADMIN_NAME
 ADMIN_EMAIL
 ADMIN_PASSWORD
+
+h4. Resetting after changing the marketplace
+
+If you change your marketplace, you'll want to reset the codes for the old one.  In the console:
+
+bc. Admin.all.each { |a| a.update_attributes(bank_account_uri: nil, customer_uri: nil) }
+Order.where(state: 'production').each { |o| o.update_attributes(debit_uri: nil, credit_uri: nil, state: 'estimated') }
+User.all.each { |u| u.update_attribute(:customer_uri, nil) }
 
 h2. Development
 
