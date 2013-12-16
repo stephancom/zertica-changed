@@ -7,7 +7,7 @@ class Ability
         unless user.new_record?
             if user.kind_of? Admin
                 # admins can do this stuff
-                can :manage, [User, Order]
+                can :manage, User
                 can [:new,:create], Bid if user.payable?
                 can :show, Admin
                 can :show, Review
@@ -29,7 +29,7 @@ class Ability
                 can :show, Admin
                 can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
-                can :manage, Order
+                can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order
                 can :pay, Order, state: 'estimated'
                 # TODO
