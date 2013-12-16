@@ -126,7 +126,6 @@
 	          - if current_admin and @order and can?(:update, @order)
 	            = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
 	              = f.error_notification
-	              = f.simple_fields_for :shippable_files, @order.shippable_files.build(order: @order) do |pf|
-	                  = pf.association :order, as: :hidden
+	              = f.simple_fields_for :shippable_files, @order.shippable_files.build do |pf|
 	                  .offset1= render 'file_objects/fields', f: pf, dragdrop: false
 	              .hide= f.button :submit, 'Add shipping file', :class => 'btn_primary'
