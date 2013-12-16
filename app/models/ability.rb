@@ -11,7 +11,7 @@ class Ability
                 can [:new,:create], Bid if user.payable?
                 can :show, Admin
                 can :show, Review
-                cad :pool, Order
+                can :pool, Order
                 can [:new, :create, :show, :edit, :update, :destroy], Storefront
                 can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order, state: 'submitted'
