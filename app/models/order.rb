@@ -85,6 +85,7 @@ class Order < ActiveRecord::Base
 		# send the estimate to the client on entry
 		state :estimated do
 			enter :notify_estimate
+			# since the client has paid, tell everyone to start the job and send a thank you
 			exit :notify_paid
 		end
 
@@ -98,10 +99,7 @@ class Order < ActiveRecord::Base
 			transitions from: :estimated, to: :production, if: :payment_processed?
 		end
 
-		# since the client has paid, tell everyone to start the job and send a thank you
-		state :production do
-			enter :credit_seller
-		end
+		state :production
 
 		# the job is done! 
 		event :complete do
@@ -111,6 +109,7 @@ class Order < ActiveRecord::Base
 		# notify the client that the job is done on entry
 		state :completed do
 			enter :notify_complete
+			exit  :notify_shipped
 		end
 
 		# if this a cad order, shippable? checks that there is a shipped file attached
@@ -121,7 +120,7 @@ class Order < ActiveRecord::Base
 		end
 
 		state :shipped do
-			enter :notify_shipped
+			enter :credit_seller
 		end
 
 		event :archive do
