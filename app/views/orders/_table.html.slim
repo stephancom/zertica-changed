@@ -9,7 +9,8 @@ table.table.table-striped
       th= model_class.human_attribute_name(:average)
       th= model_class.human_attribute_name(:price)
       th= model_class.human_attribute_name(:tracking_number)
-      th=t '.actions', :default => t("helpers.actions")
+      - if current_user
+        th=t '.actions', :default => t("helpers.actions")
   tbody
     - collection.each do |order|
       - next if order.new_record?
@@ -24,7 +25,8 @@ table.table.table-striped
         - else
           td = number_to_currency(order.subtotal) || '--'
         td = order.cad_order? ? 'n/a' : (order.tracking_number || '--')
-        td 
-          .btn-group.sharp
-            = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(order), :class => 'btn sharp' if can? :edit, order && current_user
-            = link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn sharp pull-right btn-danger' 
+        - if current_user 
+          td 
+            .btn-group.sharp
+              = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(order), :class => 'btn sharp' if can? :edit, order && current_user
+              = link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn sharp pull-right btn-danger' 

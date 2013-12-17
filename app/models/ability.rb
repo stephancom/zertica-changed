@@ -32,6 +32,7 @@ class Ability
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
                 can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order
+                can :destroy, Order, state: ['submitted', 'estimated']
                 can :pay, Order, state: 'estimated'
                 # TODO
                 # cannot [:edit, :update, :destroy], Order, state: (Order.available_states - ['submitted'])
