@@ -41,10 +41,10 @@
 
 	.row-fluid
 	  - if current_admin && @order.estimated?
-	    h4 Adjust Price:
+	    h4 Adjust what you receive:
 	    = simple_form_for @order, :html => { :class => "form-horizontal" } do |f|
 	      p $ #{f.text_field :subtotal}
-	      = f.button :submit, 'Submit Price', :class => 'btn-primary sharp'
+	      = f.button :submit, 'Submit', :class => 'btn-primary sharp'
 	.row-fluid
 	  - if @order.estimated? && current_user
 	      = render 'credit_card_form'
@@ -60,12 +60,12 @@
 	      = link_to 'Mark complete', [:complete, @order], method: :put, :class => 'btn btn-primary sharp' if can? :complete, @order
 	.row-fluid
 	- if can? :ship, @order
-	    h4 ship:
+	    h4 Ship:
 	    = simple_form_for @order, url: [:ship, @order], :html => { :class => "form-horizontal" } do |f|
 	      .form-inputs
 	        = render 'ship_fields', f: f
 	        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
-	          .offset1= render 'file_objects/fields', f: sf
+	          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
 	        = f.button :submit, 'Ship', :class => 'btn-primary'
 
 	- if @order.shipped? and @order.print_order?
@@ -93,16 +93,14 @@
 	         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 	      - elsif current_admin
 	         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+	      - if @order.shipped? and @order.cad_order?
+	         li= link_to 'Shipped Files', '#shipped', :data => {:toggle => :tab}
 	      - if @order and can?(:update, @order)
 	        = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
 	          = f.error_notification
 	          = f.simple_fields_for :file_objects, @order.file_objects.build do |pf|
 	              .offset10= render 'file_objects/fields', f: pf, dragdrop: false
-	          .hide= f.button :submit, 'Add file', :class => 'btn_primary'
-	      '
-	      
-	      - if @order.shipped? and @order.cad_order?
-	        li= link_to 'Shipped Files', '#shipped', :data => {:toggle => :tab}
+
 	    .tab-content
 	      - if current_user && @order.submitted?
 	        .tab-pane.active#bids
@@ -123,9 +121,4 @@
 	      - if @order.shipped? and @order.cad_order?
 	        .tab-pane#shipped
 	          = render 'file_objects/table', collection: @order.shippable_files
-	          - if current_admin and @order and can?(:update, @order)
-	            = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
-	              = f.error_notification
-	              = f.simple_fields_for :shippable_files, @order.shippable_files.build do |pf|
-	                  .offset1= render 'file_objects/fields', f: pf, dragdrop: false
-	              .hide= f.button :submit, 'Add shipping file', :class => 'btn_primary'
+	          
