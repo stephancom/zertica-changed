@@ -9,7 +9,7 @@
   <br>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title, :class => 'span10' %>
+    <%= f.text_field :title, :class => 'span10', :placeholder => 'ex. Greatest Invention Ever' %>
   </div>
   <table>
   <tr>
@@ -22,13 +22,13 @@
     <td style="padding-right:10px;">
        <div class="field">
         <%= f.label :color %>
-        <%= f.text_field :color, :class => 'span12' %>
+        <%= f.text_field :color, :class => 'span12', :placeholder => 'ex. Magenta' %>
       </div>
     </td>
     <td style="padding-right:10px;">
        <div class="field">
         <%= f.label :material %>
-        <%= f.text_field :material, :class => 'span12' %>
+        <%= f.text_field :material, :class => 'span12', :placeholder => 'ex. ABS Plastic' %>
       </div>
     </td>
   </tr>
@@ -42,26 +42,26 @@
     <td style="padding-right:10px;">
       <div class="field">
         <%= f.label :quantity %>
-        <%= f.text_field :quantity, :class => 'span12' %>
+        <%= f.text_field :quantity, :class => 'span12', :placeholder => 'ex. 2' %>
       </div>
     </td>
     <td style="padding-right:10px;">
       <div class="field">
         <%= f.label :software_program %>
-        <%= f.text_field :software_program, :class => 'span12' %>
+        <%= f.text_field :software_program, :class => 'span12', :placeholder => 'ex. Solidworks' %>
       </div>
     </td>
     <td style="padding-right:10px;">
       <div class="field">
         <%= f.label :file_format %>
-        <%= f.text_field :file_format, :class => 'span12' %>
+        <%= f.text_field :file_format, :class => 'span12', :placeholder => 'ex. .SLDPRT' %>
       </div>
     </td>
   </tr>
   </table>
   <div class="text">
     <%= f.label :description %>
-    <%= f.text_area :description, :rows => "10", placeholder: 'Please be as descriptive as possible.', :class => 'span10 offset1' %>
+    <%= f.text_area :description, :rows => "10", placeholder: 'Please be as descriptive as possible. The more information you put here the more accurate the bids will be for your order.', :class => 'span10 offset1' %>
   </div>
 
   <div class="actions">
