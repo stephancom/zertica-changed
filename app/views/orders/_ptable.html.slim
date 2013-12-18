@@ -2,11 +2,11 @@
 table.table.table-striped
   thead
     tr
-      th= link_to 'Title', :sort => 'title'
-      th= link_to 'Submitted on', :sort => 'created_at'
-      th= link_to 'Type', :sort => 'type'
-      th= link_to 'City', :sort => 'city'
-      th= link_to 'State', :sort => 'state'
+      th= sortable 'Title'
+      th= sortable 'created_at', 'Submitted on'
+      th= sortable 'order_type', 'Type'
+      th= sortable 'City'
+      th= sortable 'State'
       th= link_to 'Bids'
       th= link_to 'Average'
   tbody

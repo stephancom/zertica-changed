@@ -4,16 +4,16 @@ class OrdersController < ApplicationController
 
   def index
     if current_admin
-      @orders = current_admin.orders
+      @orders = current_admin.orders.order(params[:sort] + ' ' + params[:direction])
     elsif current_user
-      @orders = current_user.orders     
+      @orders = current_user.orders.order(params[:sort] + ' ' + params[:direction])     
     end
     respond_with @orders
   end
 
   def pool
     if current_admin
-      @order_pool = Order.pool
+      @order_pool = Order.pool.order(params[:sort] + ' ' + params[:direction])
       respond_with @order_pool
     end
   end
