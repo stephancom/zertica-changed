@@ -3,8 +3,9 @@ table.table.table-striped
   thead
     tr
       th= sortable 'Title'
-      th= sortable 'created_at', 'Submitted on'
       th= sortable 'order_type', 'Type'
+      th= sortable 'created_at', 'Submitted on'
+      th= sortable 'deadline'
       th= sortable 'City'
       th= sortable 'State'
       th= link_to 'Bids'
@@ -14,10 +15,11 @@ table.table.table-striped
       - next if order.new_record?
       tr
         td = link_to order.title.titleize, order
-        td = order.created_at.strftime("%m/%d/%Y")
         td = order.human_order_type
-        td = order.city.titleize
-        td = order.province.titleize
+        td = order.created_at.strftime("%m/%d/%Y")
+        td = order.deadline || '--'
+        td = order.city.titleize  || '--'
+        td = order.province.titleize  || '--'
         td = order.bids.count
-        td = number_to_currency(order.average) || '--'
+        td = number_to_currency(order.average) 
        

@@ -8,8 +8,9 @@ table.table.table-striped
         th= sortable 'City'
         th= sortable 'province', 'State'
       th= sortable 'state', 'Status'
-      th=  'Bids'
-      th=  'Average'
+      - if current_user
+        th=  'Bids'
+        th=  'Average'
       th= sortable 'Price'
       th= 'Tracking Numer'
       - if current_user
@@ -24,8 +25,9 @@ table.table.table-striped
           td= order.city || '--'
           td= order.province || '--'
         td = order.state.titleize
-        td = order.bids.count
-        td = number_to_currency(order.average) || '--'
+        - if current_user
+          td = order.bids.count if order.submitted?
+          td = (number_to_currency(order.average) || '--') if order.submitted?
         - if current_user
           td = number_to_currency(order.price) || '--'
         - else
