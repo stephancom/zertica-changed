@@ -2,24 +2,22 @@
 table.table.table-striped
   thead
     tr
-      th= model_class.human_attribute_name(:submitted_on)
-      th= model_class.human_attribute_name(:title)
-      th= model_class.human_attribute_name(:order_type)
-      th= model_class.human_attribute_name(:state)
-      th= model_class.human_attribute_name(:bids)
-      th= model_class.human_attribute_name(:average)
-      th= model_class.human_attribute_name(:price)
-      th= model_class.human_attribute_name(:tracking_number)
+      th= link_to 'Title'
+      th= link_to 'Submitted on'
+      th= link_to 'Type'
+      th= link_to 'City'
+      th= link_to 'State'
+      th= link_to 'Bids'
+      th= link_to 'Average'
   tbody
     - collection.each do |order|
       - next if order.new_record?
       tr
+        td = link_to order.title.titleize, order
         td = order.created_at.strftime("%m/%d/%Y")
-        td = link_to_if can?(:show, order), order.title, order
         td = order.human_order_type
-        td = order.state.titleize
+        td = order.city.titleize
+        td = order.province.titleize
         td = order.bids.count
         td = number_to_currency(order.average) || '--'
-        td = number_to_currency(order.price) || '--'
-        td = order.cad_order? ? 'n/a' : (order.tracking_number || '--')
        
