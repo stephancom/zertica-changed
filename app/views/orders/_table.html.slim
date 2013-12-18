@@ -2,23 +2,23 @@
 table.table.table-striped
   thead
     tr
-      th= model_class.human_attribute_name(:title)
-      th= model_class.human_attribute_name(:order_type)
+      th= link_to 'Title', :sort => 'title'
+      th= link_to 'Order Type', :sort => 'order_type'
       - if current_admin
-        th= model_class.human_attribute_name(:city)
-        th= model_class.human_attribute_name(:state)
-      th= model_class.human_attribute_name(:status)
-      th= model_class.human_attribute_name(:bids)
-      th= model_class.human_attribute_name(:average)
-      th= model_class.human_attribute_name(:price)
-      th= model_class.human_attribute_name(:tracking_number)
+        th= link_to 'City', :sort => 'city'
+        th= link_to 'State', :sort => 'province'
+      th= link_to 'Status', :sort => 'state'
+      th= link_to 'Bids'
+      th= link_to 'Average'
+      th= link_to 'Price', :sort => 'price'
+      th= 'Tracking Numer'
       - if current_user
         th=t '.actions', :default => t("helpers.actions")
   tbody
     - collection.each do |order|
       - next if order.new_record?
       tr
-        td = link_to_if can?(:show, order), order.title, order
+        td = link_to order.title.titleize, order
         td = order.human_order_type
         - if current_admin
           td= order.city || '--'
