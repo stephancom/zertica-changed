@@ -20,6 +20,8 @@ class Order < ActiveRecord::Base
 	
 	before_save do
 	  self.title.downcase!
+	  self.city.downcase!
+	  self.province.downcase!
 	end
 
 	def cad_order?
