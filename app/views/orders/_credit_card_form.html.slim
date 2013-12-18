@@ -12,9 +12,9 @@
           p
       = f.input :user_name
       = f.input :user_email
-      = f.input :card_number, as: :fake, input_html: {value: '4242424242424242'}
-      = f.input :cvc, as: :fake, input_html: {value: '123'}
-      = f.input :expiration_month, as: :fake, input_html: {value: '02', size: 2}
-      = f.input :expiration_year, as: :fake, input_html: {value: '2016', size: 4}
-      = f.input :card_uri, as: :fake
+      = f.input :card_number, as: :fake
+      = f.input :cvc, as: :fake
+      = f.input :expiration_month, as: :fake
+      = f.input :expiration_year, as: :fake
+      .hide= f.input :card_uri, as: :fake
       = f.button :submit, 'Pay', class: [:btn, 'btn-success', 'btn-large', :sharp]
