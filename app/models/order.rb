@@ -17,7 +17,10 @@ class Order < ActiveRecord::Base
 	delegate :email, to: :user, prefix: true
 	delegate :email, to: :admin, prefix: true, allow_nil: true
 	delegate :storefront, to: :admin, allow_nil: true
-
+	
+	before_save do
+	  self.title.downcase!
+	end
 
 	def cad_order?
 		order_type == 'CadOrder'
