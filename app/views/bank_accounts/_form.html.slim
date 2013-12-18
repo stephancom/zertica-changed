@@ -1,4 +1,4 @@
-= simple_form_for @admin, as: :bank_account, url: bank_account_path, html: {class: 'form-horizontal', data: {balanced: :bank_account}} do	|f|
+= simple_form_for @admin, as: :bank_account, url: bank_account_path, html: {class: 'form-horizontal centerbox', data: {balanced: :bank_account}} do	|f|
 	= f.error_notification
 	= render 'bank_accounts/fields', f: f
-	= f.button :submit, 'Update Banking Information'
+	= f.button :submit, 'Update Banking Information', :class => 'offset3 sharp'
