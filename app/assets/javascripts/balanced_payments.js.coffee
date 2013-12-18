@@ -17,7 +17,6 @@ class @Balanced
 
     @form = $(form)
     @form.on 'submit', @submitForm
-    console.log "Constructing with xxx #{@form}", @form
 
     # hmm, needed?  maybe
     $('[data-dismiss="alert"]').on "click", (e) ->
@@ -62,12 +61,11 @@ class @Balanced
     @form.find("input, button, select").attr "disabled", "disabled"
 
   addErrorToField: (fieldName) ->
-    console.log "add error #{fieldName}"
     @form.find("[name$=\"" + fieldName + "\"]").closest(".control-group").addClass "error"
 
   # replace each sensitive input field with its value
   removeSensitiveFields: -> #($form, sensitiveFields) ->
-    inputs = @sensitiveFields.map (field) -> "input[name$='#{field}']"
+    inputs = @sensitiveFields.map (field) -> "input[name$='#{field}'], select[name$='#{field}']"
     @form.find(inputs.join(',')).each -> $(@).replaceWith($(@).val())
 
 class @BalancedPurchase extends @Balanced
@@ -89,6 +87,7 @@ class @BalancedPurchase extends @Balanced
     @addErrorToField "name"  unless cardData['pay_order[user_name]']
     @addErrorToField "email_address"  unless balanced.emailAddress.validate(cardData['pay_order[user_email]'])
     @addErrorToField "card_number"  unless balanced.card.isCardNumberValid(cardData.card_number)
+    @addErrorToField "cvc"  unless cardData.cvc
     @addErrorToField "expiration_month"  unless balanced.card.isExpiryValid(cardData.expiration_month, cardData.expiration_year)
     return  if @form.find(".control-group.error").length
     
