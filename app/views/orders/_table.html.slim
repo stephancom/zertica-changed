@@ -2,16 +2,16 @@
 table.table.table-striped
   thead
     tr
-      th= link_to 'Title'
-      th= link_to 'Order Type'
+      th= link_to 'Title', :sort => 'title'
+      th= link_to 'Order Type', :sort => 'order_type'
       - if current_admin
-        th= link_to 'City'
-        th= link_to 'State'
-      th= link_to 'Status'
+        th= link_to 'City', :sort => 'city'
+        th= link_to 'State', :sort => 'province'
+      th= link_to 'Status', :sort => 'state'
       th= link_to 'Bids'
       th= link_to 'Average'
-      th= link_to 'Price'
-      th= link_to 'Tracking Numer'
+      th= link_to 'Price', :sort => 'price'
+      th= 'Tracking Numer'
       - if current_user
         th=t '.actions', :default => t("helpers.actions")
   tbody
