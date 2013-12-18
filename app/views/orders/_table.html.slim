@@ -2,15 +2,16 @@
 table.table.table-striped
   thead
     tr
-      th= link_to 'Title', :sort => 'title'
-      th= link_to 'Order Type', :sort => 'order_type'
+      th= sortable "Title"
+      th= sortable 'order_type', 'Order Type'
       - if current_admin
-        th= link_to 'City', :sort => 'city'
-        th= link_to 'State', :sort => 'province'
-      th= link_to 'Status', :sort => 'state'
-      th= link_to 'Bids'
-      th= link_to 'Average'
-      th= link_to 'Price', :sort => 'price'
+        th= sortable 'City'
+        th= sortable 'province', 'State'
+      th= sortable 'state', 'Status'
+      - if current_user
+        th=  'Bids'
+        th=  'Average'
+      th= sortable 'Price'
       th= 'Tracking Numer'
       - if current_user
         th=t '.actions', :default => t("helpers.actions")
@@ -24,8 +25,9 @@ table.table.table-striped
           td= order.city || '--'
           td= order.province || '--'
         td = order.state.titleize
-        td = order.bids.count
-        td = number_to_currency(order.average) || '--'
+        - if current_user
+          td = order.bids.count if order.submitted?
+          td = (number_to_currency(order.average) || '--') if order.submitted?
         - if current_user
           td = number_to_currency(order.price) || '--'
         - else
