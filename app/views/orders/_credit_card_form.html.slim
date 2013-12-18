@@ -16,5 +16,5 @@
       = f.input :cvc, as: :fake
       = f.input :expiration_month, as: :fake
       = f.input :expiration_year, as: :fake
-      = f.input :card_uri, as: :hidden
+      .hide= f.input :card_uri, as: :fake
       = f.button :submit, 'Pay', class: [:btn, 'btn-success', 'btn-large', :sharp]
