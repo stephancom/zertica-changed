@@ -27,11 +27,13 @@
 				= number_to_currency @order.subtotal 
 	hr
 	.row-fluid
-		.span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 
-		.span2 Color: #{(@order.color if @order.color?) || '--'}
-		.span2 Material: #{(@order.material if @order.material?)  || '--'}
 		.span2 Budget: #{(number_to_currency(@order.budget) if @order.budget?) || '--'}
+		.span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 
+		.span2 City: #{(@order.city if @order.city?) || '--'} 
+		.span2 State: #{(@order.province if @order.province?) || '--'} 
 	.row-fluid
+		.span2 Material: #{(@order.material if @order.material?)  || '--'}
+		.span2 Color: #{(@order.color if @order.color?) || '--'}
 		.span2 Quantity: #{(@order.quantity if @order.quantity?) || '--'}
 		.span2 Software: #{(@order.software_program if @order.software_program?) || '--'}
 		.span2 File Format: #{(@order.file_format if @order.file_format?) || '--'}

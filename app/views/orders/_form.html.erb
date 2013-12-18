@@ -13,45 +13,57 @@
   </div>
   <table>
   <tr>
-    <td style="padding-right:10px;">
+    <td style="padding-right:15px;">
+      <div class="field">
+        <%= f.label :budget %>
+        <%= f.text_field :budget, :class => 'span12', :placeholder => 'ex. $1500' %>
+      </div>
+    </td>
+    <td style="padding-right:15px;">
       <div class="field">
         <%= f.label :deadline %>
         <%= f.text_field :deadline, :class => 'span12' %>
       </div>
     </td>
-    <td style="padding-right:10px;">
+    <td style="padding-right:15px;">
        <div class="field">
-        <%= f.label :color %>
-        <%= f.text_field :color, :class => 'span12', :placeholder => 'ex. Magenta' %>
+        <%= f.label :city %>
+        <%= f.text_field :city, :class => 'span12', :placeholder => 'ex. Los Angeles' %>
       </div>
     </td>
-    <td style="padding-right:10px;">
+    <td style="padding-right:15px;">
+       <div class="field">
+        <%= f.label :state %>
+        <%= f.text_field :province, :class => 'span12', :placeholder => 'ex. California' %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-right:15px;">
        <div class="field">
         <%= f.label :material %>
         <%= f.text_field :material, :class => 'span12', :placeholder => 'ex. ABS Plastic' %>
       </div>
     </td>
-  </tr>
-  <tr>
-    <td style="padding-right:10px;">
+    <td style="padding-right:15px;">
       <div class="field">
-        <%= f.label :budget %>
-        <%= f.text_field :budget, :class => 'span12' %>
+        <%= f.label :color %>
+        <%= f.text_field :color, :class => 'span12', :placeholder => 'ex. Magenta' %>
       </div>
     </td>
-    <td style="padding-right:10px;">
+    <td style="padding-right:15px;">
       <div class="field">
         <%= f.label :quantity %>
         <%= f.text_field :quantity, :class => 'span12', :placeholder => 'ex. 2' %>
       </div>
     </td>
-    <td style="padding-right:10px;">
+    <td style="padding-right:15px;">
       <div class="field">
         <%= f.label :software_program %>
         <%= f.text_field :software_program, :class => 'span12', :placeholder => 'ex. Solidworks' %>
       </div>
     </td>
-    <td style="padding-right:10px;">
+    <td style="">
       <div class="field">
         <%= f.label :file_format %>
         <%= f.text_field :file_format, :class => 'span12', :placeholder => 'ex. .SLDPRT' %>
@@ -64,8 +76,8 @@
     <%= f.text_area :description, :rows => "10", placeholder: 'Please be as descriptive as possible. The more information you put here the more accurate the bids will be for your order.', :class => 'span10 offset1' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit :class => 'btn btn-primary sharp offset8' %>
+  <div class="actions" style='padding-left:780px;'>
+    <%= f.submit :class => 'btn btn-primary sharp' %>
   </div>
   <% end %>
   

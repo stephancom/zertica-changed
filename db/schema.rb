@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210081026) do
+ActiveRecord::Schema.define(version: 20131218010204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(version: 20131210081026) do
     t.decimal  "subtotal",         precision: 8, scale: 2
     t.string   "debit_uri"
     t.string   "credit_uri"
+    t.string   "city"
+    t.string   "province"
   end
 
   create_table "orders_file_objects", id: false, force: true do |t|

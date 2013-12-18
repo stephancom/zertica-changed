@@ -94,11 +94,11 @@ private
       end
     when 'create'
       if current_admin
-        params[:order].permit(:order_type, :subtotal, :title, :description, :price,
+        params[:order].permit(:order_type, :city, :province, :subtotal, :title, :description, :price,
          :file_objects ,file_object_ids: [], file_objects_attributes: [:order_id,
           :url, :filename, :size, :mimetype])
       else
-        params[:order].permit(:order_type, :subtotal, :admin_id,  :title, :deadline, :color, :material,
+        params[:order].permit(:order_type, :subtotal, :city, :province, :admin_id,  :title, :deadline, :color, :material,
          :budget, :description, :file_objects, :quantity, :software_program, :file_format,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype])
@@ -117,12 +117,12 @@ private
       params[:order].permit()
     else
       if current_admin
-        params[:order].permit(:title, :subtotal, :description,:price, :file_objects,
+        params[:order].permit(:title, :city, :province, :subtotal, :description,:price, :file_objects,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype], shippable_files_attributes: [:order_id, :url, :filename,
            :size, :mimetype])
       else
-        params[:order].permit(:title, :admin_id, :price, :description, :file_objects, 
+        params[:order].permit(:title, :city, :province, :admin_id, :price, :description, :file_objects, 
           file_object_ids: [], file_objects_attributes: [:order_id, :url, 
             :filename, :size, :mimetype])
       end
