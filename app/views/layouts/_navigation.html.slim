@@ -11,7 +11,7 @@
         ul.nav.pull-right
           - if admin_signed_in?
             li.admin
-              a Merchant:
+              a Maker:
             li= link_to 'My Storefront', admin_storefront_path(current_admin, current_admin.storefront || :new)
             li= link_to 'My Orders', orders_path if can? :index, Order
             li= link_to 'Order Pool', orders_pool_path if can? :index, Order
