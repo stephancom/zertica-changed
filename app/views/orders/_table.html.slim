@@ -4,6 +4,9 @@ table.table.table-striped
     tr
       th= model_class.human_attribute_name(:title)
       th= model_class.human_attribute_name(:order_type)
+      - if current_admin
+        th= model_class.human_attribute_name(:city)
+        th= model_class.human_attribute_name(:state)
       th= model_class.human_attribute_name(:status)
       th= model_class.human_attribute_name(:bids)
       th= model_class.human_attribute_name(:average)
@@ -17,6 +20,9 @@ table.table.table-striped
       tr
         td = link_to_if can?(:show, order), order.title, order
         td = order.human_order_type
+        - if current_admin
+          td= order.city || '--'
+          td= order.province || '--'
         td = order.state.titleize
         td = order.bids.count
         td = number_to_currency(order.average) || '--'

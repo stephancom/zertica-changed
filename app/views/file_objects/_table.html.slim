@@ -2,10 +2,10 @@
 table.table.table-striped
   thead
     tr
-      th
+      th Preview
       th= model_class.human_attribute_name(:filename)
       th= model_class.human_attribute_name(:size)
-      th= model_class.human_attribute_name(:created_at)
+      th= model_class.human_attribute_name(:date_added)
       th=t '.actions', :default => t("helpers.actions")
   tbody
     - collection.each do |file_object|

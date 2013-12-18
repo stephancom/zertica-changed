@@ -73,9 +73,8 @@
 	- if @order.shipped? and @order.print_order?
 	  .row-fluid
 	    .span4
-	      h4 shipped:
-	    .span8
-	      h4
+	      h4 Shipped:
+	      p
 	        | Tracking number: 
 	        = link_to_if @order.has_tracking_url?, @order.tracking_number, @order.tracking_url
 
