@@ -7,7 +7,7 @@ class Ability
         unless user.new_record?
             if user.kind_of? Admin
                 # admins can do this stuff
-                can :manage, User
+                can :show, User
                 can [:new,:create], Bid, order: {state: 'submitted'} if user.payable?
                 can :show, Admin
                 can :show, Review
