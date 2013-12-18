@@ -12,10 +12,10 @@
           - if admin_signed_in?
             li.admin
               a Maker:
-            li= link_to 'My Storefront', admin_storefront_path(current_admin, current_admin.storefront || :new)
             li= link_to 'My Orders', orders_path if can? :index, Order
             li= link_to 'Order Pool', orders_pool_path if can? :index, Order
             li= link_to 'Messages', active_chats_path if can? :index, ActiveChat
+            li= link_to 'My Storefront', admin_storefront_path(current_admin, current_admin.storefront || :new)
             li= link_to "Account", edit_admin_registration_path
             li= link_to 'Logout', destroy_admin_session_path, :method=>'delete'
           - elsif user_signed_in?
