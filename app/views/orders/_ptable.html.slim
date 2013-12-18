@@ -18,8 +18,8 @@ table.table.table-striped
         td = order.human_order_type
         td = order.created_at.strftime("%m/%d/%Y")
         td = order.deadline || '--'
-        td = order.city.titleize  || '--'
-        td = order.province.titleize  || '--'
+        td = (order.city || '--').titleize
+        td = (order.province || '--').titleize
         td = order.bids.count
         td = number_to_currency(order.average) 
        
