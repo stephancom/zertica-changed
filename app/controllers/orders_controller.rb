@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include ActionView::Helpers::NumberHelper
   load_and_authorize_resource :order, except: :confirm_payment
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :pool_sort_column
 
   def index
     if current_admin
@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
   def pool
     if current_admin
-      @order_pool = Order.pool.order(sort_column + ' ' + sort_direction)
+      @order_pool = Order.pool.order(pool_sort_column + ' ' + sort_direction)
       respond_with @order_pool
     end
   end
@@ -83,7 +83,9 @@ private
   def sort_column
     params[:sort] || "title"
   end
-  
+  def pool_sort_column
+    params[:sort] || "created_at"
+  end
   def sort_direction
     params[:direction] || "asc"
   end
