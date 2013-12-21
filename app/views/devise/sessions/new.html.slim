@@ -1,13 +1,13 @@
 /= image_tag 'logo.png'
 
 .page-header.centertext
-	h2.centered #{resource_name.capitalize} Login
+	h2.centered Login
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal centerbox' }) do |f|
 	.form-inputs
 		= f.input :email, autofocus: true
 		= f.input :password
 		= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-		= f.button :submit, "Sign in", :class => 'btn-primary offset6'
+		= f.button :submit, "Sign in", :class => 'btn-primary offset6 sharp'
 br
 br
 .centertext	
