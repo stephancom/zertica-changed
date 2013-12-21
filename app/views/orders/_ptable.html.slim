@@ -8,8 +8,8 @@ table.table.table-striped
       th= sortable 'deadline'
       th= sortable 'City'
       th= sortable 'State'
-      th= link_to 'Bids'
-      th= link_to 'Average'
+      th= 'Bids'
+      th= 'Average'
   tbody
     - collection.each do |order|
       - next if order.new_record?
