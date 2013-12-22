@@ -4,14 +4,16 @@
   .modal-header
     button.close aria-hidden="true" data-dismiss="modal" type="button"
     h3#cardModalLabel Checkout: #{number_to_currency @order.price}
+
+    p= image_tag('credit_card_logos_10.gif', size: "170x80", alt: "Accepted credit cards")
+
   .modal-body
-    p= image_tag 'credit_card_logos_10.gif'
     = simple_form_for @order, as: :pay_order, url: pay_order_path(@order), method: :post, html: {class: 'form-horizontal', data: {balanced: :payment}} do |f|
       .progress.loading.hide
         .bar style="width: 60%;"
           p
-      = f.input :user_name
-      = f.input :user_email
+      = f.input :user_name, :label => 'Cardholder name'
+      = f.input :user_email, :label => 'Email'
       = f.input :card_number do 
         = text_field_tag 'card_number'
       = f.input :cvc do
