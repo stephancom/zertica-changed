@@ -8,10 +8,10 @@
 		- if can?(:create, @order.bids.new)
 			= link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn btn-primary pull-right sharp'
 		- elsif current_admin and !current_admin.payable?
-			.well
-				h4 
-					= link_to 'Enter Info', edit_bank_account_path, class: [:btn, 'pull-right', 'btn-warning']
-					| Enter your banking information to be able to bid on orders
+			.row-fluid
+				h4 Enter your banking information to be able to bid on orders.
+				= link_to 'Enter Info', edit_bank_account_path, class: [:btn, 'btn-success', :sharp]
+			br
 		.span1 Vendor:
 		- if @order.admin
 			p= link_to @order.admin_name, admin_storefront_path(@order.admin_id, @order.storefront)    

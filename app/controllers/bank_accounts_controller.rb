@@ -6,7 +6,7 @@ class BankAccountsController < ApplicationController
   def update
     current_admin.add_bank_account!(params[:bank_account][:bank_account_uri])
     flash[:success] = "bank account info updated!"
-    redirect_to edit_admin_path(current_admin)
+    redirect_to orders_pool_path
   end
 
   private
