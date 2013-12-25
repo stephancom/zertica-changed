@@ -1,8 +1,9 @@
 - model_class = Order
 .row-fluid
 		h1 My Orders:
+		br
 		- if current_user
 			= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right sharp'
+		= render 'search'
 hr
-br
 = render 'table', collection: @orders

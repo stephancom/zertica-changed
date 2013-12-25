@@ -1,8 +1,9 @@
 - model_class = Order
-table.table.table-striped
+table.table.table-striped.table-list-search
   thead
     tr
       th= sortable 'Title'
+      td.hidden = order.description
       th= sortable 'order_type', 'Type'
       th= sortable 'created_at', 'Submitted on'
       th= sortable 'deadline'
@@ -15,6 +16,7 @@ table.table.table-striped
       - next if order.new_record?
       tr
         td = link_to order.title.titleize, order
+        td.hidden = order.description
         td = order.human_order_type
         td = order.created_at.strftime("%m/%d/%Y")
         td = order.deadline || '--'

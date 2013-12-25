@@ -1,6 +1,7 @@
 - model_class = Order
 .row-fluid
 		h1 Order Pool: #{@order_pool.count} available
+		br
+		= render 'search'
 hr
-br
 = render 'ptable', collection: @order_pool

@@ -1,8 +1,9 @@
 - model_class = Order
-table.table.table-striped
+table.table.table-striped.table-list-search
   thead
     tr
       th= sortable "Title"
+      th.hidden= 'Description'
       th= sortable 'order_type', 'Order Type'
       - if current_admin
         th= sortable 'City'
@@ -20,6 +21,7 @@ table.table.table-striped
       - next if order.new_record?
       tr
         td = link_to order.title.titleize, order
+        td.hidden = order.description
         td = order.human_order_type
         - if current_admin
           td= order.city || '--'
