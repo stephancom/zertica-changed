@@ -1,7 +1,7 @@
 .progress.loading.hide
 	.bar style="width: 60%;"
 		p
-= f.input :name, hint: 'This name must match the name on the bank account'
+= f.input :name, label: 'Account name' hint: 'This name must match the name on the bank account'
 = f.input :bank_code, label: 'Routing number', as: :fake
 = f.input :account_number, as: :fake
 = f.input :bank_account_uri, as: :hidden
