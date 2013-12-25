@@ -19,9 +19,9 @@ class Order < ActiveRecord::Base
 	delegate :storefront, to: :admin, allow_nil: true
 	
 	before_save do
-	  self.title.downcase!
-	  self.city.downcase!
-	  self.province.downcase!
+	  self.title.downcase! if self.title
+	  self.city.downcase! if self.city
+	  self.province.downcase! if self.province
 	end
 
 	def cad_order?
