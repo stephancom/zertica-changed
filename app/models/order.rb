@@ -230,7 +230,7 @@ class Order < ActiveRecord::Base
 		@marketplace ||= Balanced::Marketplace.my_marketplace
 	end
 
-	def description
+	def soft_descriptor
 		"Zertica #{id} #{admin_name}"
 	end
 
@@ -243,7 +243,7 @@ class Order < ActiveRecord::Base
 		debit = customer.debit(
 			# source_uri: card_uri,
 			amount: (self.price*100).to_i,
-			appears_on_statement_as: 'Zertica',
+			appears_on_statement_as: self.soft_descriptor,
 			description: self.description,
 			on_behalf_of: seller			# on_behalf_of_uri ?
 			)
@@ -263,7 +263,7 @@ class Order < ActiveRecord::Base
 
 		credit = seller.credit(
 			amount: (self.subtotal*100).to_i,
-			appears_on_statement_as: 'Zertica',
+			appears_on_statement_as: self.soft_descriptor,
 			description: self.description
 		)
 
