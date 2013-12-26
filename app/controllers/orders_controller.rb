@@ -97,7 +97,7 @@ private
          :file_objects ,file_object_ids: [], file_objects_attributes: [:order_id,
           :url, :filename, :size, :mimetype])
       else
-        params[:order].permit(:order_type, :budget, :subtotal, :city, :province, :admin_id,  :title, :deadline, :color, :material,
+        params[:order].permit(:order_type, :budget, :subtotal, :city, :province, :admin_id, :title, :deadline, :color, :material,
          :budget, :description, :file_objects, :quantity, :software_program, :file_format,
          file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
           :size, :mimetype])
@@ -121,9 +121,10 @@ private
           :size, :mimetype], shippable_files_attributes: [:order_id, :url, :filename,
            :size, :mimetype])
       else
-        params[:order].permit(:title, :city, :budget, :province, :admin_id, :price, :description, :file_objects, 
-          file_object_ids: [], file_objects_attributes: [:order_id, :url, 
-            :filename, :size, :mimetype])
+        params[:order].permit(:order_type, :budget, :subtotal, :city, :province, :admin_id, :title, :deadline, :color, :material,
+         :budget, :description, :file_objects, :quantity, :software_program, :file_format,
+         file_object_ids: [], file_objects_attributes: [:order_id, :url, :filename,
+          :size, :mimetype])
       end
     end
     # TODO allow carrier/tracking number/shipping files if admin and state completed
