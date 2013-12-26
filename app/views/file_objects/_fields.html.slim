@@ -1,5 +1,5 @@
 - dragdrop = true unless local_assigns.has_key? :dragdrop
-= f.filepicker_field :url, dragdrop: dragdrop, drag_class: :picker_drag, button_class: :btn
+= f.filepicker_field :url, dragdrop: dragdrop, drag_class: :picker_drag, :button_class => 'btn btn-primary sharp'
 = f.input :filename, input_html: { data: { 'filepicker-meta' => 'filename'}}, as: :hidden
 = f.input :size, input_html: { data: { 'filepicker-meta' => 'size'}}, as: :hidden
 = f.input :mimetype, input_html: { data: { 'filepicker-meta' => 'mimetype'}}, as: :hidden

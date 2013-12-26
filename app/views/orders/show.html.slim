@@ -96,7 +96,7 @@
 	         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 	      - if @order.shipped? and @order.cad_order?
 	         li= link_to 'Shipped Files', '#shipped', :data => {:toggle => :tab}
-	      - if @order and can?(:update, @order)
+	      - if @order and current_user
 	        = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
 	          = f.error_notification
 	          = f.simple_fields_for :file_objects, @order.file_objects.build do |pf|
