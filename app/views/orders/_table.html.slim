@@ -33,7 +33,10 @@ table.table.table-striped.table-list-search
           td = number_to_currency(order.price) || '--'
         - else
           td = number_to_currency(order.subtotal) || '--'
-        td = order.cad_order? ? 'n/a' : (order.tracking_number || '--')
+        - if order.cad_order? 
+          td = 'n/a'
+        - else
+          td= link_to_if(order.has_tracking_url?, order.tracking_number, order.tracking_url) || '--'
         - if current_user 
           td 
             .btn-group.sharp
