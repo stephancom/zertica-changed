@@ -19,3 +19,4 @@
 #= require turbolinks
 #= require balanced_payments
 #= require_tree .
+#= require bootstrap-datepicker

@@ -2,6 +2,16 @@
 
  <%= simple_form_for [@order], :html => { :class => "form-vertical offset1" }  do |f| %>
 
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('[data-behaviour~=datepicker]').datepicker({
+          orientation: "top auto",
+          autoclose: true,
+          todayHighlight: true
+
+      });
+    })
+  </script>
   <div class="field">
     <%= f.input :order_type, collection: Order::ORDER_TYPES, as: :radio_buttons if @order.new_record? %>
   </div>
@@ -20,10 +30,12 @@
       </div>
     </td>
     <td style="padding-right:15px;">
-      <div class="field">
+      <div class="field input-append date" data-behaviour='datepicker'>
         <%= f.label :deadline %>
-        <%= f.text_field :deadline, :class => 'span12' %>
+        <%= f.text_field :deadline, :class => 'span10'%>
+        <span class="add-on"><i class="icon-th"></i></span>
       </div>
+
     </td>
     <td style="padding-right:15px;">
        <div class="field">
