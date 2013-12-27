@@ -2,8 +2,6 @@
   .row-fluid
    - if current_admin
      =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right'
-   - else
-      =link_to 'Place Order', new_order_path, :class => 'btn btn-sharp btn-primary pull-right'
    br
    h2.centertext= @storefront.vendor_name
   .row-fluid
@@ -17,30 +15,12 @@
      p= @storefront.description
   .row-fluid
     ul.thumbnails
-      li.span2 
-        a.thumbnail href='http://placekitten.com/g/800/800'
-          =image_tag('http://placekitten.com/g/800/800')
-      li.span2 
-        a.thumbnail 
-          =image_tag('http://placekitten.com/g/800/800')
-      li.span2 
-        a.thumbnail 
-          =image_tag('http://placekitten.com/g/200/200')
-      li.span2 
-        a.thumbnail 
-          =image_tag('http://placekitten.com/g/200/200')
-      li.span2 
-        a.thumbnail 
-          =image_tag('http://placekitten.com/g/200/200')
-      li.span2 
-        a.thumbnail 
-          =image_tag('http://placekitten.com/g/200/200')
+  hr  
   .row-fluid
-    h3.centertext Reviews
-    - if current_user
-      =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
-    br
-    br
+      h3.centertext Reviews
+      - if current_user
+        =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
   .row-fluid
-    = render 'reviews/table', collection: @storefront.reviews
+   .span10.offset1
+     = render 'reviews/table', collection: @storefront.reviews
 

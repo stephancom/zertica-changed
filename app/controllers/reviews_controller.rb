@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to root_path, :notice => 'storefront deleted'
+    redirect_to root_path, :notice => 'review deleted'
   end
 
 end

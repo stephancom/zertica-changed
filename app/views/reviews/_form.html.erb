@@ -9,11 +9,6 @@
     <%= f.label :details %>
     <p><%= f.text_area :description, :class => 'span10', :rows => 6 %></p>
   </div>
-  <div class="field">
-    <%= f.label :rating %>
-    <p><%= select_tag(:rating, options_for_select([['5 - Excellent', 5], ['4 - Great', 4],
-    	['3 - Ok', 3],['2 - Poor', 2],['1 - Awful', 1],])) %></p>
-  </div>
   <div class="actions">
     <%= f.submit 'Submit review', :class => 'btn btn-primary sharp offset8' %>
   </div>
