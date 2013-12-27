@@ -8,7 +8,7 @@ class Ability
             if user.kind_of? Admin
                 # admins can do this stuff
                 can :show, User
-                can [:new,:create], Bid, order: {state: 'submitted'} if user.payable?
+                can [:new,:create, :destroy], Bid, order: {state: 'submitted'} if user.payable?
                 can :show, Admin
                 can :show, Review
                 can :pool, Order

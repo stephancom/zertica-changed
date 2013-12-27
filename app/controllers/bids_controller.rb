@@ -1,5 +1,5 @@
 class BidsController < ApplicationController
-  before_filter :load_order, except: :destroy
+  before_filter :load_order
   load_and_authorize_resource :bid, through: :order
   load_and_authorize_resource :order
 
@@ -76,9 +76,9 @@ class BidsController < ApplicationController
   # end
 
   def destroy
-    @bid = @order.bids.find(params[:bid_id])
+    @bid = Bid.find(params[:id])
     @bid.destroy
-    redirect_to @order, :notice => 'Bid deleted'
+    redirect_to @order, :notice => 'Your bid has been retracted.'
   end
 
 

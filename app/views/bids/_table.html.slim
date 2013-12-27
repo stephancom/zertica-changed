@@ -18,6 +18,6 @@ table.table.table-striped
           - else
             td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
           - if current_user
-            td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success'
+            td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success sharp'
           - else
-            td= link_to 'Retract', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success'
+            td= button_to 'Retract', [@order, bid], :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger sharp' 
