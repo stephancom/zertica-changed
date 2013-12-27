@@ -72,7 +72,7 @@
 	        - else @order.cad_order?
 		        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
 		          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
-	        = f.button :submit, 'Ship', :class => 'btn-primary'
+	        = f.button :submit, 'Ship', :class => 'btn-primary sharp offset3'
 
 	- if @order.shipped? and @order.print_order?
 	  .row-fluid
