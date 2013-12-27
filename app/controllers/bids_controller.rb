@@ -42,6 +42,7 @@ class BidsController < ApplicationController
 
   def create
     @bid = @order.bids.new(params[:bid])
+    @bid.subtotal = @bid.subtotal.round
     @bid.price = (@bid.subtotal * 1.15).round
     if current_admin
       @bid.admin_id = current_admin.id

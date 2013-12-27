@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
   def update
     @order.update(params[:order])
     if @order.subtotal
+      @order.subtotal = @order.subtotal.round
       @order.price = (@order.subtotal * 1.15).round
     end
     if @order.save
