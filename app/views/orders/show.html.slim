@@ -12,7 +12,7 @@
 				h4 Enter your banking information to be able to bid on orders.
 				= link_to 'Enter Info', edit_bank_account_path, class: [:btn, 'btn-success', :sharp]
 			br
-		.span1 Vendor:
+		.span1 Maker:
 		- if @order.admin && @order.storefront
 			p= link_to @order.admin_name, admin_storefront_path(@order.admin_id, @order.storefront)    
 		- else
