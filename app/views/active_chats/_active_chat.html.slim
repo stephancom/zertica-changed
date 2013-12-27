@@ -1,4 +1,4 @@
 .tab-pane id=dom_id(active_chat) class=chatters_class(active_chat)
-	= link_to 'Close window', active_chat, method: :delete, remote: true, data: {confirm: 'Are you sure? This will close the chat for the other party as well.'}, class: 'btn btn-danger sharp pull-right'
+	= button_to 'X', active_chat, method: :delete, remote: true, data: {confirm: 'Are you sure? This will close the chat for the other party as well.'}, class: 'btn pull-left btn-danger sharp'
 	= subscribe_to active_chat.message_channel
 	= render 'messages/messages_panel', active_chat: active_chat

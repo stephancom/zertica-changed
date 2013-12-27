@@ -3,8 +3,8 @@ h1 Messages
 
 - content_for :sidebar
 	ul.side-nav
-		h4 Available Users 
-	    = render partial: 'chat_partner', collection: @chat_partners
+		h3 Available:
+	    strong = render partial: 'chat_partner', collection: @chat_partners
 
 ul.nav.nav-tabs#active-chats-tabs
 	= render partial: 'active_chat_tab', collection: @active_chats
