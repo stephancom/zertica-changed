@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
 
   def archive
     @order.archive!
-    respond_with @orders    
+    redirect_to root_path    
   end
 
 private
