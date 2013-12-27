@@ -67,9 +67,11 @@
 	    h4 Ship:
 	    = simple_form_for @order, url: [:ship, @order], :html => { :class => "form-horizontal" } do |f|
 	      .form-inputs
-	        = render 'ship_fields', f: f
-	        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
-	          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
+	      	- if @order.print_order?
+	        	= render 'ship_fields', f: f
+	        - else @order.cad_order?
+		        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
+		          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
 	        = f.button :submit, 'Ship', :class => 'btn-primary'
 
 	- if @order.shipped? and @order.print_order?
