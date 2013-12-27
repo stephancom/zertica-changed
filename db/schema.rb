@@ -67,12 +67,13 @@ ActiveRecord::Schema.define(version: 20131227025544) do
   create_table "file_objects", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "admin_id"
     t.integer  "order_id"
     t.string   "url",        null: false
     t.string   "filename",   null: false
     t.integer  "size",       null: false
     t.string   "mimetype",   null: false
-    t.integer  "product_id"
   end
 
   create_table "messages", force: true do |t|
@@ -138,15 +139,6 @@ ActiveRecord::Schema.define(version: 20131227025544) do
   add_index "orders_shippable_files", ["file_object_id"], name: "index_orders_shippable_files_on_file_object_id", using: :btree
   add_index "orders_shippable_files", ["order_id", "file_object_id"], name: "index_orders_shippable_files_on_order_id_and_file_object_id", unique: true, using: :btree
   add_index "orders_shippable_files", ["order_id"], name: "index_orders_shippable_files_on_order_id", using: :btree
-
-  create_table "products", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "admin_id"
-    t.string   "title"
-    t.text     "description"
-    t.decimal  "price"
-  end
 
   create_table "reviews", force: true do |t|
     t.datetime "created_at"
