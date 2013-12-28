@@ -1,4 +1,4 @@
 = minimal_form_for active_chat.messages.build, :url => active_chat_messages_path(active_chat), :remote => true do |f|
   = f.text_area :body, placeholder: 'Start typing here, press enter to send', :class => 'span12'
   .row-fluid
-      = f.button :submit, class: 'btn pull-right', id: :message_send, data: {disable_with: 'Posting...'}
+      = f.button :submit, 'Send', class: 'btn btn-primary sharp pull-right', id: :message_send, data: {disable_with: 'Posting...'}

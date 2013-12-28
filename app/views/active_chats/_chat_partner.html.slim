@@ -9,4 +9,3 @@
 			= link_to chat_partner.name, active_chats_path(active_chat: {user_id: chat_partner.id}), method: :post, remote: true
 		- else
 			= link_to chat_partner.name, active_chats_path(active_chat: {admin_id: chat_partner.id}), method: :post, remote: true
-hr
