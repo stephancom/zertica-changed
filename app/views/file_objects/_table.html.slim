@@ -16,7 +16,7 @@ table.table.table-striped
           td= number_to_human_size file_object.size
           td= file_object.created_at.in_time_zone.strftime("%I:%M%p on %b %e")
           td
-            = filepicker_save_button "Download", file_object.url, '', class: :btn
+            = filepicker_save_button "Download", file_object.url, '', :class => 'btn sharp'
             = link_to t('.destroy', :default => t("helpers.links.destroy")), [file_object], :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can?(:destroy, file_object)
   - if @file_object
 	  tfoot
