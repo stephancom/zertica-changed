@@ -1,129 +1,130 @@
-.span10.offset1
-	.row-fluid
-		h3 #{@order.human_order_type}: #{@order.title.titleize}
-		- if current_user
-			= link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(@order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn sharp pull-right btn-danger' if can? :destroy, @order
-			= link_to 'Archive', archive_order_path(@order), :class => 'btn sharp pull-right', :method => :patch if @order.shipped?
-			= link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn pull-right sharp' if can? :edit, @order
-		- if can?(:create, @order.bids.new)
-			= link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn btn-primary pull-right sharp'
-		- elsif current_admin and !current_admin.payable?
-			.row-fluid
-				h4 Enter your banking information to be able to bid on orders.
-				= link_to 'Enter Info', edit_bank_account_path, class: [:btn, 'btn-success', :sharp]
-			br
-		.span1 Maker:
-		- if @order.admin && @order.storefront
-			p= link_to @order.admin_name, admin_storefront_path(@order.admin_id, @order.storefront)    
-		- else
-			p= @order.admin_name
-		.span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
-		.span2 Status: #{@order.state.capitalize}
-		.span1 Price:
-		- if @order.submitted?
-			p no bid selected yet
-		- else
+.span12.orderbox
+	.span10.offset1
+		.row-fluid
+			h3 #{@order.human_order_type}: #{@order.title.titleize}
 			- if current_user
-				= number_to_currency @order.price 
-			- else 
-				= number_to_currency @order.subtotal 
-	hr
-	.row-fluid
-		.span2 Budget: #{(number_to_currency(@order.budget) if @order.budget?) || '--'}
-		.span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 
-		.span2 City: #{(@order.city if @order.city?) || '--'} 
-		.span2 State: #{(@order.province if @order.province?) || '--'} 
-	.row-fluid
-		.span2 Material: #{(@order.material if @order.material?)  || '--'}
-		.span2 Color: #{(@order.color if @order.color?) || '--'}
-		.span2 Quantity: #{(@order.quantity if @order.quantity?) || '--'}
-		.span2 Software: #{(@order.software_program if @order.software_program?) || '--'}
-		.span2 File Format: #{(@order.file_format if @order.file_format?) || '--'}
-	.row-fluid
-		h4 Description:
-		.span9= simple_format @order.description
-
-	.row-fluid
-	  - if current_admin && @order.estimated?
-	    h4 Adjust what you receive:
-	    = simple_form_for @order, :html => { :class => "form-horizontal" } do |f|
-	      p $ #{f.text_field :subtotal}
-	      = f.button :submit, 'Submit', :class => 'btn-primary sharp'
-	.row-fluid
-	  - if @order.estimated? && current_user
-	      = render 'credit_card_form'
-
-	- if @order.payment_processed?
+				= link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(@order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn sharp pull-right btn-danger' if can? :destroy, @order
+				= link_to 'Archive', archive_order_path(@order), :class => 'btn sharp pull-right', :method => :patch if @order.shipped?
+				= link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn pull-right sharp' if can? :edit, @order
+			- if can?(:create, @order.bids.new)
+				= link_to 'Place Bid', new_order_bid_path(@order), :class => 'btn btn-primary pull-right sharp'
+			- elsif current_admin and !current_admin.payable?
+				.row-fluid
+					h4 Enter your banking information to be able to bid on orders.
+					= link_to 'Enter Info', edit_bank_account_path, class: [:btn, 'btn-success', :sharp]
+				br
+			.span1 Maker:
+			- if @order.admin && @order.storefront
+				p= link_to @order.admin_name, admin_storefront_path(@order.admin_id, @order.storefront)    
+			- else
+				p= @order.admin_name
+			.span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
+			.span2 Status: #{@order.state.capitalize}
+			.span1 Price:
+			- if @order.submitted?
+				p no bid selected yet
+			- else
+				- if current_user
+					= number_to_currency @order.price 
+				- else 
+					= number_to_currency @order.subtotal 
+		hr
 		.row-fluid
-			.span4
-				h4 Paid!
-				p Confirmation: #{@order.confirmation}
-
-	- if can? :complete, @order
+			.span2 Budget: #{(number_to_currency(@order.budget) if @order.budget?) || '--'}
+			.span2 Deadline: #{(@order.deadline if @order.deadline?) || '--'} 
+			.span2 City: #{(@order.city if @order.city?) || '--'} 
+			.span2 State: #{(@order.province if @order.province?) || '--'} 
 		.row-fluid
-	      = link_to 'Mark complete', [:complete, @order], method: :put, :class => 'btn btn-primary sharp' if can? :complete, @order
-	.row-fluid
-	- if can? :ship, @order
-	    h4 Ship:
-	    = simple_form_for @order, url: [:ship, @order], :html => { :class => "form-horizontal" } do |f|
-	      .form-inputs
-	      	- if @order.print_order?
-	        	= render 'ship_fields', f: f
-	        - else @order.cad_order?
-		        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
-		          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
-	        = f.button :submit, 'Ship', :class => 'btn-primary sharp offset3'
+			.span2 Material: #{(@order.material if @order.material?)  || '--'}
+			.span2 Color: #{(@order.color if @order.color?) || '--'}
+			.span2 Quantity: #{(@order.quantity if @order.quantity?) || '--'}
+			.span2 Software: #{(@order.software_program if @order.software_program?) || '--'}
+			.span2 File Format: #{(@order.file_format if @order.file_format?) || '--'}
+		.row-fluid
+			h4 Description:
+			.span9= simple_format @order.description
 
-	- if @order.shipped? and @order.print_order?
-	  .row-fluid
-	    .span4
-	      h4 Shipped:
-	      p
-	        | Tracking number: 
-	        = link_to_if @order.has_tracking_url?, @order.tracking_number, @order.tracking_url
+		.row-fluid
+		  - if current_admin && @order.estimated?
+		    h4 Adjust what you receive:
+		    = simple_form_for @order, :html => { :class => "form-horizontal" } do |f|
+		      p $ #{f.text_field :subtotal}
+		      = f.button :submit, 'Submit', :class => 'btn-primary sharp'
+		.row-fluid
+		  - if @order.estimated? && current_user
+		      = render 'credit_card_form'
 
-	hr
-	br
+		- if @order.payment_processed?
+			.row-fluid
+				.span4
+					h4 Paid!
+					p Confirmation: #{@order.confirmation}
 
-	.row-fluid
-	  .span12
-	    ul.nav.nav-tabs
-	      - if current_user && @order.submitted?
-	         li.active= link_to 'Bids', '#bids', :data => {:toggle => :tab}
-	         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
-	      - elsif current_user         
-	         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
-	      - elsif current_admin && @order.submitted?
-	         li.active= link_to 'Your bids', '#bids', :data => {:toggle => :tab}
-	         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
-	      - elsif current_admin
-	         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
-	      - if @order.shipped? and @order.cad_order?
-	         li= link_to 'Shipped Files', '#shipped', :data => {:toggle => :tab}
-	      - if @order and current_user
-	        = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
-	          = f.error_notification
-	          = f.simple_fields_for :file_objects, @order.file_objects.build do |pf|
-	              .offset10= render 'file_objects/fields', f: pf, dragdrop: false
+		- if can? :complete, @order
+			.row-fluid
+		      = link_to 'Mark complete', [:complete, @order], method: :put, :class => 'btn btn-primary sharp' if can? :complete, @order
+		.row-fluid
+		- if can? :ship, @order
+		    h4 Ship:
+		    = simple_form_for @order, url: [:ship, @order], :html => { :class => "form-horizontal" } do |f|
+		      .form-inputs
+		      	- if @order.print_order?
+		        	= render 'ship_fields', f: f
+		        - else @order.cad_order?
+			        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
+			          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
+		        = f.button :submit, 'Ship', :class => 'btn-primary sharp offset3'
 
-	    .tab-content
-	      - if current_user && @order.submitted?
-	        .tab-pane.active#bids
-	           = render 'bids/table', collection: @order.bids
-	        .tab-pane#files
-	           = render 'file_objects/table', collection: @order.file_objects
-	      - elsif current_user
-	        .tab-pane.active#files
-	           = render 'file_objects/table', collection: @order.file_objects
-	      - elsif current_admin && @order.submitted?
-	        .tab-pane.active#bids
-	           = render 'bids/table', collection: @order.bids.where(:admin_id => current_admin.id)
-	        .tab-pane#files
-	           = render 'file_objects/table', collection: @order.file_objects
-	      - elsif current_admin
-	        .tab-pane.active#files
-	           = render 'file_objects/table', collection: @order.file_objects
-	      - if @order.shipped? and @order.cad_order?
-	        .tab-pane#shipped
-	          = render 'file_objects/table', collection: @order.shippable_files
-	          
+		- if @order.shipped? and @order.print_order?
+		  .row-fluid
+		    .span4
+		      h4 Shipped:
+		      p
+		        | Tracking number: 
+		        = link_to_if @order.has_tracking_url?, @order.tracking_number, @order.tracking_url
+
+		hr
+		br
+
+		.row-fluid
+		  .span12
+		    ul.nav.nav-tabs
+		      - if current_user && @order.submitted?
+		         li.active= link_to 'Bids', '#bids', :data => {:toggle => :tab}
+		         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		      - elsif current_user         
+		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		      - elsif current_admin && @order.submitted?
+		         li.active= link_to 'Your bids', '#bids', :data => {:toggle => :tab}
+		         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		      - elsif current_admin
+		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		      - if @order.shipped? and @order.cad_order?
+		         li= link_to 'Shipped Files', '#shipped', :data => {:toggle => :tab}
+		      - if @order and current_user
+		        = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
+		          = f.error_notification
+		          = f.simple_fields_for :file_objects, @order.file_objects.build do |pf|
+		              .offset10= render 'file_objects/fields', f: pf, dragdrop: false
+
+		    .tab-content
+		      - if current_user && @order.submitted?
+		        .tab-pane.active#bids
+		           = render 'bids/table', collection: @order.bids
+		        .tab-pane#files
+		           = render 'file_objects/table', collection: @order.file_objects
+		      - elsif current_user
+		        .tab-pane.active#files
+		           = render 'file_objects/table', collection: @order.file_objects
+		      - elsif current_admin && @order.submitted?
+		        .tab-pane.active#bids
+		           = render 'bids/table', collection: @order.bids.where(:admin_id => current_admin.id)
+		        .tab-pane#files
+		           = render 'file_objects/table', collection: @order.file_objects
+		      - elsif current_admin
+		        .tab-pane.active#files
+		           = render 'file_objects/table', collection: @order.file_objects
+		      - if @order.shipped? and @order.cad_order?
+		        .tab-pane#shipped
+		          = render 'file_objects/table', collection: @order.shippable_files
+		          
