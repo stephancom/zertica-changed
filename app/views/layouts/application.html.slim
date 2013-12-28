@@ -25,7 +25,8 @@ html lang="en"
     = filepicker_js_include_tag
     = yield(:head)
 
-  body class=("#{controller_name} #{action_name}") 
+  body class=("#{controller_name} #{action_name}")
+   - if current_user || current_admin 
     = render 'layouts/navigation'
     = image_tag 'colbg.jpg', :type => 'image/jpg'
     .container-fluid
@@ -51,3 +52,5 @@ html lang="en"
             li &copy; Zertica 2013
             li= link_to 'Terms of Service', '#'
             li= link_to 'Privacy Policy', '#'
+   - else
+      = yield
