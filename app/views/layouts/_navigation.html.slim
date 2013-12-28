@@ -6,7 +6,10 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      .brand= 'Zertica'
+      - if admin_signed_in? || user_signed_in?
+        = link_to 'Zertica', root_path, :class => 'brand'
+      - else   
+        .brand= 'Zertica'
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?
