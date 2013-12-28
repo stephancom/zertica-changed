@@ -82,13 +82,13 @@ class OrdersController < ApplicationController
 private
 
   def sort_column
-    Order.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    params[:sort] || "title"
   end
   def pool_sort_column
-    Order.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    params[:sort] || "created_at"
   end
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    params[:direction] || "asc"
   end
   def order_params
     case action_name
