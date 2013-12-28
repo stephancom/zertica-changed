@@ -27,27 +27,4 @@ html lang="en"
 
   body class=("#{controller_name} #{action_name}") 
     = render 'layouts/navigation'
-    = image_tag 'colbg.jpg', :type => 'image/jpg'
-    .container-fluid
-      .row-fluid
-        - if content_for?(:sidebar)
-          .span6.offset2
-            = bootstrap_flash
-            = yield
-          .span2
-            br
-            br
-            br
-            .sidebar-nav
-              =yield :sidebar
-        - else
-          .span10.offset1
-            = bootstrap_flash
-            = yield
-    
-      footer.downbitch
-        .container
-          ul.inline.pull-right
-            li &copy; Zertica 2013
-            li= link_to 'Terms of Service', '#'
-            li= link_to 'Privacy Policy', '#'
+    = yield
