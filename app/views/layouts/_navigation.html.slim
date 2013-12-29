@@ -6,7 +6,10 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      .data-no-turbolink= link_to 'CadSurf', '/', :class => 'brand', :alt => 'Zertica'
+      - if admin_signed_in? || user_signed_in?
+        .data-no-turbolink= link_to 'Zertica', root_path, :class => 'brand'
+      - else   
+        .brand= 'Zertica'
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?
@@ -24,8 +27,9 @@
             li= link_to "Account", edit_user_registration_path
             li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
           - else
+            li= link_to 'Features', '#features'
+            li= link_to 'About Us', '#about_us'
+            li= link_to 'Contact', '#contact'
             li= link_to 'Login', new_user_session_path
-            li= link_to user_omniauth_authorize_path(:facebook), data: {toggle: 'tooltip'}, title: "Sign in with Facebook" do
-              i.icon-facebook-sign.icon-2x
             li= link_to 'Sign up', new_user_registration_path
             li= link_to 'Maker', new_admin_session_path

@@ -53,7 +53,6 @@ body#landingBody{
 	color:rgb(255,255,255);
 	
 	-webkit-transition:color .2s ease-in-out;
-	cursor:pointer;
 }
 .navbar .brand:hover{
 	color:rgba(0,215,249,1);
@@ -100,11 +99,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0956ae', end
 }
 .navbar.blue .nav > li > a{
 	color:rgb(255,255,255);
-    opacity:0.8;
     -webkit-transition:opacity .3s ease-in-out;
 }
 .navbar.blue .nav > li > a:hover{
-	opacity:1;
+	color:rgb(255,255,255);
 }
 .navbar.blue .nav > .active > a{
     opacity:1;

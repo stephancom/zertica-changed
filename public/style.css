@@ -116,7 +116,7 @@ blockquote p {
 =================================================*/
 
 #header {background-color: #25292c;position:fixed; width: 100%;z-index: 9999; top: 0;}
-.main_nav {float: right; margin-top:24px; }
+.main_nav {float: right; margin-top:20px; }
 .main_nav li {float: left; font-family: 'PT Sans', Helvetica, Arial; text-transform: uppercase; font-size:15px; margin-right:23px;font-weight: bold;
 
 
@@ -256,7 +256,7 @@ margin-top: 45px;
 	max-height:920px !important;
 	margin-bottom: 0;
 	position:relative;
-	margin-top: 60px;
+	margin-top: 40px;
 
 	}
 .caption.style2 {
