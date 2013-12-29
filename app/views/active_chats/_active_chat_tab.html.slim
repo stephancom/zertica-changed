@@ -2,5 +2,7 @@
 li id=dom_id(active_chat_tab, :tab) class=chatters_class(active_chat_tab)
   p
   	= button_to 'X', active_chat_tab, method: :delete, remote: true, data: {confirm: 'Are you sure? This will close the chat for the other party as well.'}, class: 'btn btn-link pull-right ', :style => 'padding-top:15px; color: black;'
-  	= link_to Admin.find(active_chat_tab.admin_id).name, "##{dom_id active_chat_tab}", :data => {:toggle => :tab}
-
+  	- if current_admin
+  		= link_to User.find(active_chat_tab.user_id).name, "##{dom_id active_chat_tab}", :data => {:toggle => :tab}
+  	- elsif current_user
+  	    = link_to Admin.find(active_chat_tab.admin_id).name, "##{dom_id active_chat_tab}", :data => {:toggle => :tab}
