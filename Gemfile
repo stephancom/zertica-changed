@@ -16,7 +16,7 @@ gem 'pg'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'bootstrap-datepicker-rails'
 gem 'signatureio'
-
+gem 'bundler'
 # Bootstrap
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
