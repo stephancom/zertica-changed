@@ -231,6 +231,7 @@ GEM
     rb-fsevent (0.9.3)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
+    recursive-open-struct (0.4.5)
     ref (1.0.5)
     responders (1.0.0)
       railties (>= 3.2, < 5)
@@ -254,6 +255,10 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    signatureio (0.0.7)
+      faraday
+      faraday_middleware
+      recursive-open-struct
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -362,6 +367,7 @@ DEPENDENCIES
   responders
   rspec-rails
   sass-rails (~> 4.0.0)
+  signatureio
   simple_form (>= 3.0.0.rc)
   simplecov
   slim-rails

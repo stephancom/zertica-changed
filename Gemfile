@@ -15,6 +15,7 @@ gem 'figaro'
 gem 'pg'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'bootstrap-datepicker-rails'
+gem 'signatureio'
 
 # Bootstrap
 gem "therubyracer"
