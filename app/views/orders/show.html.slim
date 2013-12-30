@@ -95,8 +95,8 @@ br
 		  .span12
 		    ul.nav.nav-tabs
 		      - if current_user && @order.submitted?
-		         li.active= link_to 'Bids', '#bids', :data => {:toggle => :tab}
-		         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		      	 li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		         li= link_to 'Bids', '#bids', :data => {:toggle => :tab}
 		      - elsif current_user         
 		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 		      - elsif current_admin && @order.submitted?
@@ -114,10 +114,10 @@ br
 
 		    .tab-content
 		      - if current_user && @order.submitted?
-		        .tab-pane.active#bids
-		           = render 'bids/table', collection: @order.bids
-		        .tab-pane#files
+		      	.tab-pane.active#files
 		           = render 'file_objects/table', collection: @order.file_objects
+		        .tab-pane#bids
+		           = render 'bids/table', collection: @order.bids
 		      - elsif current_user
 		        .tab-pane.active#files
 		           = render 'file_objects/table', collection: @order.file_objects
