@@ -101,8 +101,8 @@ br
 		      - elsif current_user         
 		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 		      - elsif current_admin && @order.submitted?
-		         li.active= link_to 'Your bids', '#bids', :data => {:toggle => :tab}
-		         li= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		      	 li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
+		         li= link_to 'Your bids', '#bids', :data => {:toggle => :tab}
 		      - elsif current_admin
 		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 		      - if @order.shipped? and @order.cad_order?
@@ -123,10 +123,10 @@ br
 		        .tab-pane.active#files
 		           = render 'file_objects/table', collection: @order.file_objects
 		      - elsif current_admin && @order.submitted?
-		        .tab-pane.active#bids
-		           = render 'bids/table', collection: @order.bids.where(:admin_id => current_admin.id)
-		        .tab-pane#files
+		        .tab-pane.active#files
 		           = render 'file_objects/table', collection: @order.file_objects
+		        .tab-pane#bids
+		           = render 'bids/table', collection: @order.bids.where(:admin_id => current_admin.id)
 		      - elsif current_admin
 		        .tab-pane.active#files
 		           = render 'file_objects/table', collection: @order.file_objects
