@@ -26,7 +26,10 @@ br
 
 			.span2= @order.created_at.strftime("Submitted: %m/%d/%Y")
 			.span2 Status: #{@order.state.capitalize}
-			.span1 Price:
+			- if current_user
+				.span1 Price:
+			- elsif current_admin
+				.span1 Amount:
 			- if @order.submitted?
 				p no bid selected yet
 			- else

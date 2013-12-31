@@ -34,11 +34,11 @@ class Order < ActiveRecord::Base
 		cad_order? ? 'CAD' : 'Print'
 	end
 	def average
-	    @total_sum = 0
+	    @sum = 0
 		self.bids.each do |bid|
-		  @total_sum = @total_sum + bid.subtotal 
+		  @sum = @sum + bid.subtotal 
 		end
-		@average = @total_sum/self.bids.count unless self.bids.count == 0  
+		@average = (@sum / self.bids.count) unless self.bids.count == 0  
 	end
 	#belongs_to :project
 	#has_and_belongs_to_many :projects
