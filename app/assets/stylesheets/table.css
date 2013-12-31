@@ -13,10 +13,10 @@
 	font-size: 16px;
 }
 .orderbox{
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     padding: 5px;
     margin: 0% 0;
-    box-shadow: 3px 3px 2px #ccc;
+    box-shadow: 7px 7px 5px #ccc;
     transition: 0.5s;
     height: 1200px;
     }
