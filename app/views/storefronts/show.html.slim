@@ -5,7 +5,6 @@
        =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
      br
      h2.centertext= @storefront.vendor_name
-     p.centertext #{@storefront.city}, #{@storefront.state}
     .row-fluid
        h4 Printing Capabilities:
        p= @storefront.printing_capabilities
@@ -16,8 +15,10 @@
        h4 Additional Info:
        p= @storefront.description
     .row-fluid 
+      .span2 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
       .span2 Ships: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.ships?}
       .span2 Local Pickup: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.pickup?}
+
     .row-fluid
       ul.thumbnails
     hr  
