@@ -8,8 +8,8 @@ class StorefrontsController < ApplicationController
   end
 
   def storefront_params
-    params[:storefront].permit(:admin_id, :vendor_name, :printing_capabilities, 
-      :cad_capabilities, :description)
+    params[:storefront].permit(:admin_id, :ships, :city, :state, :vendor_name, :printing_capabilities, 
+      :cad_capabilities, :description, :pickup)
   end
 
   def new
