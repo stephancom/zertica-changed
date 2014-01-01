@@ -15,7 +15,7 @@
        h4 Additional Info:
        p= @storefront.description
     .row-fluid 
-      .span2 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
+      .span3 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
       .span2 Ships: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.ships?}
       .span2 Local Pickup: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.pickup?}
 
