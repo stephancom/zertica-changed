@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(params[:order])
+    @order = Order.create(params[:order])
     if current_user
       @order.user_id = current_user.id
     end
