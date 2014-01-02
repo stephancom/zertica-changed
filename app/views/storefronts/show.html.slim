@@ -6,21 +6,18 @@
      - elsif current_user
        =link_to 'Place Order', new_order_path(:admin_id => @storefront.admin_id), :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
     .row-fluid
-      h2.centertext= @storefront.vendor_name
-    .row-fluid
-       h4 Printing Capabilities:
-       p= @storefront.printing_capabilities
-    .row-fluid
-       h4 Cad Capabilities:
-       p= @storefront.cad_capabilities
-    .row-fluid
-       h4 Additional Info:
-       p= @storefront.description
+      h2= @storefront.vendor_name
+
     .row-fluid 
       .span3 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
+    .row-fluid  
+      .span2 CAD: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.cad?}
+      .span2 3D Print: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.print?}
+    .row-fluid  
       .span2 Ships: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.ships?}
       .span2 Local Pickup: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.pickup?}
-
+    .row-fluid     
+      .span= @storefront.description
     .row-fluid
       ul.thumbnails
     hr  
