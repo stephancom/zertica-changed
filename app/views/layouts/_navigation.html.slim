@@ -7,9 +7,9 @@
         span.icon-bar
         span.icon-bar
       - if admin_signed_in? || user_signed_in?
-        = link_to 'Zertica', root_path, :class => 'brand'
+        = link_to 'CADsurf', root_path, :class => 'brand'
       - else   
-        .brand= 'Zertica'
+        .brand= 'CADsurf'
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?

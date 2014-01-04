@@ -44,4 +44,4 @@ en:
       subject: "Your order has been shipped"
   message_notifications:
     new_message:
-      subject: "You have a new message at Zertica"
+      subject: "You have a new message at CADsurf.com"
