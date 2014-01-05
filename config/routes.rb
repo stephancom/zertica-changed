@@ -52,6 +52,7 @@ ZerticaConnect::Application.routes.draw do
 		resources :orders do
 			resources :file_objects, except: [:edit, :update]
 			post 'pay', on: :member
+
 		end
 		resources :file_objects
 

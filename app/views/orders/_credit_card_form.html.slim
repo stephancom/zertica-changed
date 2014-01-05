@@ -1,8 +1,8 @@
-.centertext= link_to 'Pay with card', '#cardModal', data: {toggle: :modal}, role: :button, class: [:btn, 'btn-success', 'btn-large', :sharp]
-
+.centertext
+  = link_to 'Pay with card', '#cardModal', data: {toggle: :modal}, role: :button, class: [:btn, 'btn-success', 'btn-large', :sharp]
 #cardModal.modal.hide.fade.centertext aria-hidden="true" aria-labelledby="cardModalLabel" role="dialog" tabindex="-1"
   .modal-header
-    button.close aria-hidden="true" data-dismiss="modal" type="button"
+    button.close aria-hidden="true" data-dismiss="modal" type="button" X
     h3#cardModalLabel Checkout: #{number_to_currency @order.price}
 
     p= image_tag('credit_card_logos_10.gif', size: "170x80", alt: "Accepted credit cards")
@@ -23,4 +23,4 @@
       = f.input :expiration_year do
         = select_tag 'expiration_year', options_for_select(Time.now.year..(Time.now.year+10))
       = hidden_field_tag 'card_uri'
-      = f.button :submit, 'Pay', class: [:btn, 'btn-success', 'btn-large', :sharp]
+      = f.button :submit, 'Submit', class: [:btn, 'btn-success', 'btn-large', :sharp]

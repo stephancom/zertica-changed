@@ -4,7 +4,10 @@ table.table.table-striped
     tr
       th= 'Maker'
       th.span9= model_class.human_attribute_name(:message)
-      th= model_class.human_attribute_name(:price)
+      - if current_user
+        th= model_class.human_attribute_name(:price)
+      - elsif current_admin
+        th= model_class.human_attribute_name(:amount)
       th=t '.actions', :default => t("helpers.actions")
 
   tbody

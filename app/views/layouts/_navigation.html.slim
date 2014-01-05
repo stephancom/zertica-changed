@@ -7,9 +7,9 @@
         span.icon-bar
         span.icon-bar
       - if admin_signed_in? || user_signed_in?
-        .data-no-turbolink= link_to 'Zertica', root_path, :class => 'brand'
-      - else   
-        .brand= 'Zertica'
+        = link_to 'CADsurf', root_path, :class => 'brand'
+       - else   
+        .brand= 'CADsurf'
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?
@@ -30,6 +30,6 @@
             li= link_to 'Features', '#features'
             li= link_to 'About Us', '#about_us'
             li= link_to 'Contact', '#contact'
-            li= link_to 'Login', new_user_session_path
-            li= link_to 'Sign up', new_user_registration_path
-            li= link_to 'Maker', new_admin_session_path
+            li= link_to 'Client Login', new_user_session_path
+            li= link_to 'Client Sign up', new_user_registration_path
+            li= link_to 'Makers', new_admin_session_path

@@ -1,26 +1,32 @@
-.span10.offset1
-  .row-fluid
-   - if current_admin
-     =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right'
-   br
-   h2.centertext= @storefront.vendor_name
-  .row-fluid
-     h4 Printing Capabilities:
-     p= @storefront.printing_capabilities
-  .row-fluid
-     h4 Cad Capabilities:
-     p= @storefront.cad_capabilities
-  .row-fluid
-     h4 Additional Info:
-     p= @storefront.description
-  .row-fluid
-    ul.thumbnails
-  hr  
-  .row-fluid
-      h3.centertext Reviews
-      - if current_user
-        =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
-  .row-fluid
-   .span10.offset1
-     = render 'reviews/table', collection: @storefront.reviews
+
+.span12.orderbox.boxpads
+  .span10.offset1
+    .row-fluid
+     - if current_admin
+       =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
+     - elsif current_user
+       =link_to 'Place Order', new_order_path(:admin_id => @storefront.admin_id), :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
+    .row-fluid
+      h2= @storefront.vendor_name.titleize
+
+    .row-fluid 
+      .span3 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
+    .row-fluid  
+      .span2 CAD: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.cad?}
+      .span2 3D Print: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.print?}
+    .row-fluid  
+      .span2 Ships: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.ships?}
+      .span2 Local Pickup: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.pickup?}
+    .row-fluid     
+      .span= @storefront.description
+    .row-fluid
+      ul.thumbnails
+    hr  
+    .row-fluid
+        h3.centertext Reviews
+        - if current_user
+          =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
+    .row-fluid
+     .span10.offset1
+       = render 'reviews/table', collection: @storefront.reviews
 

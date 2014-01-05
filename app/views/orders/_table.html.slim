@@ -20,7 +20,10 @@ table.table.table-striped.table-list-search.custab
       - next if order.new_record?
       tr
         td = link_to order.title.titleize, order
-        td.hidden = order.description
+        td.hidden = order.color
+        td.hidden = order.material
+        td.hidden = order.software_program
+        td.hidden = order.file_format
         td = order.human_order_type
         - if current_admin
           td= order.city || '--'

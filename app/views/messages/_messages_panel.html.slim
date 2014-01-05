@@ -1,5 +1,6 @@
 .messaging_panel id=dom_id(active_chat, :message_panel)
 	.row-fluid
-		.span12.messages.well
+		.span12.messages.mpanel
 			= render @messages || active_chat.messages
-	= render "messages/form", active_chat: active_chat, message: (@message || active_chat.messages.new)
+	.row-fluid
+		= render "messages/form", active_chat: active_chat, message: (@message || active_chat.messages.new)

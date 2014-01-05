@@ -26,7 +26,7 @@
     <td style="padding-right:15px;">
       <div class="field">
         <%= f.label :budget %>
-        <%= f.text_field :budget, :class => 'span12', :placeholder => 'ex. $1500' %>
+        <%= f.text_field :budget, :class => 'span12', :placeholder => 'ex. Under $500' %>
       </div>
     </td>
     <td style="padding-right:15px;">
@@ -47,6 +47,12 @@
        <div class="field">
         <%= f.label :state %>
         <%= f.text_field :province, :class => 'span12', :placeholder => 'ex. California' %>
+      </div>
+    </td>
+    <td style="padding-right:15px;">
+       <div class="field">
+        <%= f.label :admin_id %>
+        <%= f.text_field :admin_id, :class => 'span11', :placeholder => 'ex. 1' %>
       </div>
     </td>
   </tr>
@@ -78,7 +84,7 @@
     <td style="">
       <div class="field">
         <%= f.label :file_format %>
-        <%= f.text_field :file_format, :class => 'span12', :placeholder => 'ex. .SLDPRT' %>
+        <%= f.text_field :file_format, :class => 'span10', :placeholder => 'ex. .SLDPRT' %>
       </div>
     </td>
   </tr>

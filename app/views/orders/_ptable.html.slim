@@ -16,6 +16,10 @@ table.table.table-striped.table-list-search.custab
       tr
         td = link_to order.title.titleize, order
         td.hidden = order.description
+        td.hidden = order.color
+        td.hidden = order.material
+        td.hidden = order.software_program
+        td.hidden = order.file_format
         td = order.human_order_type
         td = order.created_at.strftime("%m/%d/%Y")
         td = order.deadline || '--'
