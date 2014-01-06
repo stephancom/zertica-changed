@@ -17,7 +17,8 @@ class Order < ActiveRecord::Base
 	delegate :email, to: :user, prefix: true
 	delegate :email, to: :admin, prefix: true, allow_nil: true
 	delegate :storefront, to: :admin, allow_nil: true
-	
+	validates :price, numericality: {greater_than: 0}
+	validates :subtotal, numericality: {greater_than: 0}
 	before_save do
 	  self.title.downcase! if self.title
 	  self.city.downcase! if self.city
