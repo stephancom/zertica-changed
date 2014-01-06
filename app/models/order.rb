@@ -225,7 +225,7 @@ class Order < ActiveRecord::Base
 	# | .__/\__,_|\_, |_|_|_\___|_||_\__|
 	# |_|         |__/                   
 
-	ZERTICA_MARKUP = 0.15
+	ZERTICA_MARKUP = 0.18
 
 	def self.marketplace
 		@marketplace ||= Balanced::Marketplace.my_marketplace
