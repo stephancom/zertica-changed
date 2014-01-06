@@ -40,6 +40,8 @@ class OrdersController < ApplicationController
     end
     if @order.save
       respond_with @order
+    else 
+      redirect_to order_path(@order)
     end
   end
 

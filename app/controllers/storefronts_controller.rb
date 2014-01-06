@@ -19,6 +19,8 @@ class StorefrontsController < ApplicationController
     @storefront.update(params[:storefront])
     if @storefront.save
       redirect_to admin_storefront_path
+    else
+      redirect_to edit_admin_storefront_path(@storefront)
     end
   end
   def show
