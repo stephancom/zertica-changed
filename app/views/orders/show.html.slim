@@ -81,7 +81,7 @@
 		        	= render 'ship_fields', f: f
 		        - else @order.cad_order?
 			        = f.simple_fields_for :shippable_files, @order.shippable_files.build do |sf|
-			          .offset1= render 'file_objects/fields', f: sf, dragdrop: false, multiple: true
+			          .offset1= render 'file_objects/fields', f: sf, dragdrop: false
 		        = f.button :submit, 'Ship', :class => 'btn-primary sharp offset3'
 
 		- if @order.shipped? and @order.print_order?
@@ -114,7 +114,7 @@
 		        = simple_form_for [@order], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
 		          = f.error_notification
 		          = f.simple_fields_for :file_objects, @order.file_objects.build do |pf|
-		              .offset10= render 'file_objects/fields', f: pf, dragdrop: false, multiple: true
+		              .offset10= render 'file_objects/fields', f: pf, dragdrop: false
 
 		    .tab-content
 		      - if current_user && @order.submitted?
