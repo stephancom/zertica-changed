@@ -20,6 +20,7 @@ gem 'bundler'
 gem 'newrelic_rpm'
 gem 'unicorn'
 gem "rack-timeout"
+gem 'airbrake'
 
 # Bootstrap
 gem "therubyracer"
