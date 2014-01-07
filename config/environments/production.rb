@@ -21,7 +21,10 @@ ZerticaConnect::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
-
+  # SUMO
+  config.action_controller.asset_host = ENV['CDN_SUMO_URL']
+  config.static_cache_control = "public, max-age=2592000"
+  config.assets.digest = true
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
