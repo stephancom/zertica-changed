@@ -2,7 +2,7 @@
   <%= simple_form_for [@order, @bid], :html => { :class => "form-vertical offset1" }  do |f| %>
  
   <div class="field">
-    <%= f.label :amount_you_receive %>
+    <%= f.label :amount_you_receive_including_shipping %>
     <p>$ <%= f.text_field :subtotal, :class => 'span2', :placeholder => '100' %></p>
   </div>
   <div class="field">
