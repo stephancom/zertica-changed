@@ -8,7 +8,7 @@
        =link_to 'Place Order', new_order_path(:admin_id => @storefront.admin_id), :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
     .row-fluid
       h2= @storefront.vendor_name.titleize
-
+      h4 #{ @storefront.rating}/5
     .row-fluid 
       .span3 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
     .row-fluid  

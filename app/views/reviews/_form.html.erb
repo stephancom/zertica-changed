@@ -3,11 +3,15 @@
  
   <div class="field">
     <%= f.label :title %>
-    <p><%= f.text_field :title, :class => 'span10' %></p>
+    <%= f.text_field :title, :class => 'span10' %></p>
+  </div>
+  <div class="field">
+      <%= f.label :rating %>
+      <%= f.select 'rating', options_for_select([1, 2, 3, 4, 5]) %>
   </div>
   <div class="field">
     <%= f.label :details %>
-    <p><%= f.text_area :description, :class => 'span10', :rows => 6 %></p>
+    <%= f.text_area :description, :class => 'span10', :rows => 6 %></p>
   </div>
   <div class="actions">
     <%= f.submit 'Submit review', :class => 'btn btn-primary sharp offset8' %>
