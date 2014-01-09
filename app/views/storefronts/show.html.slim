@@ -18,9 +18,15 @@
       .span2 Ships: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.ships?}
       .span2 Local Pickup: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.pickup?}
     .row-fluid     
-      .span= auto_link(@storefront.description)
+      .span= @storefront.description
+    br
     .row-fluid
       ul.thumbnails
+       li.span3 = auto_link(@storefront.image1)    
+       li.span3 = auto_link(@storefront.image2)
+       li.span3 = auto_link(@storefront.image3)
+       li.span3 = auto_link(@storefront.image4)
+
     hr  
     .row-fluid
         h3.centertext Reviews
