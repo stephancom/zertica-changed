@@ -21,7 +21,7 @@ gem 'newrelic_rpm'
 gem 'unicorn'
 gem "rack-timeout"
 gem 'airbrake'
-
+gem "rails_autolink"
 # Bootstrap
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
@@ -43,7 +43,6 @@ gem 'thin'
 
 gem 'filepicker-rails'
 
-gem 'airbrake'
 
 # http://jsfiddle.net/mjallday/BtXfr/
 gem 'balanced'

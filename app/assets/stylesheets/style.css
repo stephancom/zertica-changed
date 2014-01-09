@@ -35,12 +35,17 @@
 }
 
 
+body {
 
+}
 body{
 	background-color:rgb(255,255,255);
     background-repeat:repeat-x;
     background-position:0px 40px;
     overflow-y:auto;
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 body#landingBody{
     background-position:0px 0px;
