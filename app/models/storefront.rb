@@ -10,7 +10,7 @@ class Storefront < ActiveRecord::Base
 	  self.reviews.each do |review|
 		@sum = @sum + review.rating 
 	  end
-	  @rating = (@sum / self.reviews.count.to_f)
+	  @rating = (@sum / self.reviews.count.to_f) unless self.reviews.count == 0
 	end
 
 
