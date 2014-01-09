@@ -1,8 +1,10 @@
 class Storefront < ActiveRecord::Base
-	validates :vendor_name, presence: true
-	has_many :reviews
+	has_many :reviews, dependent: :destroy
 	belongs_to :admin
-	
+	validates :vendor_name, presence: true
+	validates :city, presence: true
+	validates :state, presence: true
+	validates :description, presence: true
 	def rating
       @sum = 0
 	  self.reviews.each do |review|
