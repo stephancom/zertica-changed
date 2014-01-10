@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   load_and_authorize_resource :active_chat
-
+  force_ssl
   def create
     @message = @active_chat.messages.create(params[:message].merge(speaker: (current_admin || current_user)))
   end
