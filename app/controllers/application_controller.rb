@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+	force_ssl
 	def current_ability
 	  @current_ability ||= Ability.new(current_account)	
 	end
