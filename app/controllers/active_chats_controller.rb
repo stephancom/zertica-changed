@@ -1,5 +1,6 @@
 class ActiveChatsController < ApplicationController
   #before_filter :authenticate_admin!
+  force_ssl
   load_and_authorize_resource through: :chatter
 
   before_filter :chat_partner, only: [:create, :destroy]
