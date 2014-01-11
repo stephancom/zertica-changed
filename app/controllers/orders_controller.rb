@@ -6,8 +6,12 @@ class OrdersController < ApplicationController
   def index
     if current_admin
       @orders = current_admin.orders.order(sort_column + ' ' + sort_direction)
+      flash[:success] = "Welcome to CADsurf.com check out the order pool to 
+      find projects you're interested in and start getting business." if @orders == 0  
     elsif current_user
-      @orders = current_user.orders.order(sort_column + ' ' + sort_direction)     
+      @orders = current_user.orders.order(sort_column + ' ' + sort_direction) 
+      flash[:success] = "Welcome to CADsurf.com click on the 'New Order' button to 
+      post a project and watch the bids roll in." if @orders == 0     
     end
     respond_with @orders
   end
