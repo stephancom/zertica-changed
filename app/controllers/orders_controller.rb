@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       find projects you're interested in and start getting business." if @orders == 0  
     elsif current_user
       @orders = current_user.orders.order(sort_column + ' ' + sort_direction) 
-      if @orders == 0    
+      if @orders.count == 0    
         flash[:success] = "Welcome to CADsurf.com click on the 'New Order' button to 
         post a project and watch the bids roll in."  
       end
