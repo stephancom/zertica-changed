@@ -34,8 +34,9 @@
         li.active= link_to 'Products', '#products', :data => {:toggle => :tab}
         li= link_to 'Reviews', '#reviews', :data => {:toggle => :tab}
       .tab-content
-        .tab-pane.active#products
-          = render 'products/table', collection: @storefront.admin.products
+        - if @storefront.admin.products != 0
+          .tab-pane.active#products
+            = render 'products/table', collection: @storefront.admin.products
         .tab-pane#reviews
           = render 'reviews/table', collection: @storefront.reviews
         
