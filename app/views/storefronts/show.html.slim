@@ -31,6 +31,9 @@
       ul.nav.nav-tabs
         - if current_user
           =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
+        - elsif current_admin
+          =link_to 'Add Product',new_admin_product_path(:admin_id => current_admin.id), :class => 'btn btn-sharp btn-primary pull-right'
+
         li.active= link_to 'Products', '#products', :data => {:toggle => :tab}
         li= link_to 'Reviews', '#reviews', :data => {:toggle => :tab}
       .tab-content
