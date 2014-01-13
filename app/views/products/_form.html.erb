@@ -1,0 +1,21 @@
+ <%= simple_form_for [@admin, @product], :html => { :class => "form-vertical offset1" }  do |f| %>
+
+  <br>
+  <br>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => 'span10' %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => 'span10', :rows => 6 %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_area :price, :class => 'span10', :rows => 6 %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary sharp offset8' %>
+  </div>
+  <% end %>
+  

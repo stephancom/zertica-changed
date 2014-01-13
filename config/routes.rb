@@ -2,6 +2,8 @@ ZerticaConnect::Application.routes.draw do
 
 
 
+  resources :products
+
 	devise_for :admins, :controllers => {:registrations => "admin_registrations"}
 	devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 	

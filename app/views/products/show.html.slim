@@ -1,0 +1,14 @@
+.span10.offset1
+  .row-fluid
+   h2.centertext= @product.title
+  .row-fluid
+     h4 Description:
+     p= @product.description
+  .row-fluid
+     h4 Price:
+     p= @product.price
+  .row-fluid
+    = simple_form_for [@product], :html => { :class => "form-horizontal", :data => {:submit_on_pick => true} }, wrapper: :minimal  do |f|
+	  = f.error_notification
+	  = f.simple_fields_for :file_objects, @product.file_objects.build do |pf|
+	      .offset10= render 'file_objects/fields', f: pf, dragdrop: false
