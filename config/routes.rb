@@ -2,7 +2,6 @@ ZerticaConnect::Application.routes.draw do
 
 
 
-  resources :products
 
 	devise_for :admins, :controllers => {:registrations => "admin_registrations"}
 	devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -10,6 +9,7 @@ ZerticaConnect::Application.routes.draw do
 	# resources :charges
 
 	authenticated :admin do
+		resources :products
 		resource :bank_account, only: [:edit, :update]
 		resources :admin, only: [:show] do 
 			resources :storefronts do 
@@ -40,6 +40,7 @@ ZerticaConnect::Application.routes.draw do
 	end
 
 	authenticated :user do
+		resources :products
 		resources :admin do 
 			resources :storefronts do
 				resources :reviews
