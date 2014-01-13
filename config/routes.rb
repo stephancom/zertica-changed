@@ -15,6 +15,8 @@ ZerticaConnect::Application.routes.draw do
 			resources :storefronts do 
 				resources :reviews, only: [:show]
 			end
+			resources :products do
+			end
 		end
 		resources :active_chats, except: [:edit, :update, :new] do
 			resources :messages, only: :create
@@ -41,7 +43,9 @@ ZerticaConnect::Application.routes.draw do
 		resources :admin do 
 			resources :storefronts do
 				resources :reviews
-			end
+				end
+				resources :products do
+				end
 		end
 		resources :active_chats, except: [:edit, :update, :new] do
 			resources :messages, only: :create
