@@ -12,6 +12,7 @@ class Ability
                 can :show, Admin
                 can :show, Review
                 can :pool, Order
+                can :manage, Product
                 can [:new, :create, :show, :edit, :update, :destroy], Storefront
                 can [:index, :new, :create, :show, :edit, :update], Order
                 can :estimate, Order, state: 'submitted'
@@ -28,6 +29,7 @@ class Ability
                 can [:show, :edit, :update], Storefront
                 can :manage, Review
                 can :show, Admin
+                can :show, Product
                 can [:select, :update], Bid
                 #can :manage, ProjectFile, :project => { :user_id => user.id }
                 can [:index, :new, :create, :show, :edit, :update], Order

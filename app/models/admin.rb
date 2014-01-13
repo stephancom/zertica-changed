@@ -11,7 +11,7 @@ class Admin < ActiveRecord::Base
   has_many :active_chats, dependent: :destroy
   has_many :bids
   has_one :storefront
-
+  has_many :products
 	def chat_channel
 		"/admin_chat/#{id}"
 	end

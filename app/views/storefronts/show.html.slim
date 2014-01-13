@@ -27,10 +27,15 @@
 
     hr  
     .row-fluid
-        h3.centertext Reviews
+    .span10.offset1
+      ul.nav.nav-tabs
         - if current_user
           =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
-    .row-fluid
-     .span10.offset1
-       = render 'reviews/table', collection: @storefront.reviews
-
+        li.active= link_to 'Products', '#products', :data => {:toggle => :tab}
+        li= link_to 'Reviews', '#reviews', :data => {:toggle => :tab}
+      .tab-content
+        .tab-pane.active#products
+          = render 'products/table', collection: @storefront.admin.products
+        .tab-pane#reviews
+          = render 'reviews/table', collection: @storefront.reviews
+        
