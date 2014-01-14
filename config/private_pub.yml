@@ -5,6 +5,6 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 production:
-  server: "http://zertica-connect-faye.herokuapp.com"
+  server: "https://cadsurffaye.herokuapp.com"
   secret_token: "2568cfb7b667256947b386abc4960d0ae5957727614995e419ae9cef8ef40a92"
   signature_expiration: 3600 # one hour
