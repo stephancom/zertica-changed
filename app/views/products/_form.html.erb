@@ -4,15 +4,15 @@
   <br>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title, :class => 'span10' %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description, :class => 'span10', :rows => 6 %>
+    <%= f.text_field :title, :class => 'span10', :placeholder => 'Fusion Reactor' %>
   </div>
   <div class="field">
     <%= f.label :price %>
-    <%= f.text_area :price, :class => 'span10', :rows => 6 %>
+    <p>$ <%= f.text_field :price, :class => 'span2', :placeholder => '800'  %></p>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => 'span10', :rows => 6, :placeholder => 'This thing is for real.' %>
   </div>
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary sharp offset8' %>
