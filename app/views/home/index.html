@@ -450,20 +450,14 @@
 				<div id="response">
 				
 
-					<form method="post" class="reply-input" action="send.php">
+					<form name="myForm" class="reply-input" onsubmit="return validateForm()" action="http://www.justhost.com/justmail" enctype="multipart/form-data" method="POST">
 						<div class="span6">
 						<div class="input-block">
-							<input type="text" name="name" id="comment-name" required="" value="Your name (required)" onblur="if(this.value=='')this.value='Your name (required)'" onfocus="if(this.value=='Your name (required)')this.value=''"/>
+							<input type="text" name="name" placeholder="David"/>
 							
 						</div>
-
 						<div class="input-block">
-							<input type="email" name="email" id="comment-email" required="" value="Your email (required)" onblur="if(this.value=='')this.value='Your email (required)'" onfocus="if(this.value=='Your email (required)')this.value=''"/>
-							
-						</div>
-
-						<div class="input-block">
-							<input type="text" name="website" id="comment-url" value="Your website" onblur="if(this.value=='')this.value='Your website'" onfocus="if(this.value=='Your website')this.value=''"/>
+							<input type="text" name="mailfrom" placeholder="myemail@mail.com"/>
 							
 						</div>
 
@@ -474,14 +468,17 @@
 					<div class="span6">
 						
 						<div class="textarea-block">
-							<textarea name="message" id="comment-message" cols="88" rows="8" required="" onblur="if(this.value=='')this.value='Your message'" 
-onfocus="if(this.value=='Your message')this.value=''">Your message</textarea>
+							<textarea name="message" cols="88" rows="8">Your message</textarea>
 							<div class="clear"></div>
 						</div>
 
 						<input class="submit_buttom" type="submit" value="Submit">
 					</div>
-					</form>
+					<!--Form working actions-->
+          		<input type="hidden" name="redirect" value="https://cadsurf.com/">
+          		<input type="hidden" name="subject" value="CADsurf Contact Us Message">
+          		<input type="hidden" name="sendtoemail" value="info@zertica.com">
+				</form>
 				
 				</div><!--response-->
 			
@@ -533,7 +530,30 @@ onfocus="if(this.value=='Your message')this.value=''">Your message</textarea>
 
 <div class="loading_icon"></div>
 
+<!--Validation Script-->
+    <script type="text/javascript">
+     
+    function validateForm(){
+      var x=document.forms["myForm"]["mailfrom"].value;
+      var y=document.forms["myForm"]["name"].value;
+      var z=document.forms["myForm"]["message"].value;
 
+      if (x==null || x==""){
+          alert("You must enter an email address.");
+          return false;
+        }
+      else if (y==null || y==""){
+          alert("You must enter your name.");
+          return false;
+        }
+      else if (z==null || z==""){
+          alert("You must enter a message.");
+          return false;
+        }
+      }
+
+    </script>
+    <!--End Validation Script-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
 <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>	
 <script type="text/javascript" src="js/carousel.js"></script>
