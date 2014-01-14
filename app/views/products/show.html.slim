@@ -14,4 +14,9 @@
 	  = f.simple_fields_for :file_objects, @product.file_objects.build do |pf|
 	      .offset10= render 'file_objects/fields', f: pf, dragdrop: false
 
-
+  .row-fluid
+    ul.nav.nav-tabs
+       li.active= link_to 'Product Files', '#files', :data => {:toggle => :tab}
+    .tab-content
+      .tab-pane.active#files
+        = render 'file_objects/table', collection: @product.file_objects
