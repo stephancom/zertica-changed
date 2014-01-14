@@ -998,7 +998,7 @@ width:93%;
 .copyright {text-align: center; margin-top:20px; color: #686969}
 .social_links_footer li i {color: #7e7e7e;position: absolute;padding:12px 13px;}
 .social_links_footer li i:hover {color:white;}
-#map_google {position: absolute; right: 0; height:395px; width:500px; background-repeat: no-repeat; background-position: center; background-image: url(http://placehold.it/500x500);}
+#map_google {position: absolute; right: 0; height:395px; width:500px; background-repeat: no-repeat; background-position: center; background-image: url();}
 
 #footer .span3 {margin-top: 10px;}
 #footer h3 {color:white;}
