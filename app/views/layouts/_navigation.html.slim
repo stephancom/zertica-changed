@@ -9,7 +9,7 @@
       - if admin_signed_in? || user_signed_in?
         = link_to 'CADsurf', root_path, :class => 'brand'
       - else   
-        .brand= 'CADsurf'
+        = link_to 'CADsurf', 'http://cadsurf.com', :class => 'brand'
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?
