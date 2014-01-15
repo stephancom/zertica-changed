@@ -12,7 +12,7 @@ class @Balanced
 
   constructor: (form, @options) ->
     # balanced.init @options.marketplaceUri
-    # balanced.init '/v1/marketplaces/TEST-MP5X26XD6x8T3RUJxZ5HryvC'
+    # balanced.init '/v1/marketplaces/PRODUCTION-MP28xNmenaF4ea98pKtB6w6O'
     balanced.init balancedMarketplaceUri
 
     @form = $(form)
