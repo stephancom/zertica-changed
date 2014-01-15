@@ -6,8 +6,12 @@ class OrdersController < ApplicationController
   def index
     if current_admin
       @orders = current_admin.orders.order(sort_column + ' ' + sort_direction)
+      flash[:success] = "Welcome to CADsurf.com check out the order pool to 
+      find projects you're interested in and start getting business." if @orders.count == 0  
     elsif current_user
-      @orders = current_user.orders.order(sort_column + ' ' + sort_direction)     
+      @orders = current_user.orders.order(sort_column + ' ' + sort_direction) 
+        flash[:success] = "Welcome to CADsurf.com click on the 'New Order' button to 
+        post a project and watch quality makers compete for your business." if @orders.count == 0  
     end
     respond_with @orders
   end
@@ -36,10 +40,12 @@ class OrdersController < ApplicationController
     @order.update(params[:order])
     if @order.subtotal
       @order.subtotal = @order.subtotal.round
-      @order.price = (@order.subtotal * 1.18).round
+      @order.price = (@order.subtotal * (1 + MARKUP)).round
     end
     if @order.save
       respond_with @order
+    else 
+      redirect_to order_path(@order)
     end
   end
 

@@ -17,10 +17,17 @@ gem 'simple_form', '>= 3.0.0.rc'
 gem 'bootstrap-datepicker-rails'
 gem 'signatureio'
 gem 'bundler'
+gem 'newrelic_rpm'
+gem 'unicorn'
+gem "rack-timeout"
+gem 'airbrake'
+gem "rails_autolink"
 # Bootstrap
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+
+
 
 # yet more
 gem 'high_voltage'
@@ -36,7 +43,6 @@ gem 'thin'
 
 gem 'filepicker-rails'
 
-gem 'airbrake'
 
 # http://jsfiddle.net/mjallday/BtXfr/
 gem 'balanced'

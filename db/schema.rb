@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103083016) do
+ActiveRecord::Schema.define(version: 20140114060415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140103083016) do
     t.string   "filename",   null: false
     t.integer  "size",       null: false
     t.string   "mimetype",   null: false
+    t.integer  "product_id"
   end
 
   create_table "messages", force: true do |t|
@@ -140,6 +141,29 @@ ActiveRecord::Schema.define(version: 20140103083016) do
   add_index "orders_shippable_files", ["order_id", "file_object_id"], name: "index_orders_shippable_files_on_order_id_and_file_object_id", unique: true, using: :btree
   add_index "orders_shippable_files", ["order_id"], name: "index_orders_shippable_files_on_order_id", using: :btree
 
+  create_table "products", force: true do |t|
+    t.integer  "admin_id"
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "price",       precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products_file_objects", id: false, force: true do |t|
+    t.integer "product_id"
+    t.integer "file_object_id"
+  end
+
+  add_index "products_file_objects", ["file_object_id"], name: "index_products_file_objects_on_file_object_id", using: :btree
+  add_index "products_file_objects", ["product_id", "file_object_id"], name: "index_products_file_objects_on_product_id_and_file_object_id", using: :btree
+  add_index "products_file_objects", ["product_id"], name: "index_products_file_objects_on_product_id", using: :btree
+
+  create_table "products_files", id: false, force: true do |t|
+    t.integer "product_id"
+    t.integer "file_object_id"
+  end
+
   create_table "reviews", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -163,6 +187,10 @@ ActiveRecord::Schema.define(version: 20140103083016) do
     t.boolean  "cad"
     t.boolean  "print"
     t.boolean  "hub"
+    t.text     "image1"
+    t.text     "image2"
+    t.text     "image3"
+    t.text     "image4"
   end
 
   create_table "users", force: true do |t|

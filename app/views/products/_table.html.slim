@@ -1,0 +1,7 @@
+- model_class = Product
+- collection.each do |product|
+  .row-fluid
+    h4 = link_to product.title, product
+    p = product.description
+    p = product.price
+  hr  

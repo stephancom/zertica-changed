@@ -17,7 +17,8 @@ class Order < ActiveRecord::Base
 	delegate :email, to: :user, prefix: true
 	delegate :email, to: :admin, prefix: true, allow_nil: true
 	delegate :storefront, to: :admin, allow_nil: true
-	
+	validates :price, numericality: {greater_than: 0}, allow_nil: true
+	validates :subtotal, numericality: {greater_than: 0}, allow_nil: true
 	before_save do
 	  self.title.downcase! if self.title
 	  self.city.downcase! if self.city
@@ -224,7 +225,7 @@ class Order < ActiveRecord::Base
 	# | .__/\__,_|\_, |_|_|_\___|_||_\__|
 	# |_|         |__/                   
 
-	ZERTICA_MARKUP = 0.15
+	ZERTICA_MARKUP = 0.18
 
 	def self.marketplace
 		@marketplace ||= Balanced::Marketplace.my_marketplace

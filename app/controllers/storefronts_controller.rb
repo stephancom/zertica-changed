@@ -8,7 +8,8 @@ class StorefrontsController < ApplicationController
   end
 
   def storefront_params
-    params[:storefront].permit(:admin_id, :ships, :cad, :print, :city, :state, :vendor_name, :description, :pickup)
+    params[:storefront].permit(:admin_id, :ships, :cad, :print, :city, :state, 
+      :vendor_name, :description, :pickup, :image1, :image2, :image3, :image4)
   end
 
   def new
@@ -19,6 +20,8 @@ class StorefrontsController < ApplicationController
     @storefront.update(params[:storefront])
     if @storefront.save
       redirect_to admin_storefront_path
+    else
+      redirect_to edit_admin_storefront_path(@storefront)
     end
   end
   def show

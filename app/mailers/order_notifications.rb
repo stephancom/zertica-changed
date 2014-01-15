@@ -1,5 +1,5 @@
 class OrderNotifications < ActionMailer::Base
-  default from: "no-reply@zertica.com"
+  default from: "no-reply@cadsurf.com"
 
   # subject lines are set in the i18n file, en.yml
 

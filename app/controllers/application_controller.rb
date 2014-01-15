@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-
+	# gotta force ssl
+	force_ssl
+	
 	def current_ability
 	  @current_ability ||= Ability.new(current_account)	
 	end
@@ -24,6 +26,8 @@ class ApplicationController < ActionController::Base
 	before_filter :advise_admin
 
 private
+	# simple markup constant for the marketplace
+	MARKUP = 0.18
 
 	# notify admins to enter their banking info
 	def advise_admin

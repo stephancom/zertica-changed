@@ -35,12 +35,17 @@
 }
 
 
+body {
 
+}
 body{
 	background-color:rgb(255,255,255);
     background-repeat:repeat-x;
     background-position:0px 40px;
     overflow-y:auto;
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 body#landingBody{
     background-position:0px 0px;
@@ -464,7 +469,7 @@ input.sharp{
 .message-item .message-people .pic{
     width:48px;
     height:48px;
-    background-image:url("http://placehold.it/48x48");
+    background-image:url("");
     display:block;
     float:left;
     margin-right:8px;

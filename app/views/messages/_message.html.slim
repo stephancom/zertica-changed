@@ -1,9 +1,9 @@
 .row-fluid *message_attrs(message)
 	.span12.message-text
 		- if message.speaker == message.admin
-			.bubble= message.body
+			.bubble= auto_link(message.body)
 		- else
-			.bubble.bubble--alt= message.body
+			.bubble.bubble--alt= auto_link(message.body)
 		p.speaker
 			= message.speaker_name || 'Zertica Notification'
 			span.timestamp= message.created_at.in_time_zone.strftime("%I:%M%p on %b %e")

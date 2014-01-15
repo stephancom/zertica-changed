@@ -36,8 +36,24 @@
 
   </div>
   <div class="field">
-    <%= f.label :capabilities %>
+    <%= f.label :describe_your_capabilities %>
     <%= f.text_area :description, :class => 'span10', :rows => 6, :placeholder => 'Be specific about your capabilities and what an awesome maker you are.' %>
+  </div>
+    <div class="field">
+    <%= f.label :paste_image_link_here %>
+    <%= f.text_field :image1, :class => 'span10', :placeholder => 'Paste up to four links to examples of your work.' %>
+  </div>
+    <div class="field">
+    <%= f.label :paste_image_link_here %>
+    <%= f.text_field :image2, :class => 'span10', :placeholder => 'You can use imgur.com to get started,' %>
+  </div>
+    <div class="field">
+    <%= f.label :paste_image_link_here %>
+    <%= f.text_field :image3, :class => 'span10', :placeholder => "Or any method to link images you'd like." %>
+  </div>
+    <div class="field">
+    <%= f.label :paste_image_link_here %>
+    <%= f.text_field :image4, :class => 'span10', :placeholder => 'Ex. <a href="http://imgur.com/Zw6RJb3"><img src="http://i.imgur.com/Zw6RJb3.jpg" title="Hosted by imgur.com/></a>' %>
   </div>
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary sharp offset8' %>

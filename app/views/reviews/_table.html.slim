@@ -1,6 +1,6 @@
 
 - collection.each do |review|
   .row-fluid
-    h4 #{ review.title }
+    h4  #{review.rating}/5 #{review.title.titleize}
     p = review.description if review.description
   hr  

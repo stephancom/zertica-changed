@@ -4,11 +4,9 @@
     .row-fluid
      - if current_admin
        =link_to 'Edit', edit_admin_storefront_path, :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
-     - elsif current_user
-       =link_to 'Place Order', new_order_path(:admin_id => @storefront.admin_id), :class => 'btn btn-sharp btn-primary pull-right', :style => 'margin-top:20px'
     .row-fluid
       h2= @storefront.vendor_name.titleize
-
+      h4 #{ @storefront.rating}/5
     .row-fluid 
       .span3 #{@storefront.city.titleize if @storefront.city}, #{@storefront.state.titleize if @storefront.state}
     .row-fluid  
@@ -19,14 +17,28 @@
       .span2 Local Pickup: #{image_tag('green_check_mark.png', size: "20x20") if @storefront.pickup?}
     .row-fluid     
       .span= @storefront.description
+    br
     .row-fluid
       ul.thumbnails
+       li.span3 = auto_link(@storefront.image1)    
+       li.span3 = auto_link(@storefront.image2)
+       li.span3 = auto_link(@storefront.image3)
+       li.span3 = auto_link(@storefront.image4)
+
     hr  
     .row-fluid
-        h3.centertext Reviews
+    .span10.offset1
+      ul.nav.nav-tabs
         - if current_user
           =link_to 'Add Review',new_admin_storefront_review_path(:storefront_id => @storefront.id),  :class => 'btn btn-sharp btn-primary pull-right'
-    .row-fluid
-     .span10.offset1
-       = render 'reviews/table', collection: @storefront.reviews
+        - elsif current_admin
+          =link_to 'Add Product',new_admin_product_path(:admin_id => current_admin.id), :class => 'btn btn-sharp btn-primary pull-right'
 
+        li.active= link_to 'Products', '#products', :data => {:toggle => :tab}
+        li= link_to 'Reviews', '#reviews', :data => {:toggle => :tab}
+      .tab-content
+        .tab-pane.active#products
+          = render 'products/table', collection: @storefront.admin.products
+        .tab-pane#reviews
+          = render 'reviews/table', collection: @storefront.reviews
+        

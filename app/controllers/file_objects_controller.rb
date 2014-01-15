@@ -1,5 +1,6 @@
 class FileObjectsController < ApplicationController
 	load_and_authorize_resource :order
+  load_and_authorize_resource :product
   load_and_authorize_resource :file_object
 
   def index
@@ -32,7 +33,7 @@ class FileObjectsController < ApplicationController
 private
 
   def file_object_params
-    params[:file_object].permit(:url, :filename, :size, :mimetype)
+    params[:file_object].permit(:url, :filename, :size, :mimetype, :order_id, :product_id)
   end
 
 
