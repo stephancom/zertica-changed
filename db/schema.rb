@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114060415) do
+ActiveRecord::Schema.define(version: 20140116073851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,11 +70,12 @@ ActiveRecord::Schema.define(version: 20140114060415) do
     t.integer  "user_id"
     t.integer  "admin_id"
     t.integer  "order_id"
-    t.string   "url",        null: false
-    t.string   "filename",   null: false
-    t.integer  "size",       null: false
-    t.string   "mimetype",   null: false
+    t.string   "url",            null: false
+    t.string   "filename",       null: false
+    t.integer  "size",           null: false
+    t.string   "mimetype",       null: false
     t.integer  "product_id"
+    t.string   "sendshapes_url"
   end
 
   create_table "messages", force: true do |t|

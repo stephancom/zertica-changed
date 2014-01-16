@@ -33,7 +33,8 @@ class FileObjectsController < ApplicationController
 private
 
   def file_object_params
-    params[:file_object].permit(:url, :filename, :size, :mimetype, :order_id, :product_id)
+    params[:file_object].permit(:url, :filename, :size, :mimetype,
+     :order_id, :product_id, :sendshapes_url)
   end
 
 
