@@ -66,5 +66,6 @@ ZerticaConnect::Application.routes.draw do
 		root to: 'orders#index', as: :user_root
 	end
 
-	root to: 'home#index', as: :root
+	# root to: 'home#index', as: :root
+	root to: redirect('/index.html')
 end
