@@ -174,6 +174,9 @@ class @BalancedBankAccount extends @Balanced
         @showProcessing "Performing identity check...", 66
         @form.find('[name$="bank_account[bank_account_uri]"]').val(response.data.uri)
         @form.unbind("submit", @submitForm).submit()
+      when 400
+        @showProcessing "Invalid Routing Number...", 100
+
 
 (($) ->
   # http://jsfiddle.net/davidhong/gP9bh/
