@@ -76,7 +76,7 @@ class @BalancedPurchase extends @Balanced
     # wtf does that mean?
     return  if @form.find("input:visible").length is 0
     e.preventDefault()
-    @resetForm @form
+    @resetForm
     
     #  build data to submit
     cardData = @form.serializeObject()
@@ -118,10 +118,9 @@ class @BalancedPurchase extends @Balanced
 
         while i < fields.length
           isIn = response.error.description.indexOf(fields[i]) >= 0
-          console.log isIn, fields[i], response.error.description
           if isIn
-            @resetForm $form
-            @addErrorToField $form, fields[i]
+            @resetForm
+            @addErrorToField fields[i]
           i++
         unless found
           console.warn "missing field - check response.error for details"
@@ -144,16 +143,18 @@ class @BalancedBankAccount extends @Balanced
   submitForm: (e) =>
     @form.find(".control-group").removeClass "error"
     merchantData = @form.serializeObject()
-    @addErrorToField @form, "bank_account[name]" unless merchantData["bank_account[name]"]
+    @addErrorToField "bank_account[name]" unless !!merchantData["bank_account[name]"]
 
     hasBankAccount = false
+    @addErrorToField "bank_code" unless merchantData.bank_code
+    @addErrorToField "account_number" unless merchantData.account_number
     if merchantData.account_number or merchantData.bank_code
       hasBankAccount = true
-      @addErrorToField @form, "bank_code"  unless balanced.bankAccount.validateRoutingNumber(merchantData.bank_code)
-      @addErrorToField @form, "account_number"  unless merchantData.account_number
-    if @form.find(".control-group.error").length
+      @addErrorToField "bank_code"  unless balanced.bankAccount.validateRoutingNumber(merchantData.bank_code)
+      @addErrorToField "account_number"  unless merchantData.account_number
+    if @form.find(".control-group.error").length>0
       e.preventDefault()
-      return
+      return 
     if hasBankAccount
       e.preventDefault()
       @disableForm @form
