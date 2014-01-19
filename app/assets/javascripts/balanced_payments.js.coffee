@@ -20,9 +20,9 @@ class @Balanced
 
     # hmm, needed?  maybe
     $('[data-dismiss="alert"]').on "click", (e) ->
-      $(this).closest(".alert").fadeOut "fast"
-      resetForm()
       e.preventDefault()
+      $(this).closest(".alert").fadeOut "fast"
+      @resetForm()
 
   #  todo - what if we have a 409?
   showProcessing: (message, progress) ->
