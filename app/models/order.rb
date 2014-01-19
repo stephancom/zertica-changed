@@ -232,7 +232,7 @@ class Order < ActiveRecord::Base
 	end
 
 	def soft_descriptor
-		"Zertica #{id} #{admin_name}"
+		"CADsurf payment to #{admin_name}"
 	end
 
 	def process_payment!(card_uri)
@@ -245,7 +245,7 @@ class Order < ActiveRecord::Base
 			# source_uri: card_uri,
 			amount: (self.price*100).to_i,
 			appears_on_statement_as: self.soft_descriptor,
-			description: self.description,
+			description: self.title,
 			on_behalf_of: seller			# on_behalf_of_uri ?
 			)
 
@@ -265,7 +265,7 @@ class Order < ActiveRecord::Base
 		credit = seller.credit(
 			amount: (self.subtotal*100).to_i,
 			appears_on_statement_as: self.soft_descriptor,
-			description: self.description
+			description: self.title
 		)
 
 		# return unless status == 'paid'
