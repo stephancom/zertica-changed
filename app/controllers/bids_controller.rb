@@ -8,7 +8,8 @@ class BidsController < ApplicationController
   end
 
   def bid_params 
-    params[:bid].permit(:admin_id, :pay_schedule, :subtotal, :message, :order_id, :price, :selected)
+    params[:bid].permit(:admin_id, :pay_schedule, :subtotal, :message,
+     :order_id, :price, :selected, :estimated_hours)
   end
 
   def index
