@@ -13,7 +13,7 @@
     })
   </script>
   <div class="field">
-    <%= f.input :order_type, collection: Order::ORDER_TYPES, as: :radio_buttons if @order.new_record? %>
+    <%= f.input :order_type, collection:['PrintOrder', 'CadOrder', 'Both'], as: :radio_buttons if @order.new_record? %>
   </div>
   <br>
   <br>
