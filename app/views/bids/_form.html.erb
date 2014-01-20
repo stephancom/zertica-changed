@@ -8,6 +8,10 @@
     <%= f.label :rate_type %>
     <%= f.select :pay_schedule, options_for_select(['fixed', 'hourly'])  %>
   </div>
+  <div class="field">
+    <%= f.label :estimated_hours %>
+    <%= f.text_field :estimated_hours, :class => 'span2' %>
+  </div>
   <div class="text">
     <%= f.label :message %>
     <%= f.text_area :message, :rows => "6", placeholder: 'Shoot over an introduction to the customer.', :class => 'span10 offset1' %>

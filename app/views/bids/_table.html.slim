@@ -3,11 +3,13 @@ table.table.table-striped
   thead
     tr
       th= 'Maker'
-      th.span9= model_class.human_attribute_name(:message)
+      th.span8= model_class.human_attribute_name(:message)
       - if current_user
         th= model_class.human_attribute_name(:price)
       - elsif current_admin
         th= model_class.human_attribute_name(:amount)
+      - if bid.order.cad_order?
+        th= 'Estimated Hours'
       th=t '.actions', :default => t("helpers.actions")
 
   tbody
@@ -23,6 +25,8 @@ table.table.table-striped
             td #{number_to_currency(bid.price)}  #{bid.pay_schedule.capitalize}
           - else
             td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
+          - if bid.order.cad_order?
+            td= bid.estimated_hours
           - if current_user
             td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success sharp'
           - else

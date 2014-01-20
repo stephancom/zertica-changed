@@ -31,7 +31,7 @@ table.table.table-striped.table-list-search.custab
         td = order.state.titleize
         - if current_user
           td = order.bids.count if order.submitted?
-          td = (number_to_currency(order.average) || '--') if order.submitted?
+          td = (number_to_currency(order.client_average) || '--') if order.submitted?
         - if current_user
           td = number_to_currency(order.price) || '--'
         - else

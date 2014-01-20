@@ -34,10 +34,17 @@ class Order < ActiveRecord::Base
 	def human_order_type
 		cad_order? ? 'CAD' : 'Print'
 	end
-	def average
+	def maker_average
 	    @sum = 0
 		self.bids.each do |bid|
 		  @sum = @sum + bid.subtotal 
+		end
+		@average = (@sum / self.bids.count) unless self.bids.count == 0  
+	end
+	def client_average
+	    @sum = 0
+		self.bids.each do |bid|
+		  @sum = @sum + bid.price 
 		end
 		@average = (@sum / self.bids.count) unless self.bids.count == 0  
 	end
