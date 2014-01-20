@@ -4,7 +4,7 @@
   = f.error_notification
   = display_base_errors resource
   .form-inputs
-    = f.input :name, :label => 'Username', :autofocus => true
+    = f.input :name, :label => 'Username'
     = f.input :email, :required => true
     - unless resource.is_a? Admin
       = f.input :email_messages
