@@ -232,7 +232,7 @@ class Order < ActiveRecord::Base
 	end
 
 	def soft_descriptor
-		"CADsurf - #{admin_name}"
+		"CADsurf #{admin_name}"
 	end
 
 	def process_payment!(card_uri)
