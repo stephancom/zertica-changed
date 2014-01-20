@@ -5,7 +5,7 @@
 - if @order.cad_order?
 	| Your order "#{@order.title}," resulted in files which have been uploaded to CADsurf, and are ready for you to download.
 
-		#(order_url @order)
+		#{order_url @order}
 - else
 	| Your order "#{@order.title}," has been shipped via #{@order.carrier} with the tracking number #{@order.tracking_number}.
 
