@@ -25,6 +25,9 @@ class Order < ActiveRecord::Base
 	  self.province.downcase! if self.province
 	end
 
+	def mybids
+	end
+
 	def cad_order?
 		order_type == 'CadOrder'
 	end

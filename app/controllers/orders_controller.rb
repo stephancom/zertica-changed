@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   
   def mybids
     if current_admin
-      @mybids = Order.pool.where(:admin_id == current_admin.id)
+      @mybids = Order.mybids
       respond_with @mybids
     end
   end
