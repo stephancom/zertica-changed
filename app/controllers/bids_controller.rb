@@ -49,11 +49,11 @@ class BidsController < ApplicationController
       @bid.admin_id = current_admin.id
     end
     if @bid.save
-      flash[:notice] = 'Your bid was added.'
+      flash[:notice] = 'Your proposal was added.'
       redirect_to @order
 
     else
-      redirect_to @order, :alert => 'Unable to add bid'
+      redirect_to @order, :alert => 'Unable to add proposal'
     end
   end
 
