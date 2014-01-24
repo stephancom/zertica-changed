@@ -47,7 +47,8 @@
     <td style="padding-right:15px;">
        <div class="field">
         <%= f.label :state %>
-        <%= f.text_field :province, :class => 'span12', :placeholder => 'ex. California' %>
+        <%= f.select 'province', options_for_select(@us_states) %>
+
       </div>
     </td>
   </tr>
