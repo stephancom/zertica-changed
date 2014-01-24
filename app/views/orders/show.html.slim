@@ -99,12 +99,12 @@
 		    ul.nav.nav-tabs
 		      - if current_user && @order.submitted?
 		      	 li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
-		         li= link_to 'Bids', '#bids', :data => {:toggle => :tab}
+		         li= link_to 'Proposals', '#bids', :data => {:toggle => :tab}
 		      - elsif current_user         
 		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 		      - elsif current_admin && @order.submitted?
 		      	 li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
-		         li= link_to 'Your bids', '#bids', :data => {:toggle => :tab}
+		         li= link_to 'Your Proposals', '#bids', :data => {:toggle => :tab}
 		      - elsif current_admin
 		         li.active= link_to 'Associated Files', '#files', :data => {:toggle => :tab}
 		      - if @order.shipped? and @order.cad_order?
