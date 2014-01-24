@@ -22,7 +22,7 @@ ZerticaConnect::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
   # Amazon S3 CDN 
-  config.action_controller.asset_host = ENV['d1peiec6gqt5o9.cloudfront.net']
+  #config.action_controller.asset_host = ENV['d1peiec6gqt5o9.cloudfront.net']
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
