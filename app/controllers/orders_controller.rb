@@ -22,6 +22,13 @@ class OrdersController < ApplicationController
       respond_with @order_pool
     end
   end
+  
+  def mybids
+    if current_admin
+      @mybids = Order.pool.where(:admin_id == current_admin.id)
+      respond_with @mybids
+    end
+  end
 
   def new
     @order = Order.new(params[:order])

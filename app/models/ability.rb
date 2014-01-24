@@ -12,6 +12,7 @@ class Ability
                 can :show, Admin
                 can :show, Review
                 can :pool, Order
+                can :mybids, Order
                 can :manage, Product
                 can [:new, :create, :show, :edit, :update, :destroy], Storefront
                 can [:index, :new, :create, :show, :edit, :update], Order

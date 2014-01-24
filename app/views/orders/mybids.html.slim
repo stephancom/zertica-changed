@@ -1,0 +1,7 @@
+- model_class = Order
+.row-fluid
+		h1 My Proposals: #{@mybids.count}
+		br
+		= render 'search'
+		
+= render 'mybids_table', collection: @mybids
