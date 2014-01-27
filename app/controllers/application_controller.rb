@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 	# gotta force ssl
 	force_ssl if Rails.env.production?
-	
+	helper :all
 	def current_ability
 	  @current_ability ||= Ability.new(current_account)	
 	end

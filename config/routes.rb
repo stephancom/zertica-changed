@@ -23,7 +23,6 @@ ZerticaConnect::Application.routes.draw do
 		end
 		match "/orders/pool" => "orders#pool", via: :get
 		match "/orders/mybids" => "orders#mybids", via: :get
-
 		resources :users
 
 		resources :orders do
