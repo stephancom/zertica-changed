@@ -12,7 +12,7 @@ table.table.table-striped
       - unless file_object.new_record?
         tr
           td= filepicker_image_tag file_object.url, w: 96, h: 96 if file_object.mimetype.include? 'image'
-          td= file_object.name
+          td= link_to file_object.name, file_object_path(@file_object)
           td= number_to_human_size file_object.size
           td= file_object.created_at.in_time_zone.strftime("%I:%M%p on %b %e")
           td
