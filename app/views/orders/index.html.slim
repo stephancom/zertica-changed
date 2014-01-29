@@ -1,11 +1,12 @@
 - model_class = Order
-.row-fluid
-		.div
-		h1 My Orders:
-		
-		br
-		- if current_user
-			= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right sharp'
-		= render 'search'
-		
-= render 'table', collection: @orders
+.div.custab.minh
+	.row-fluid
+			.div
+			h1 My Orders:
+			
+			br
+			- if current_user
+				= link_to 'New Order', new_order_path, :class => 'btn btn-primary pull-right sharp'
+			= render 'search'
+			
+	= render 'table', collection: @orders

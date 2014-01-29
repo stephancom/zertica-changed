@@ -1,26 +1,28 @@
-.page-header.centertext
-  h1.centered Edit Account
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal centerbox' }) do |f|
-  = f.error_notification
-  = display_base_errors resource
-  .form-inputs
-    = f.input :name, :label => 'Username'
-    = f.input :email, :required => true
-    - unless resource.is_a? Admin
-      = f.input :email_messages
-      = f.input :email_estimate
-      = f.input :email_complete
-      = f.input :email_shipped
-    = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
-    = f.input :password_confirmation, :required => false
-    = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
-    = f.button :submit, 'Update', :class => 'btn btn-primary offset5 sharp'
+.div.custab.minh
     
-.centertext
-  - if current_admin
-    h3 Banking information
-    = render 'bank_accounts/form'
+    .page-header.centertext
+      h1.centered Edit Account
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal centerbox' }) do |f|
+      = f.error_notification
+      = display_base_errors resource
+      .form-inputs
+        = f.input :name, :label => 'Username'
+        = f.input :email, :required => true
+        - unless resource.is_a? Admin
+          = f.input :email_messages
+          = f.input :email_estimate
+          = f.input :email_complete
+          = f.input :email_shipped
+        = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
+        = f.input :password_confirmation, :required => false
+        = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+        = f.button :submit, 'Update', :class => 'btn btn-primary offset5 sharp'
+        
+    .centertext
+      - if current_admin
+        h3 Banking information
+        = render 'bank_accounts/form'
 
-  - else
-    br
-    p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
+      - else
+        br
+        p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.

@@ -1,28 +1,32 @@
 .custab{
-    border: 1px solid #ccc;
-    padding: 5px;
+    background-color:rgb(255,255,255);
+    border: 1px solid rgb(195,195,195);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    padding: 35px;
     margin: 0% 0;
-    box-shadow: 3px 3px 2px #ccc;
+    box-shadow: 1px 3px 3px 2px #ccc;
     transition: 0.5s;
     }
-.custab:hover{
-    box-shadow: 3px 3px 0px transparent;
-    transition: 0.5s;
-    }
+.minh{
+    min-height: 750px;
+}
 .bigger-text{
 	font-size: 16px;
 }
 .orderbox{
-    border: 1px solid #000000;
+    border: 1px solid rgb(195,195,195);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
     padding: 5px;
     margin: 0% 0;
-    box-shadow: 7px 7px 5px #ccc;
-    transition: 0.5s;
     height: 1200px;
-    }
-.orderbox:hover{
-    box-shadow: 3px 3px 0px transparent;
+    box-shadow: 1px 3px 3px 2px #ccc;
     transition: 0.5s;
+    background-color:rgb(255,255,255);
+
     }
 .mpanel{
     border: 0px solid #000000;
@@ -37,3 +41,15 @@
 .boxpads{
     margin-top: 10px;
 }
+.loginbox{
+    background-color:rgb(255,255,255);
+    border: 1px solid rgb(195,195,195);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    padding: 35px;
+    width:300px;
+    margin: 0% 0;
+    box-shadow: 1px 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
