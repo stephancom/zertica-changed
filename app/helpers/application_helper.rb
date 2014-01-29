@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+  require 'net/http'
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
@@ -31,4 +31,20 @@ module ApplicationHelper
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, :sort => column, :direction => direction
   end
+
+  def get_partner_token
+    uri = URI.parse('http://widget.sendshapes.com')
+    http = Net::HTTP.new(uri.host, uri.port)
+    
+    request = Net::HTTP::Get.new("/api_create_partner_token?api_key=ZSBzaG9y-dCB2ZWhl-bWVuY2Ug-b2YgYW55-IGNhcm5h-bCB==")
+    response = http.request(request)
+
+    response.code
+
+
+
+  end
+
+
+
 end
