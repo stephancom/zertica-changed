@@ -9,7 +9,7 @@
       - if admin_signed_in? || user_signed_in?
         = link_to 'CADsurf', root_path, :class => 'brand'
       - else   
-        = link_to 'CADsurf', 'http://cadsurf.com', :class => 'brand'
+        = link_to 'CADsurf', 'https://cadsurf.com', :class => 'brand'
       .nav-collapse.collapse
         ul.nav.pull-right
           - if admin_signed_in?
@@ -27,8 +27,8 @@
             li= link_to "Account", edit_user_registration_path
             li= link_to 'Logout', destroy_user_session_path, :method=>'delete'
           - else
-            li= link_to 'Features', 'https://www.cadsurf.com/#features'
-            li= link_to 'About Us', 'https://www.cadsurf.com/#about_us'
-            li= link_to 'Contact', 'https://www.cadsurf.com/#contact'
+            li= link_to 'Features', 'https://cadsurf.com/#features'
+            li= link_to 'About Us', 'https://cadsurf.com/#about_us'
+            li= link_to 'Contact', 'https://cadsurf.com/#contact'
             li= link_to 'Customer Login', new_user_session_path
             li= link_to 'Makers', new_admin_session_path
