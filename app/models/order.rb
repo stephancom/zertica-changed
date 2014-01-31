@@ -62,6 +62,8 @@ class Order < ActiveRecord::Base
 
 	validates :title, presence: true
 	validates :description, presence: true
+	validates :city, presence: true
+	validates :province, presence: true
 	validates :order_type, presence: true, inclusion: { in: ORDER_TYPES }
 	#validates :project, presence: true
 	validates :price, numericality: { greater_than: 0 }, allow_nil: true
