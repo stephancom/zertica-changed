@@ -49,9 +49,9 @@ ZerticaConnect::Application.configure do
   config.log_level = :info
 
   # CDN SUMO
-  config.action_controller.asset_host = ENV['CDN_SUMO_URL']
-  config.static_cache_control = "public, max-age=2592000"
-  config.assets.digest = true
+  #config.action_controller.asset_host = ENV['CDN_SUMO_URL']
+  #config.static_cache_control = "public, max-age=2592000"
+  #config.assets.digest = true
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
