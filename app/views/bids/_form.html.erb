@@ -2,11 +2,13 @@
  
   <div class="field">
     <%= f.label :amount_you_receive_including_shipping %>
-    <p>$ <%= f.input :subtotal, type: :text, :class => 'span2', :placeholder => '100', :name => 'subtotal' %></p>
+    <p>$ <%= f.input :subtotal, type: :text, :class => 'span2', :placeholder => '100' %></p>
   </div>
+  <input type="text" name="subtotal"></input>
+  <input type="text" name="price"></input>
   <div class="field">
     <%= f.label :what_customer_sees %>
-    <%= f.input :price, type: :text, :class => 'span2', :disabled => true, :name => 'price' %>
+    <%= f.input :price, type: :text, :class => 'span2', :disabled => true %>
   </div>
   <div class="field">
     <%= f.label :rate_type %>
