@@ -26,6 +26,6 @@ table.table.table-striped
             td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
           td= bid.estimated_hours
           - if current_user
-            td= link_to 'Select', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success sharp'
+            td= link_to 'Accept', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success sharp'
           - else
             td= button_to 'Retract', [@order, bid], :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger sharp' 
