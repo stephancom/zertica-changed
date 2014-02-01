@@ -2,7 +2,7 @@
 table.table.table-striped
   thead
     tr
-      th
+      th= 'Chat'
       th= 'Maker'
       th.span8= model_class.human_attribute_name(:message)
       - if current_user
