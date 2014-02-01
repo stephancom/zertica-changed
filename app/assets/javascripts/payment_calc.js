@@ -1,7 +1,7 @@
 $(document).ready(function() {
       
     $("#rate").blur(function() {
-        if($("#type :selected").text() == "Fixed"){
+        if($("#rate_type :selected").text() == "Fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
             $("#subtotal").val(firstNumber);
@@ -15,7 +15,7 @@ $(document).ready(function() {
         });
     
     $("#hours").blur(function() {
-        if($("#type :selected").text() == "Fixed"){
+        if($("#rate_type :selected").text() == "Fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
             $("#subtotal").val(firstNumber);
@@ -29,7 +29,7 @@ $(document).ready(function() {
         });
     
     $("#type").blur(function() {
-        if($("#type :selected").text() == "Fixed"){
+        if($("#rate_type :selected").text() == "Fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
             $("#subtotal").val(firstNumber);
