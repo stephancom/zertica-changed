@@ -2,21 +2,27 @@
   <%= simple_form_for [@order, @bid], :html => { :class => "form-vertical offset1" }  do |f| %>
  
   <div class="field">
-    <%= f.label :amount_you_receive_including_shipping %>
-    <p>$ <%= f.text_field :subtotal, :class => 'span2', :placeholder => '100', :id => 'subtotal' %></p>
-  </div>
-  <div class="field">
-    <%= f.label :what_customer_sees %>
-    $ <input type="text" name="price" disabled="true"></input>
+    <%= f.label :rate %>
+    $ <input type="text" id="rate" placeholder="100"></input>
+
   </div>
   <div class="field">
     <%= f.label :rate_type %>
-    <%= f.select :pay_schedule, options_for_select(['fixed', 'hourly'])  %>
+    <%= f.select :pay_schedule, options_for_select(['fixed', 'hourly']), :id => 'type'  %>
   </div>
   <div class="field">
     <%= f.label :estimated_hours %>
-    <%= f.text_field :estimated_hours, :class => 'span2' %>
+    <%= f.text_field :estimated_hours, :class => 'span2', :id => 'hours' %>
   </div>
+  <div class="field">
+    <%= f.label :what_you_receive %>
+    <p>$ <%= f.text_field :subtotal, :class => 'span2', :id => 'subtotal', :disabled => true %></p>
+  </div>
+  <div class="field">
+    <%= f.label :what_customer_sees %>
+    $ <input type="text" id="price" disabled="true"></input>
+  </div>
+
   <div class="text">
     <%= f.label :message %>
     <%= f.text_area :message, :rows => "6", placeholder: 'Shoot over an introduction to the customer.', :class => 'span10 offset1' %>
