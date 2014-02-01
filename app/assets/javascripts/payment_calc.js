@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
         });
     
-    $("#type").blur(function() {
+    $("#bid_pay_schedule").blur(function() {
         if($("#bid_pay_schedule :selected").text() == "fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
