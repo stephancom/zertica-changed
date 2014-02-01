@@ -16,16 +16,22 @@ table.table.table-striped
     - collection.each do |bid|
       - unless bid.new_record?
         tr
-          td= link_to 'Chat', active_chats_path, :class => 'btn btn-primary' 
+          td= link_to 'Chat', active_chats_path, :class => 'btn btn-primary sharp' 
           - if bid.storefront
             td= link_to bid.admin_name, admin_storefront_path(bid.admin_id, bid.storefront)
           - else 
             td= bid.admin_name
           td= bid.message
-          - if current_user
-            td #{number_to_currency(bid.price)}  #{bid.pay_schedule.capitalize}
+          - if bid.pay_schedule == 'fixed'
+            - if current_user
+              td #{number_to_currency(bid.price)}  #{bid.pay_schedule.capitalize}
+            - else
+              td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
           - else
-            td #{number_to_currency(bid.subtotal)}  #{bid.pay_schedule.capitalize}
+            - if current_user
+              td #{number_to_currency(bid.price)}  (#{bid.price/bid.estimated_hours}/hr.)
+            - else
+              td #{number_to_currency(bid.subtotal)} (#{bid.price/bid.estimated_hours}/hr.)
           td= bid.estimated_hours
           - if current_user
             td= link_to 'Accept', select_bid_path(bid.id, :order_id => bid.order.id), method: :post, :class => 'btn btn-success sharp'
