@@ -18,7 +18,7 @@
     <%= f.label :what_you_receive %>
     $ <input type="text" class="subtotal" disabled="true"></input>
 
-    <%= f.text_field :subtotal, :class => 'span2 subtotal', :hidden => true %>
+    <%= f.hidden_field :subtotal, :class => 'span2 subtotal' %>
   </div>
   <div class="field">
     <%= f.label :what_customer_sees %>
