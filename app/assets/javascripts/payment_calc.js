@@ -4,14 +4,14 @@ $(document).ready(function() {
         if($("#bid_pay_schedule :selected").text() == "fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
-            $("#subtotal").val(firstNumber);
+            $(".subtotal").val(firstNumber);
         }
         
         else {
             var firstNumber = parseInt($("#rate").val());
             var secNumber = parseInt($("#hours").val());
             $("#price").val(Math.round(firstNumber*secNumber*1.18));
-            $("#subtotal").val(firstNumber*secNumber);
+            $(".subtotal").val(firstNumber*secNumber);
         }
 
         
@@ -21,13 +21,13 @@ $(document).ready(function() {
         if($("#bid_pay_schedule :selected").text() == "fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
-            $("#subtotal").val(firstNumber);
+            $(".subtotal").val(firstNumber);
         }
         else {
             var firstNumber = parseInt($("#rate").val());
             var secNumber = parseInt($("#hours").val());
             $("#price").val(Math.round(firstNumber*secNumber*1.18));
-            $("#subtotal").val(firstNumber*secNumber);
+            $(".subtotal").val(firstNumber*secNumber);
         }
         });
     
@@ -35,13 +35,13 @@ $(document).ready(function() {
         if($("#bid_pay_schedule :selected").text() == "fixed"){
             var firstNumber = parseInt($("#rate").val());
             $("#price").val(Math.round(firstNumber*1.18));
-            $("#subtotal").val(firstNumber);
+            $(".subtotal").val(firstNumber);
         }
         else {
             var firstNumber = parseInt($("#rate").val());
             var secNumber = parseInt($("#hours").val());
             $("#price").val(Math.round(firstNumber*secNumber*1.18));
-            $("#subtotal").val(firstNumber*secNumber);
+            $(".subtotal").val(firstNumber*secNumber);
         }
         });
 
