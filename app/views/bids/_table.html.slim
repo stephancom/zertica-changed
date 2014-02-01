@@ -2,6 +2,7 @@
 table.table.table-striped
   thead
     tr
+      th
       th= 'Maker'
       th.span8= model_class.human_attribute_name(:message)
       - if current_user
@@ -15,6 +16,7 @@ table.table.table-striped
     - collection.each do |bid|
       - unless bid.new_record?
         tr
+          td= link_to 'Chat', active_chats_path, :class => 'btn btn-primary' 
           - if bid.storefront
             td= link_to bid.admin_name, admin_storefront_path(bid.admin_id, bid.storefront)
           - else 
