@@ -41,13 +41,14 @@
     <td style="padding-right:15px;">
        <div class="field">
         <%= f.label :city %>
-        <%= f.text_field :city, :class => 'span12', :placeholder => 'ex. Los Angeles' %>
+        <%= f.text_field :city, :class => 'span12' %>
       </div>
     </td>
     <td style="padding-right:15px;">
        <div class="field">
         <%= f.label :state %>
-        <%= f.select 'province', options_for_select([ ["AK", "Alaska"], 
+        <%= f.select 'province', options_for_select([ 
+                ["AK", "Alaska"], 
                 ["AL", "Alabama"], 
                 ["AR", "Arkansas"], 
                 ["AS", "American Samoa"], 
