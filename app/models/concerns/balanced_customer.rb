@@ -20,7 +20,14 @@ module BalancedCustomer
 	end
 
 	def balanced_customer
-		return Balanced::Customer.find(self.customer_uri) if self.customer_uri
+		if self.customer_uri
+			begin
+				customer = Balanced::Customer.find(self.customer_uri)
+				return customer
+			rescue 
+				logger.info "There was a problem fetching the customer from Balanced"
+			end
+		end
 
 		begin
 			customer = self.class.create_balanced_customer(
@@ -28,7 +35,7 @@ module BalancedCustomer
 			:email  => self.email
 			)
 		rescue
-			'There was error fetching the Balanced customer'
+			logger.info 'There was error fetching the Balanced customer'
 		end
 
 		self.customer_uri = customer.uri
